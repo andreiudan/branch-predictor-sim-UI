@@ -116,7 +116,6 @@ public partial class MainWindow
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 		// Container child MainWindow.Gtk.Container+ContainerChild
 		this.fixed1 = new global::Gtk.Fixed();
-		this.fixed1.Name = "fixed1";
 		this.fixed1.HasWindow = false;
 		// Container child fixed1.Gtk.Fixed+FixedChild
 		this.dumpConfigLabel = new global::Gtk.Label();
@@ -609,7 +608,7 @@ public partial class MainWindow
 			this.Child.ShowAll();
 		}
 		this.DefaultWidth = 1412;
-		this.DefaultHeight = 711;
+		this.DefaultHeight = 750;
 		this.l1sizeLabel.Hide();
 		this.l1sizeSpinbutton.Hide();
 		this.l2sizeLabel.Hide();

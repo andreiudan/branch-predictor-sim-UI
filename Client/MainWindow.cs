@@ -4,8 +4,12 @@ using Gtk;
 public partial class MainWindow: Gtk.Window
 {
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
-	{
-		Build ();
+    {
+        ConnectionManager connectionManager = new ConnectionManager();
+
+        connectionManager.addConnection("localhost", "3000");
+
+        Build ();
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
