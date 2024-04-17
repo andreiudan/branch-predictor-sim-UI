@@ -50,5 +50,8 @@
     <Folder Include="DTOs\" />
     <Folder Include="Connection\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
