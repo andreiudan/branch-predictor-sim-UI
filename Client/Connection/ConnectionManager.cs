@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class ConnectionManager
 {
@@ -33,9 +34,9 @@ public class ConnectionManager
         return result;
     }
 
-    public List<Result> executeCommands(List<Params> args)
+    public List<Task<Result>> executeCommands(List<Params> args)
     {
-        List<Result> results = new List<Result>();
+        List<Task<Result>> results = new List<Task<Result>>();
 
         foreach (var arg in args)
         {

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 using Gtk;
 
 public partial class MainWindow: Gtk.Window
@@ -7,7 +9,19 @@ public partial class MainWindow: Gtk.Window
     {
         ConnectionManager connectionManager = new ConnectionManager();
 
-        connectionManager.addConnection("localhost", "3000");
+        connectionManager.addConnection("192.168.0.102", "3000");
+
+        var tasks = connectionManager.executeCommands(new List<Params> { new Params(), new Params() });
+
+        foreach(var task in tasks)
+        {
+            Task.Run(async () =>
+            {
+                var result = await task;
+
+                Console.WriteLine(result.benchName);
+            });
+        }
 
         Build ();
 	}

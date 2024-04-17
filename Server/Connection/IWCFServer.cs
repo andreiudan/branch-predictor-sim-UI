@@ -11,3 +11,4 @@ public interface IWCFServer
     [OperationContract]
     string executeCommand(string arg);
 }
+
