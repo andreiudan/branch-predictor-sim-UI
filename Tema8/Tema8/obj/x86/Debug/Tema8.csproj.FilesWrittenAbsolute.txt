@@ -1,6 +1,0 @@
-/home/andreiudan/Facultate/AA/Proiect/Tema8/Tema8/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/home/andreiudan/Facultate/AA/Proiect/Tema8/Tema8/obj/x86/Debug/Tema8.gtk-gui.gui.stetic
-/home/andreiudan/Facultate/AA/Proiect/Tema8/Tema8/bin/Debug/Tema8.exe.mdb
-/home/andreiudan/Facultate/AA/Proiect/Tema8/Tema8/bin/Debug/Tema8.exe
-/home/andreiudan/Facultate/AA/Proiect/Tema8/Tema8/obj/x86/Debug/Tema8.exe
-/home/andreiudan/Facultate/AA/Proiect/Tema8/Tema8/obj/x86/Debug/Tema8.exe.mdb

@@ -1,7 +1,7 @@
 ﻿using System;
 using Gtk;
 
-namespace Tema8
+namespace Client
 {
 	class MainClass
 	{
