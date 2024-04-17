@@ -1,0 +1,654 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<stetic-interface>
+  <configuration>
+    <images-root-path>..</images-root-path>
+  </configuration>
+  <import>
+    <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <widget-library name="../bin/Debug/Tema8.exe" internal="true" />
+  </import>
+  <widget class="Gtk.Window" id="MainWindow" design-size="1412 711">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">MainWindow</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <signal name="DeleteEvent" handler="OnDeleteEvent" />
+    <child>
+      <widget class="Gtk.Fixed" id="fixed1">
+        <property name="MemberName" />
+        <property name="HasWindow">False</property>
+        <child>
+          <widget class="Gtk.Label" id="dumpConfigLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Dump config file</property>
+          </widget>
+          <packing>
+            <property name="X">27</property>
+            <property name="Y">134</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="helpLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Help</property>
+          </widget>
+          <packing>
+            <property name="X">29</property>
+            <property name="Y">186</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="verboseLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Verbose</property>
+          </widget>
+          <packing>
+            <property name="X">26</property>
+            <property name="Y">239</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="debugLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Debug message</property>
+          </widget>
+          <packing>
+            <property name="X">25</property>
+            <property name="Y">287</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="dliteDebuggerLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">DLite Debugger</property>
+          </widget>
+          <packing>
+            <property name="X">25</property>
+            <property name="Y">337</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="seedLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Seed</property>
+          </widget>
+          <packing>
+            <property name="X">24</property>
+            <property name="Y">387</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="abel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Initialize and terminate immediately</property>
+          </widget>
+          <packing>
+            <property name="X">22</property>
+            <property name="Y">434</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="checkpointLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Checkpoint</property>
+          </widget>
+          <packing>
+            <property name="X">24</property>
+            <property name="Y">478</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="simRedirLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Simout save location</property>
+          </widget>
+          <packing>
+            <property name="X">23</property>
+            <property name="Y">525</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="progRedirLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Progout save location</property>
+          </widget>
+          <packing>
+            <property name="X">26</property>
+            <property name="Y">570</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="niceLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Simulator scheduling priority</property>
+          </widget>
+          <packing>
+            <property name="X">26</property>
+            <property name="Y">612</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="configEntry">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">●</property>
+          </widget>
+          <packing>
+            <property name="X">137</property>
+            <property name="Y">74</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="configLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Config file</property>
+          </widget>
+          <packing>
+            <property name="X">35</property>
+            <property name="Y">79</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="dumpEntry">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">●</property>
+          </widget>
+          <packing>
+            <property name="X">174</property>
+            <property name="Y">130</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.CheckButton" id="helpCheckbutton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Label" translatable="yes">help</property>
+            <property name="DrawIndicator">True</property>
+            <property name="HasLabel">True</property>
+            <property name="UseUnderline">True</property>
+          </widget>
+          <packing>
+            <property name="X">83</property>
+            <property name="Y">184</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.CheckButton" id="verboseCheckbutton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Label" translatable="yes">verbose</property>
+            <property name="DrawIndicator">True</property>
+            <property name="HasLabel">True</property>
+            <property name="UseUnderline">True</property>
+          </widget>
+          <packing>
+            <property name="X">101</property>
+            <property name="Y">238</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.CheckButton" id="debugCheckbutton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Label" translatable="yes">debug</property>
+            <property name="DrawIndicator">True</property>
+            <property name="HasLabel">True</property>
+            <property name="UseUnderline">True</property>
+          </widget>
+          <packing>
+            <property name="X">166</property>
+            <property name="Y">289</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.CheckButton" id="dliteDebuggerCheckbutton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Label" translatable="yes">dlite</property>
+            <property name="DrawIndicator">True</property>
+            <property name="HasLabel">True</property>
+            <property name="UseUnderline">True</property>
+          </widget>
+          <packing>
+            <property name="X">161</property>
+            <property name="Y">337</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.CheckButton" id="initAndEndCheckbutton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Label" translatable="yes">init/end</property>
+            <property name="DrawIndicator">True</property>
+            <property name="HasLabel">True</property>
+            <property name="UseUnderline">True</property>
+          </widget>
+          <packing>
+            <property name="X">326</property>
+            <property name="Y">432</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="dumpBrowseButton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Browse</property>
+            <property name="UseUnderline">True</property>
+          </widget>
+          <packing>
+            <property name="X">350</property>
+            <property name="Y">132</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="simReditEntry">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">●</property>
+          </widget>
+          <packing>
+            <property name="X">197</property>
+            <property name="Y">519</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="simRedirBrowseButton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Browse</property>
+            <property name="UseUnderline">True</property>
+          </widget>
+          <packing>
+            <property name="X">373</property>
+            <property name="Y">518</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="progRedirBrowseButton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Browse</property>
+            <property name="UseUnderline">True</property>
+          </widget>
+          <packing>
+            <property name="X">385</property>
+            <property name="Y">565</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="progRedirEntry">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">●</property>
+          </widget>
+          <packing>
+            <property name="X">209</property>
+            <property name="Y">564</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.SpinButton" id="schedulingSpinbutton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Upper">100</property>
+            <property name="PageIncrement">10</property>
+            <property name="StepIncrement">1</property>
+            <property name="ClimbRate">1</property>
+            <property name="Numeric">True</property>
+          </widget>
+          <packing>
+            <property name="X">274</property>
+            <property name="Y">609</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.SpinButton" id="seedSpinbutton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Upper">100</property>
+            <property name="PageIncrement">10</property>
+            <property name="StepIncrement">1</property>
+            <property name="ClimbRate">1</property>
+            <property name="Numeric">True</property>
+          </widget>
+          <packing>
+            <property name="X">74</property>
+            <property name="Y">381</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.SpinButton" id="maxInstSpinbutton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Upper">100</property>
+            <property name="PageIncrement">10</property>
+            <property name="StepIncrement">1</property>
+            <property name="ClimbRate">1</property>
+            <property name="Numeric">True</property>
+          </widget>
+          <packing>
+            <property name="X">265</property>
+            <property name="Y">657</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="bpredLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">bpred</property>
+          </widget>
+          <packing>
+            <property name="X">525</property>
+            <property name="Y">74</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.ComboBox" id="bpredCombobox">
+            <property name="MemberName" />
+            <property name="Tooltip" translatable="yes" />
+            <property name="IsTextCombo">True</property>
+            <property name="Items" translatable="yes">nottaken
+taken
+bimod
+2lev
+comb</property>
+            <property name="Active">2</property>
+            <signal name="Changed" handler="OnBpredComboboxChanged" />
+          </widget>
+          <packing>
+            <property name="X">579</property>
+            <property name="Y">68</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="configBrowseButton">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Browse</property>
+            <property name="UseUnderline">True</property>
+          </widget>
+          <packing>
+            <property name="X">315</property>
+            <property name="Y">74</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="maxInstLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Max instructions to execute</property>
+          </widget>
+          <packing>
+            <property name="X">27</property>
+            <property name="Y">662</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="simulateButton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Simulate</property>
+            <property name="UseUnderline">True</property>
+          </widget>
+          <packing>
+            <property name="X">1289</property>
+            <property name="Y">649</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="l1sizeLabel">
+            <property name="MemberName" />
+            <property name="Visible">False</property>
+            <property name="LabelProp" translatable="yes">l1size</property>
+          </widget>
+          <packing>
+            <property name="X">793</property>
+            <property name="Y">74</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.SpinButton" id="l1sizeSpinbutton">
+            <property name="MemberName" />
+            <property name="Visible">False</property>
+            <property name="CanFocus">True</property>
+            <property name="Upper">100</property>
+            <property name="PageIncrement">10</property>
+            <property name="StepIncrement">1</property>
+            <property name="ClimbRate">1</property>
+            <property name="Numeric">True</property>
+          </widget>
+          <packing>
+            <property name="X">854</property>
+            <property name="Y">69</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="l2sizeLabel">
+            <property name="MemberName" />
+            <property name="Visible">False</property>
+            <property name="LabelProp" translatable="yes">l2size</property>
+          </widget>
+          <packing>
+            <property name="X">793</property>
+            <property name="Y">135</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.SpinButton" id="l2sizeSpinbutton">
+            <property name="MemberName" />
+            <property name="Visible">False</property>
+            <property name="CanFocus">True</property>
+            <property name="Upper">100</property>
+            <property name="PageIncrement">10</property>
+            <property name="StepIncrement">1</property>
+            <property name="ClimbRate">1</property>
+            <property name="Numeric">True</property>
+          </widget>
+          <packing>
+            <property name="X">854</property>
+            <property name="Y">130</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="histSizeLabel">
+            <property name="MemberName" />
+            <property name="Visible">False</property>
+            <property name="LabelProp" translatable="yes">histSize</property>
+          </widget>
+          <packing>
+            <property name="X">985</property>
+            <property name="Y">76</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.SpinButton" id="histSizeSpinbutton">
+            <property name="MemberName" />
+            <property name="Visible">False</property>
+            <property name="CanFocus">True</property>
+            <property name="Upper">100</property>
+            <property name="PageIncrement">10</property>
+            <property name="StepIncrement">1</property>
+            <property name="ClimbRate">1</property>
+            <property name="Numeric">True</property>
+          </widget>
+          <packing>
+            <property name="X">1070</property>
+            <property name="Y">71</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.SpinButton" id="xorSpinbutton">
+            <property name="MemberName" />
+            <property name="Visible">False</property>
+            <property name="CanFocus">True</property>
+            <property name="Upper">100</property>
+            <property name="PageIncrement">10</property>
+            <property name="StepIncrement">1</property>
+            <property name="ClimbRate">1</property>
+            <property name="Numeric">True</property>
+          </widget>
+          <packing>
+            <property name="X">1071</property>
+            <property name="Y">126</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="xorLabel">
+            <property name="MemberName" />
+            <property name="Visible">False</property>
+            <property name="LabelProp" translatable="yes">xor</property>
+          </widget>
+          <packing>
+            <property name="X">1023</property>
+            <property name="Y">133</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="titleLabel">
+            <property name="MemberName" />
+            <property name="Xpad">485</property>
+            <property name="Ypad">4</property>
+            <property name="LabelProp" translatable="yes">Branch prediction simulator</property>
+          </widget>
+          <packing>
+            <property name="X">74</property>
+            <property name="Y">17</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="metaTableSizeLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">MetaTableSize</property>
+          </widget>
+          <packing>
+            <property name="X">730</property>
+            <property name="Y">268</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="tableSizeLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">TableSize</property>
+          </widget>
+          <packing>
+            <property name="X">768</property>
+            <property name="Y">202</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.SpinButton" id="tableSizeSpinbutton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Upper">100</property>
+            <property name="PageIncrement">10</property>
+            <property name="StepIncrement">1</property>
+            <property name="ClimbRate">1</property>
+            <property name="Numeric">True</property>
+          </widget>
+          <packing>
+            <property name="X">860</property>
+            <property name="Y">197</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.SpinButton" id="metaTableSizeSpinbutton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Upper">100</property>
+            <property name="PageIncrement">10</property>
+            <property name="StepIncrement">1</property>
+            <property name="ClimbRate">1</property>
+            <property name="Numeric">True</property>
+          </widget>
+          <packing>
+            <property name="X">860</property>
+            <property name="Y">254</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="rasSizeLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">rasSize</property>
+          </widget>
+          <packing>
+            <property name="X">788</property>
+            <property name="Y">319</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.SpinButton" id="rasSizeSpinbutton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Upper">100</property>
+            <property name="PageIncrement">10</property>
+            <property name="StepIncrement">1</property>
+            <property name="ClimbRate">1</property>
+            <property name="Numeric">True</property>
+          </widget>
+          <packing>
+            <property name="X">860</property>
+            <property name="Y">310</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="numSetsLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">numSets</property>
+          </widget>
+          <packing>
+            <property name="X">778</property>
+            <property name="Y">369</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.SpinButton" id="numSetsSpinbutton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Upper">100</property>
+            <property name="PageIncrement">10</property>
+            <property name="StepIncrement">1</property>
+            <property name="ClimbRate">1</property>
+            <property name="Numeric">True</property>
+          </widget>
+          <packing>
+            <property name="X">861</property>
+            <property name="Y">362</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.SpinButton" id="assocSpinbutton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Upper">100</property>
+            <property name="PageIncrement">10</property>
+            <property name="StepIncrement">1</property>
+            <property name="ClimbRate">1</property>
+            <property name="Numeric">True</property>
+          </widget>
+          <packing>
+            <property name="X">1072</property>
+            <property name="Y">363</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="assocLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">assoc</property>
+          </widget>
+          <packing>
+            <property name="X">1012</property>
+            <property name="Y">370</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+</stetic-interface>
