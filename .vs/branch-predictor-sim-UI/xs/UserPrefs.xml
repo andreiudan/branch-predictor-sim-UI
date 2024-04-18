@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{7E553416-E3AB-4AF3-A2F1-39F845E3F1B4}|Default">
   <MonoDevelop.Ide.ItemProperties.Server PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Client PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Client/MainWindow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Client/Connection/ConnectionManager.cs">
     <Files>
       <File FileName="Client/Program.cs" Line="9" Column="24" />
       <File FileName="Client/MainWindow.cs" Line="221" Column="11" />
@@ -12,15 +12,12 @@
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="branch-predictor-sim-UI" expanded="True">
-            <Node name="Client" expanded="True">
-              <Node name="UserInterface" expanded="True" />
+            <Node name="Client" expanded="True" selected="True">
               <Node name="Connection" expanded="True" />
-              <Node name="MainWindow.cs" selected="True" />
             </Node>
-            <Node name="Domain" expanded="True">
-              <Node name="DTOs" expanded="True" />
+            <Node name="Interfaces" expanded="True">
+              <Node name="Properties" expanded="True" />
             </Node>
-            <Node name="Interfaces" expanded="True" />
             <Node name="Server" expanded="True">
               <Node name="Connection" expanded="True" />
             </Node>
@@ -28,7 +25,9 @@
         </State>
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
+        <State>
+          <Value>processes</Value>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

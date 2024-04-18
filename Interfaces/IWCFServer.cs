@@ -6,6 +6,9 @@ namespace Interfaces
     public interface IWCFServer
     {
         [OperationContract]
-        string executeCommand(string arg);
+        int getProcessesNo();
+
+        [OperationContract]
+        string executeCommands(string arg);
     }
 }

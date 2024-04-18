@@ -2,13 +2,17 @@
 using System.ServiceModel;
 using Domain.DTOs;
 using Interfaces;
+using System.Collections.Generic;
 
 public class Server
 {
     IWCFServer server;
+    public int instanceProcesses;
 
     public Server(string IP, string port)
     {
+        instanceProcesses = 0;
+
         NetTcpBinding binding = new NetTcpBinding();
         string url = $"net.tcp://{IP}:{port}/wcfserver";
         EndpointAddress address = new EndpointAddress(url);
@@ -17,17 +21,22 @@ public class Server
         server = channelFactory.CreateChannel();
     }
 
-    public Task<Result> executeCommand(Params arg)
+    public int getProcessesNo()
     {
-        var result = Task.Run(() =>
-        {
-            string serializedArg = Newtonsoft.Json.JsonConvert.SerializeObject(arg);
+        return server.getProcessesNo();
+    }
 
-            string serializedResult = server.executeCommand(serializedArg);
+    public List<Result> executeCommands(List<Params> args)
+    {
+        instanceProcesses++;
 
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(serializedResult);
-        });
+        string serializedArg = Newtonsoft.Json.JsonConvert.SerializeObject(args);
 
-        return result;
+        string serializedResult = server.executeCommands(serializedArg);
+
+        instanceProcesses--;
+
+        return Newtonsoft.Json.JsonConvert.DeserializeObject<List<Result>>(serializedResult);
+
     }
 }

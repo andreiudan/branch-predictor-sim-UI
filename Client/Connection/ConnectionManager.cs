@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Threading.Tasks;
 using Domain.DTOs;
 
 public class ConnectionManager
 {
     List<Server> servers = new List<Server>();
-    int index;
 
     public ConnectionManager()
     {
-        index = 0;
     }
 
     public void addConnection(string IP, string port)
@@ -17,24 +16,63 @@ public class ConnectionManager
         servers.Add(new Server(IP, port));
     }
 
-    private Server getNextAvailableServer()
+    private Dictionary<Server, List<Params>> balanceCommands(List<Params> paramList)
     {
-        var server = servers[index];
+        var processMap = getProcessMap();
 
-        index = (index + 1) % servers.Count;
+        Dictionary<Server, List<Params>> balancedMap = new Dictionary<Server, List<Params>>();
 
-        return server;
+        foreach (var process in processMap)
+        {
+            balancedMap.Add(process.Key, new List<Params>());
+        }
+
+        foreach (var param in paramList)
+        {
+            int minimum = int.MaxValue;
+            Server server = null;
+
+            foreach (var process in processMap)
+            {
+                if (process.Value < minimum)
+                {
+                    server = process.Key;
+                    minimum = process.Value;
+                }
+            }
+
+            processMap[server]++;
+            balancedMap[server].Add(param);
+        }
+
+        return balancedMap;
     }
 
-    public List<Task<Result>> executeCommands(List<Params> args)
+    private Dictionary<Server, int> getProcessMap()
     {
-        List<Task<Result>> results = new List<Task<Result>>();
+        Dictionary<Server, int> processesMap = new Dictionary<Server, int>();
 
-        foreach (var arg in args)
+        foreach (var server in servers)
         {
-            Server availableServer = getNextAvailableServer();
+            int processes = server.getProcessesNo();
 
-            results.Add(availableServer.executeCommand(arg));
+            processesMap.Add(server, processes);
+        }
+
+        return processesMap;
+    }
+
+    public List<Result> executeCommands(List<Params> args)
+    {
+        var balancedCommands = balanceCommands(args);
+        List<Result> results = new List<Result>();
+
+        foreach(var comm in balancedCommands)
+        {
+            Task.Run(() =>
+            {
+                results.AddRange(comm.Key.executeCommands(comm.Value));
+            });
         }
 
         return results;

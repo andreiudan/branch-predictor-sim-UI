@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Domain.DTOs;
 
-public partial class MainWindow: Gtk.Window
+public partial class MainWindow : Gtk.Window
 {
     private readonly Color darkModeBackground = new Color(51, 57, 59);
     private readonly Color darkModeText = new Color(238, 238 ,236);
@@ -18,18 +18,9 @@ public partial class MainWindow: Gtk.Window
         ConnectionManager connectionManager = new ConnectionManager();
 
         connectionManager.addConnection("192.168.0.103", "3000");
+        connectionManager.addConnection("192.168.0.103", "3001");
 
         var tasks = connectionManager.executeCommands(new List<Params> { new Params(), new Params() });
-
-        foreach(var task in tasks)
-        {
-          Task.Run(async () =>
-          {
-              var result = await task;
-
-              Console.WriteLine(result.benchName);
-          });
-        }
 
         Build ();
     }
@@ -78,6 +69,8 @@ public partial class MainWindow: Gtk.Window
 
         return folderPath;
     }
+        return folderPath;
+    }
 
     private string ChooseFilePath(){
         string filePath = "";
@@ -95,6 +88,8 @@ public partial class MainWindow: Gtk.Window
 
         fileChooser.Destroy ();
 
+        return filePath;
+    }
         return filePath;
     }
 
@@ -176,13 +171,23 @@ public partial class MainWindow: Gtk.Window
         //btb
         numSetsSpinbutton.Value = 512;
         assocSpinbutton.Value = 4;
+        //btb
+        numSetsSpinbutton.Value = 512;
+        assocSpinbutton.Value = 4;
 
+        //comb
+        metaTableSizeSpinbutton.Value = 1024;
         //comb
         metaTableSizeSpinbutton.Value = 1024;
 
         //ras
         rasSizeSpinbutton.Value = 8;
+        //ras
+        rasSizeSpinbutton.Value = 8;
 
+        //bimod
+        tableSizeSpinbutton.Value = 2048;
+    }
         //bimod
         tableSizeSpinbutton.Value = 2048;
     }

@@ -2,16 +2,32 @@
 using System.Threading;
 using Domain.DTOs;
 using Interfaces;
+using System.Collections.Generic;
 
 public class WCFServer : IWCFServer
 {
-    public string executeCommand(string serializedArg)
+    static int processes = 0;
+
+    public WCFServer()
     {
-        Params arg = Newtonsoft.Json.JsonConvert.DeserializeObject<Params>(serializedArg);
+    }
+
+    public int getProcessesNo()
+    {
+        return processes;
+    }
+
+    public string executeCommands(string serializedParams)
+    {
+        processes++;
+
+        List<Params> arg = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Params>>(serializedParams);
 
         Thread.Sleep(10000);
 
-        Console.WriteLine(serializedArg);
+        Console.WriteLine(serializedParams);
+
+        processes--;
 
         return "";
     }

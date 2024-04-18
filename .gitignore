@@ -7,3 +7,9 @@
 /Server/obj
 .vs/branch-predictor-sim-UI/xs/UserPrefs.xml
 Domain/obj/Debug/Domain.csproj.FileListAbsolute.txt
+
+/Domain/bin
+/Domain/obj
+
+/Interfaces/bin
+/Interfaces/obj
