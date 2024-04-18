@@ -3,15 +3,10 @@
   <MonoDevelop.Ide.ItemProperties.Client PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Client/MainWindow.cs">
     <Files>
-      <File FileName="Client/MainWindow.cs" Line="22" Column="39" />
-      <File FileName="Domain/DTOs/Params.cs" Line="1" Column="1" />
+      <File FileName="Client/Program.cs" Line="9" Column="24" />
+      <File FileName="Client/MainWindow.cs" Line="221" Column="11" />
       <File FileName="Domain/DTOs/Result.cs" Line="1" Column="1" />
-      <File FileName="Server/Connection/WCFServer.cs" Line="20" Column="19" />
-      <File FileName="Server/Program.cs" Line="26" Column="35" />
-      <File FileName="Client/Connection/ConnectionManager.cs" Line="1" Column="1" />
-      <File FileName="Client/Connection/Server.cs" Line="3" Column="1" />
-      <File FileName="Interfaces/IWCFServer.cs" Line="1" Column="20" />
-      <File FileName="Client/Program.cs" Line="1" Column="1" />
+      <File FileName="Domain/DTOs/Params.cs" Line="19" Column="44" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

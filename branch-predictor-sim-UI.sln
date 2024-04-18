@@ -32,4 +32,15 @@ Global
 		{69AF1FD6-FD7E-47B5-AB92-E2FD979A0A80}.Release|x86.ActiveCfg = Release|Any CPU
 		{69AF1FD6-FD7E-47B5-AB92-E2FD979A0A80}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
+		$0.TextStylePolicy = $2
+		$2.FileWidth = 80
+		$2.TabsToSpaces = True
+		$2.scope = text/plain
+		$0.StandardHeader = $3
+		$0.VersionControlPolicy = $4
+	EndGlobalSection
 EndGlobal

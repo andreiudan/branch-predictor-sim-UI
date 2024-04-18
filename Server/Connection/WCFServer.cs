@@ -5,10 +5,6 @@ using Interfaces;
 
 public class WCFServer : IWCFServer
 {
-    public WCFServer()
-    {
-    }
-
     public string executeCommand(string serializedArg)
     {
         Params arg = Newtonsoft.Json.JsonConvert.DeserializeObject<Params>(serializedArg);
@@ -18,6 +14,5 @@ public class WCFServer : IWCFServer
         Console.WriteLine(serializedArg);
 
         return "";
-
     }
 }
