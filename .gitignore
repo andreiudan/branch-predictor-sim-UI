@@ -5,3 +5,5 @@
 
 /Server/bin
 /Server/obj
+.vs/branch-predictor-sim-UI/xs/UserPrefs.xml
+Domain/obj/Debug/Domain.csproj.FileListAbsolute.txt

@@ -2,12 +2,13 @@
 <stetic-interface>
   <configuration>
     <images-root-path>..</images-root-path>
+    <target-gtk-version>2.4</target-gtk-version>
   </configuration>
   <import>
-    <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/Client.exe" internal="true" />
+    <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="1537 809">
+  <widget class="Gtk.Window" id="MainWindow" design-size="1554 809">
     <action-group name="Default">
       <action id="StartAction">
         <property name="Type">Action</property>
@@ -121,16 +122,31 @@
             <property name="WidthRequest">820</property>
             <property name="HasWindow">False</property>
             <child>
-              <widget class="Gtk.Label" id="titleLabel">
+              <widget class="Gtk.Button" id="simulateButton">
                 <property name="MemberName" />
-                <property name="Xpad">608</property>
-                <property name="Ypad">4</property>
-                <property name="LabelProp">&lt;big&gt;&lt;b&gt;Branch prediction simulator&lt;/b&gt;&lt;/big&gt;</property>
-                <property name="UseMarkup">True</property>
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Simulate</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnSimulateButtonClicked" />
               </widget>
               <packing>
-                <property name="X">74</property>
-                <property name="Y">17</property>
+                <property name="X">1441</property>
+                <property name="Y">727</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.ToggleButton" id="darkModeTogglebutton">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Dark Mode</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Toggled" handler="OnDarkModeTogglebuttonToggled" />
+              </widget>
+              <packing>
+                <property name="X">1331</property>
+                <property name="Y">727</property>
               </packing>
             </child>
             <child>
@@ -411,6 +427,7 @@
                         <child>
                           <widget class="Gtk.Label" id="dumpConfigLabel">
                             <property name="MemberName" />
+                            <property name="Tooltip" translatable="yes">Dump configuration to a file</property>
                             <property name="Xalign">1</property>
                             <property name="LabelProp" translatable="yes">Dump config file</property>
                           </widget>
@@ -479,6 +496,7 @@
                         <child>
                           <widget class="Gtk.Label" id="helpLabel">
                             <property name="MemberName" />
+                            <property name="Tooltip" translatable="yes">Print help message </property>
                             <property name="Xalign">1</property>
                             <property name="LabelProp" translatable="yes">Help</property>
                           </widget>
@@ -524,6 +542,7 @@
                         <child>
                           <widget class="Gtk.Label" id="maxInstLabel">
                             <property name="MemberName" />
+                            <property name="Tooltip" translatable="yes">Maximum number of instructions to execute</property>
                             <property name="Xalign">1</property>
                             <property name="LabelProp" translatable="yes">Max instructions</property>
                           </widget>
@@ -640,6 +659,7 @@
                         <child>
                           <widget class="Gtk.Label" id="progRedirLabel">
                             <property name="MemberName" />
+                            <property name="Tooltip" translatable="yes">Redirect simulated program output to location</property>
                             <property name="Xalign">1</property>
                             <property name="LabelProp" translatable="yes">Progout save location</property>
                           </widget>
@@ -686,6 +706,7 @@
                         <child>
                           <widget class="Gtk.Label" id="seedLabel">
                             <property name="MemberName" />
+                            <property name="Tooltip" translatable="yes">Random number generator seed (0 for timer seed)</property>
                             <property name="Xalign">1</property>
                             <property name="LabelProp" translatable="yes">Seed</property>
                           </widget>
@@ -783,6 +804,7 @@
                         <child>
                           <widget class="Gtk.Label" id="simRedirLabel">
                             <property name="MemberName" />
+                            <property name="Tooltip" translatable="yes">Redirect simulator output to location (non-interactive only)</property>
                             <property name="Xalign">1</property>
                             <property name="LabelProp" translatable="yes">Simout save location</property>
                           </widget>
@@ -861,15 +883,15 @@
                 </child>
               </widget>
               <packing>
-                <property name="X">17</property>
-                <property name="Y">77</property>
+                <property name="X">7</property>
+                <property name="Y">73</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Frame" id="predTypeFrame">
+              <widget class="Gtk.Frame" id="predSettingsFrame">
                 <property name="MemberName" />
-                <property name="WidthRequest">466</property>
-                <property name="HeightRequest">570</property>
+                <property name="WidthRequest">527</property>
+                <property name="HeightRequest">602</property>
                 <property name="ShadowType">None</property>
                 <property name="LabelXalign">0.04</property>
                 <child>
@@ -887,8 +909,8 @@
                         <child>
                           <widget class="Gtk.Frame" id="predArgumentsFrame">
                             <property name="MemberName" />
-                            <property name="WidthRequest">444</property>
-                            <property name="HeightRequest">481</property>
+                            <property name="WidthRequest">502</property>
+                            <property name="HeightRequest">512</property>
                             <property name="ShadowType">None</property>
                             <property name="LabelXalign">0.06</property>
                             <child>
@@ -901,7 +923,7 @@
                                   <widget class="Gtk.Table" id="predArgumentsTable">
                                     <property name="MemberName" />
                                     <property name="NRows">5</property>
-                                    <property name="RowSpacing">6</property>
+                                    <property name="RowSpacing">14</property>
                                     <property name="ColumnSpacing">6</property>
                                     <child>
                                       <widget class="Gtk.Frame" id="bimodFrame">
@@ -926,7 +948,7 @@
                                                 <child>
                                                   <widget class="Gtk.Label" id="tableSizeLabel">
                                                     <property name="MemberName" />
-                                                    <property name="LabelProp" translatable="yes">TableSize</property>
+                                                    <property name="LabelProp" translatable="yes">Table size</property>
                                                   </widget>
                                                   <packing>
                                                     <property name="AutoSize">True</property>
@@ -972,7 +994,7 @@
                                         <child>
                                           <widget class="Gtk.Label" id="bimodFrameLabel">
                                             <property name="MemberName" />
-                                            <property name="LabelProp" translatable="yes">&lt;b&gt;Bimod&lt;/b&gt;</property>
+                                            <property name="LabelProp" translatable="yes">&lt;b&gt;Bimodal&lt;/b&gt;</property>
                                             <property name="UseMarkup">True</property>
                                           </widget>
                                           <packing>
@@ -1017,7 +1039,7 @@
                                                 <child>
                                                   <widget class="Gtk.Label" id="assocLabel">
                                                     <property name="MemberName" />
-                                                    <property name="LabelProp" translatable="yes">assoc</property>
+                                                    <property name="LabelProp" translatable="yes">Associativity</property>
                                                   </widget>
                                                   <packing>
                                                     <property name="LeftAttach">2</property>
@@ -1060,7 +1082,7 @@
                                                 <child>
                                                   <widget class="Gtk.Label" id="numSetsLabel">
                                                     <property name="MemberName" />
-                                                    <property name="LabelProp" translatable="yes">numSets</property>
+                                                    <property name="LabelProp" translatable="yes">Sets Number</property>
                                                   </widget>
                                                   <packing>
                                                     <property name="AutoSize">True</property>
@@ -1152,7 +1174,7 @@
                                                 <child>
                                                   <widget class="Gtk.Label" id="metaTableSizeLabel">
                                                     <property name="MemberName" />
-                                                    <property name="LabelProp" translatable="yes">MetaTableSize</property>
+                                                    <property name="LabelProp" translatable="yes">Meta table size</property>
                                                   </widget>
                                                   <packing>
                                                     <property name="AutoSize">True</property>
@@ -1246,7 +1268,7 @@
                                                   <widget class="Gtk.Label" id="rasSizeLabel">
                                                     <property name="MemberName" />
                                                     <property name="Xalign">0</property>
-                                                    <property name="LabelProp" translatable="yes">rasSize</property>
+                                                    <property name="LabelProp" translatable="yes">Stack size</property>
                                                   </widget>
                                                   <packing>
                                                     <property name="AutoSize">True</property>
@@ -1269,7 +1291,7 @@
                                                     <property name="StepIncrement">1</property>
                                                     <property name="ClimbRate">1</property>
                                                     <property name="Numeric">True</property>
-                                                    <property name="Value">7</property>
+                                                    <property name="Value">8</property>
                                                   </widget>
                                                   <packing>
                                                     <property name="LeftAttach">1</property>
@@ -1292,7 +1314,7 @@
                                         <child>
                                           <widget class="Gtk.Label" id="rasFrameLabel">
                                             <property name="MemberName" />
-                                            <property name="LabelProp" translatable="yes">&lt;b&gt;Return address size&lt;/b&gt;</property>
+                                            <property name="LabelProp" translatable="yes">&lt;b&gt;Return address&lt;/b&gt;</property>
                                             <property name="UseMarkup">True</property>
                                           </widget>
                                           <packing>
@@ -1317,7 +1339,7 @@
                                     <child>
                                       <widget class="Gtk.Frame" id="twoLevFrame">
                                         <property name="MemberName" />
-                                        <property name="WidthRequest">421</property>
+                                        <property name="WidthRequest">478</property>
                                         <property name="ShadowType">None</property>
                                         <property name="LabelXalign">0.04</property>
                                         <property name="LabelYalign">0.6</property>
@@ -1335,7 +1357,7 @@
                                             <child>
                                               <widget class="Gtk.Label" id="histSizeLabel">
                                                 <property name="MemberName" />
-                                                <property name="LabelProp" translatable="yes">histSize</property>
+                                                <property name="LabelProp" translatable="yes">History size</property>
                                               </widget>
                                               <packing>
                                                 <property name="LeftAttach">2</property>
@@ -1433,7 +1455,7 @@
                                             <child>
                                               <widget class="Gtk.Label" id="levOneSizeLabel">
                                                 <property name="MemberName" />
-                                                <property name="LabelProp" translatable="yes">l1size</property>
+                                                <property name="LabelProp" translatable="yes">Level 1 size</property>
                                               </widget>
                                               <packing>
                                                 <property name="AutoSize">True</property>
@@ -1452,7 +1474,7 @@
                                                 <property name="MemberName" />
                                                 <property name="Xpad">7</property>
                                                 <property name="Ypad">14</property>
-                                                <property name="LabelProp" translatable="yes">l2size</property>
+                                                <property name="LabelProp" translatable="yes">Level 2 size</property>
                                               </widget>
                                               <packing>
                                                 <property name="TopAttach">1</property>
@@ -1471,7 +1493,7 @@
                                             <child>
                                               <widget class="Gtk.Label" id="xorLabel">
                                                 <property name="MemberName" />
-                                                <property name="LabelProp" translatable="yes">xor</property>
+                                                <property name="LabelProp" translatable="yes">Xor</property>
                                               </widget>
                                               <packing>
                                                 <property name="TopAttach">1</property>
@@ -1520,7 +1542,7 @@
                                         <child>
                                           <widget class="Gtk.Label" id="twoLevFrameLable">
                                             <property name="MemberName" />
-                                            <property name="LabelProp" translatable="yes">&lt;b&gt;2lev&lt;/b&gt;</property>
+                                            <property name="LabelProp" translatable="yes">&lt;b&gt;2 Level&lt;/b&gt;</property>
                                             <property name="UseMarkup">True</property>
                                           </widget>
                                           <packing>
@@ -1638,9 +1660,9 @@ comb</property>
                   </widget>
                 </child>
                 <child>
-                  <widget class="Gtk.Label" id="predTypeFrameLabel">
+                  <widget class="Gtk.Label" id="predSettingsFrameLabel">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">&lt;b&gt;Predictor type&lt;/b&gt;</property>
+                    <property name="LabelProp" translatable="yes">&lt;b&gt;Predictor settings&lt;/b&gt;</property>
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
@@ -1649,22 +1671,8 @@ comb</property>
                 </child>
               </widget>
               <packing>
-                <property name="X">524</property>
-                <property name="Y">79</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.Button" id="simulateButton">
-                <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Simulate</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnSimulateButtonClicked" />
-              </widget>
-              <packing>
-                <property name="X">1441</property>
-                <property name="Y">727</property>
+                <property name="X">512</property>
+                <property name="Y">75</property>
               </packing>
             </child>
             <child>
@@ -1673,7 +1681,7 @@ comb</property>
                 <property name="NColumns">2</property>
                 <property name="Homogeneous">True</property>
                 <property name="RowSpacing">6</property>
-                <property name="ColumnSpacing">6</property>
+                <property name="ColumnSpacing">12</property>
                 <child>
                   <widget class="Gtk.Frame" id="benchFrame">
                     <property name="MemberName" />
@@ -1839,8 +1847,21 @@ comb</property>
                 </child>
               </widget>
               <packing>
-                <property name="X">1004</property>
-                <property name="Y">77</property>
+                <property name="X">1053</property>
+                <property name="Y">74</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="titleLabel">
+                <property name="MemberName" />
+                <property name="Xpad">608</property>
+                <property name="Ypad">4</property>
+                <property name="LabelProp">&lt;big&gt;&lt;b&gt;Branch prediction simulator&lt;/b&gt;&lt;/big&gt;</property>
+                <property name="UseMarkup">True</property>
+              </widget>
+              <packing>
+                <property name="X">33</property>
+                <property name="Y">23</property>
               </packing>
             </child>
           </widget>
