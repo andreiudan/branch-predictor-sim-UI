@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.ServiceModel;
-using Newtonsoft;
+using Domain.DTOs;
+using Interfaces;
 
 public class Server
 {

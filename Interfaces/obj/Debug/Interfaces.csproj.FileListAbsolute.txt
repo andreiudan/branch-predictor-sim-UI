@@ -1,0 +1,6 @@
+/home/andreiudan/GitHub/branch-predictor-sim-UI/Interfaces/bin/Debug/Interfaces.dll
+/home/andreiudan/GitHub/branch-predictor-sim-UI/Interfaces/bin/Debug/Interfaces.pdb
+/home/andreiudan/GitHub/branch-predictor-sim-UI/Interfaces/obj/Debug/Interfaces.csprojAssemblyReference.cache
+/home/andreiudan/GitHub/branch-predictor-sim-UI/Interfaces/obj/Debug/Interfaces.csproj.CoreCompileInputs.cache
+/home/andreiudan/GitHub/branch-predictor-sim-UI/Interfaces/obj/Debug/Interfaces.dll
+/home/andreiudan/GitHub/branch-predictor-sim-UI/Interfaces/obj/Debug/Interfaces.pdb

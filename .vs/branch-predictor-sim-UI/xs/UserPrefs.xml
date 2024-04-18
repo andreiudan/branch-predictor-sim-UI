@@ -1,47 +1,43 @@
-﻿<Properties StartupConfiguration="{2D74ED63-52CD-488B-815E-00F40867094C}|Default">
+﻿<Properties StartupConfiguration="{7E553416-E3AB-4AF3-A2F1-39F845E3F1B4}|Default">
   <MonoDevelop.Ide.ItemProperties.Server PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Client/Program.cs">
+  <MonoDevelop.Ide.ItemProperties.Client PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Client/MainWindow.cs">
     <Files>
-      <File FileName="Client/Connection/ConnectionManager.cs" Line="42" Column="2" />
-      <File FileName="Client/MainWindow.cs" Line="21" Column="17" />
-      <File FileName="Client/DTOs/Params.cs" Line="2" Column="20" />
-      <File FileName="Client/DTOs/Result.cs" Line="6" Column="44" />
-      <File FileName="Client/Connection/Server.cs" Line="22" Column="36" />
-      <File FileName="Client/Connection/IWCFServer.cs" Line="6" Column="2" />
-      <File FileName="Server/Connection/WCFServer.cs" Line="11" Column="6" />
-      <File FileName="Server/DTOs/Params.cs" Line="1" Column="1" />
-      <File FileName="Server/DTOs/Result.cs" Line="1" Column="1" />
-      <File FileName="Server/Connection/IWCFServer.cs" Line="7" Column="2" />
-      <File FileName="Server/Program.cs" Line="28" Column="1" />
-      <File FileName="Client/Program.cs" Line="17" Column="1" />
-      <File FileName="Server/Properties/AssemblyInfo.cs" Line="1" Column="1" />
+      <File FileName="Client/MainWindow.cs" Line="22" Column="39" />
+      <File FileName="Domain/DTOs/Params.cs" Line="1" Column="1" />
+      <File FileName="Domain/DTOs/Result.cs" Line="1" Column="1" />
+      <File FileName="Server/Connection/WCFServer.cs" Line="20" Column="19" />
+      <File FileName="Server/Program.cs" Line="26" Column="35" />
+      <File FileName="Client/Connection/ConnectionManager.cs" Line="1" Column="1" />
+      <File FileName="Client/Connection/Server.cs" Line="3" Column="1" />
+      <File FileName="Interfaces/IWCFServer.cs" Line="1" Column="20" />
+      <File FileName="Client/Program.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="branch-predictor-sim-UI" expanded="True">
             <Node name="Client" expanded="True">
+              <Node name="UserInterface" expanded="True" />
               <Node name="Connection" expanded="True" />
-              <Node name="Program.cs" selected="True" />
+              <Node name="MainWindow.cs" selected="True" />
             </Node>
+            <Node name="Domain" expanded="True">
+              <Node name="DTOs" expanded="True" />
+            </Node>
+            <Node name="Interfaces" expanded="True" />
             <Node name="Server" expanded="True">
               <Node name="Connection" expanded="True" />
-              <Node name="DTOs" expanded="True" />
-              <Node name="Properties" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>index</Value>
-        </State>
+        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
-    <Watch file="../../../Client/Connection/ConnectionManager.cs" line="20" offsetX="531" offsetY="361" expression="minProc" liveUpdate="False" />
-  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

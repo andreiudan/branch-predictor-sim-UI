@@ -203,6 +203,8 @@ public partial class MainWindow
 
 	private global::Gtk.Button simulateButton;
 
+	private global::Gtk.Table bench_ServerTable;
+
 	private global::Gtk.Frame benchFrame;
 
 	private global::Gtk.Alignment GtkAlignment12;
@@ -214,6 +216,16 @@ public partial class MainWindow
 	private global::Gtk.Label benchNameLabel;
 
 	private global::Gtk.Label benchFrameLabel;
+
+	private global::Gtk.Frame serverConnectionFrame;
+
+	private global::Gtk.Table serverConnTable;
+
+	private global::Gtk.Label connStatusLabel;
+
+	private global::Gtk.Label statusLabel;
+
+	private global::Gtk.Label serverConnFrameLabel;
 
 	protected virtual void Build()
 	{
@@ -310,7 +322,7 @@ public partial class MainWindow
 		// Container child GtkAlignment4.Gtk.Container+ContainerChild
 		this.simSettingsTable = new global::Gtk.Table(((uint)(13)), ((uint)(3)), false);
 		this.simSettingsTable.Name = "simSettingsTable";
-		this.simSettingsTable.RowSpacing = ((uint)(18));
+		this.simSettingsTable.RowSpacing = ((uint)(17));
 		this.simSettingsTable.ColumnSpacing = ((uint)(6));
 		// Container child simSettingsTable.Gtk.Table+TableChild
 		this.abel = new global::Gtk.Label();
@@ -376,7 +388,7 @@ public partial class MainWindow
 		this.debugCheckbutton = new global::Gtk.CheckButton();
 		this.debugCheckbutton.CanFocus = true;
 		this.debugCheckbutton.Name = "debugCheckbutton";
-		this.debugCheckbutton.Label = global::Mono.Unix.Catalog.GetString("debug");
+		this.debugCheckbutton.Label = "";
 		this.debugCheckbutton.DrawIndicator = true;
 		this.debugCheckbutton.UseUnderline = true;
 		this.simSettingsTable.Add(this.debugCheckbutton);
@@ -402,7 +414,7 @@ public partial class MainWindow
 		this.dliteDebuggerCheckbutton = new global::Gtk.CheckButton();
 		this.dliteDebuggerCheckbutton.CanFocus = true;
 		this.dliteDebuggerCheckbutton.Name = "dliteDebuggerCheckbutton";
-		this.dliteDebuggerCheckbutton.Label = global::Mono.Unix.Catalog.GetString("dlite");
+		this.dliteDebuggerCheckbutton.Label = "";
 		this.dliteDebuggerCheckbutton.DrawIndicator = true;
 		this.dliteDebuggerCheckbutton.UseUnderline = true;
 		this.simSettingsTable.Add(this.dliteDebuggerCheckbutton);
@@ -470,7 +482,7 @@ public partial class MainWindow
 		this.helpCheckbutton = new global::Gtk.CheckButton();
 		this.helpCheckbutton.CanFocus = true;
 		this.helpCheckbutton.Name = "helpCheckbutton";
-		this.helpCheckbutton.Label = global::Mono.Unix.Catalog.GetString("help");
+		this.helpCheckbutton.Label = "";
 		this.helpCheckbutton.DrawIndicator = true;
 		this.helpCheckbutton.UseUnderline = true;
 		this.simSettingsTable.Add(this.helpCheckbutton);
@@ -496,7 +508,7 @@ public partial class MainWindow
 		this.initAndEndCheckbutton = new global::Gtk.CheckButton();
 		this.initAndEndCheckbutton.CanFocus = true;
 		this.initAndEndCheckbutton.Name = "initAndEndCheckbutton";
-		this.initAndEndCheckbutton.Label = global::Mono.Unix.Catalog.GetString("init/end");
+		this.initAndEndCheckbutton.Label = "";
 		this.initAndEndCheckbutton.DrawIndicator = true;
 		this.initAndEndCheckbutton.UseUnderline = true;
 		this.simSettingsTable.Add(this.initAndEndCheckbutton);
@@ -672,7 +684,7 @@ public partial class MainWindow
 		this.verboseCheckbutton = new global::Gtk.CheckButton();
 		this.verboseCheckbutton.CanFocus = true;
 		this.verboseCheckbutton.Name = "verboseCheckbutton";
-		this.verboseCheckbutton.Label = global::Mono.Unix.Catalog.GetString("verbose");
+		this.verboseCheckbutton.Label = "";
 		this.verboseCheckbutton.DrawIndicator = true;
 		this.verboseCheckbutton.UseUnderline = true;
 		this.simSettingsTable.Add(this.verboseCheckbutton);
@@ -821,7 +833,6 @@ public partial class MainWindow
 		this.assocSpinbutton.Adjustment.PageIncrement = 10D;
 		this.assocSpinbutton.ClimbRate = 1D;
 		this.assocSpinbutton.Numeric = true;
-		this.assocSpinbutton.Value = 4D;
 		this.btbTable.Add(this.assocSpinbutton);
 		global::Gtk.Table.TableChild w43 = ((global::Gtk.Table.TableChild)(this.btbTable[this.assocSpinbutton]));
 		w43.LeftAttach = ((uint)(3));
@@ -949,7 +960,7 @@ public partial class MainWindow
 		this.rasSizeSpinbutton.Adjustment.PageIncrement = 10D;
 		this.rasSizeSpinbutton.ClimbRate = 1D;
 		this.rasSizeSpinbutton.Numeric = true;
-		this.rasSizeSpinbutton.Value = 8D;
+		this.rasSizeSpinbutton.Value = 7D;
 		this.rasTable.Add(this.rasSizeSpinbutton);
 		global::Gtk.Table.TableChild w55 = ((global::Gtk.Table.TableChild)(this.rasTable[this.rasSizeSpinbutton]));
 		w55.LeftAttach = ((uint)(1));
@@ -1163,9 +1174,14 @@ public partial class MainWindow
 		this.simulateButton.Label = global::Mono.Unix.Catalog.GetString("Simulate");
 		this.mainWindow.Add(this.simulateButton);
 		global::Gtk.Fixed.FixedChild w78 = ((global::Gtk.Fixed.FixedChild)(this.mainWindow[this.simulateButton]));
-		w78.X = 1444;
-		w78.Y = 722;
+		w78.X = 1441;
+		w78.Y = 727;
 		// Container child mainWindow.Gtk.Fixed+FixedChild
+		this.bench_ServerTable = new global::Gtk.Table(((uint)(1)), ((uint)(2)), true);
+		this.bench_ServerTable.Name = "bench_ServerTable";
+		this.bench_ServerTable.RowSpacing = ((uint)(6));
+		this.bench_ServerTable.ColumnSpacing = ((uint)(6));
+		// Container child bench_ServerTable.Gtk.Table+TableChild
 		this.benchFrame = new global::Gtk.Frame();
 		this.benchFrame.Name = "benchFrame";
 		this.benchFrame.ShadowType = ((global::Gtk.ShadowType)(0));
@@ -1211,22 +1227,64 @@ public partial class MainWindow
 		this.benchFrameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<b>Benchmark</b>");
 		this.benchFrameLabel.UseMarkup = true;
 		this.benchFrame.LabelWidget = this.benchFrameLabel;
-		this.mainWindow.Add(this.benchFrame);
-		global::Gtk.Fixed.FixedChild w83 = ((global::Gtk.Fixed.FixedChild)(this.mainWindow[this.benchFrame]));
-		w83.X = 1000;
-		w83.Y = 77;
+		this.bench_ServerTable.Add(this.benchFrame);
+		global::Gtk.Table.TableChild w83 = ((global::Gtk.Table.TableChild)(this.bench_ServerTable[this.benchFrame]));
+		w83.XOptions = ((global::Gtk.AttachOptions)(4));
+		w83.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child bench_ServerTable.Gtk.Table+TableChild
+		this.serverConnectionFrame = new global::Gtk.Frame();
+		this.serverConnectionFrame.Name = "serverConnectionFrame";
+		this.serverConnectionFrame.ShadowType = ((global::Gtk.ShadowType)(0));
+		this.serverConnectionFrame.LabelXalign = 0.07F;
+		this.serverConnectionFrame.LabelYalign = 0.58F;
+		// Container child serverConnectionFrame.Gtk.Container+ContainerChild
+		this.serverConnTable = new global::Gtk.Table(((uint)(1)), ((uint)(2)), false);
+		this.serverConnTable.Name = "serverConnTable";
+		this.serverConnTable.RowSpacing = ((uint)(6));
+		this.serverConnTable.ColumnSpacing = ((uint)(6));
+		// Container child serverConnTable.Gtk.Table+TableChild
+		this.connStatusLabel = new global::Gtk.Label();
+		this.connStatusLabel.Name = "connStatusLabel";
+		this.connStatusLabel.Xalign = 0F;
+		this.connStatusLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Not connected");
+		this.serverConnTable.Add(this.connStatusLabel);
+		global::Gtk.Table.TableChild w84 = ((global::Gtk.Table.TableChild)(this.serverConnTable[this.connStatusLabel]));
+		w84.LeftAttach = ((uint)(1));
+		w84.RightAttach = ((uint)(2));
+		w84.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child serverConnTable.Gtk.Table+TableChild
+		this.statusLabel = new global::Gtk.Label();
+		this.statusLabel.Name = "statusLabel";
+		this.statusLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Status: ");
+		this.serverConnTable.Add(this.statusLabel);
+		this.serverConnectionFrame.Add(this.serverConnTable);
+		this.serverConnFrameLabel = new global::Gtk.Label();
+		this.serverConnFrameLabel.Name = "serverConnFrameLabel";
+		this.serverConnFrameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<b>Server Connection</b>");
+		this.serverConnFrameLabel.UseMarkup = true;
+		this.serverConnectionFrame.LabelWidget = this.serverConnFrameLabel;
+		this.bench_ServerTable.Add(this.serverConnectionFrame);
+		global::Gtk.Table.TableChild w87 = ((global::Gtk.Table.TableChild)(this.bench_ServerTable[this.serverConnectionFrame]));
+		w87.LeftAttach = ((uint)(1));
+		w87.RightAttach = ((uint)(2));
+		w87.XOptions = ((global::Gtk.AttachOptions)(4));
+		w87.YOptions = ((global::Gtk.AttachOptions)(4));
+		this.mainWindow.Add(this.bench_ServerTable);
+		global::Gtk.Fixed.FixedChild w88 = ((global::Gtk.Fixed.FixedChild)(this.mainWindow[this.bench_ServerTable]));
+		w88.X = 1004;
+		w88.Y = 77;
 		this.vbox1.Add(this.mainWindow);
-		global::Gtk.Box.BoxChild w84 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.mainWindow]));
-		w84.Position = 1;
-		w84.Expand = false;
-		w84.Fill = false;
+		global::Gtk.Box.BoxChild w89 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.mainWindow]));
+		w89.Position = 1;
+		w89.Expand = false;
+		w89.Fill = false;
 		this.Add(this.vbox1);
 		if ((this.Child != null))
 		{
 			this.Child.ShowAll();
 		}
-		this.DefaultWidth = 2560;
-		this.DefaultHeight = 837;
+		this.DefaultWidth = 1537;
+		this.DefaultHeight = 809;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 		this.DefaultPredictorArgumentsAction.Activated += new global::System.EventHandler(this.OnDefaultPredictorArgumentsActionActivated);

@@ -1,0 +1,5 @@
+/home/andreiudan/GitHub/branch-predictor-sim-UI/Domain/bin/Debug/Domain.dll
+/home/andreiudan/GitHub/branch-predictor-sim-UI/Domain/bin/Debug/Domain.pdb
+/home/andreiudan/GitHub/branch-predictor-sim-UI/Domain/obj/Debug/Domain.csproj.CoreCompileInputs.cache
+/home/andreiudan/GitHub/branch-predictor-sim-UI/Domain/obj/Debug/Domain.dll
+/home/andreiudan/GitHub/branch-predictor-sim-UI/Domain/obj/Debug/Domain.pdb

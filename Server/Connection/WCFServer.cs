@@ -1,8 +1,7 @@
 ﻿using System;
-using System.ServiceModel;
-using Newtonsoft;
 using System.Threading;
-using System.Threading.Tasks;
+using Domain.DTOs;
+using Interfaces;
 
 public class WCFServer : IWCFServer
 {
