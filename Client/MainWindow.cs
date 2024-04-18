@@ -1,12 +1,28 @@
-﻿using System;
+using System;
 using Gtk;
 using System.Linq;
 
 public partial class MainWindow: Gtk.Window
 {
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
-	{
-		Build ();
+  {
+      ConnectionManager connectionManager = new ConnectionManager();
+
+      connectionManager.addConnection("192.168.0.103", "3000");
+
+      var tasks = connectionManager.executeCommands(new List<Params> { new Params(), new Params() });
+
+      foreach(var task in tasks)
+      {
+          Task.Run(async () =>
+          {
+              var result = await task;
+
+              Console.WriteLine(result.benchName);
+          });
+      }
+
+      Build ();
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)

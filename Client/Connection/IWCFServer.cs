@@ -5,8 +5,5 @@ using System.ServiceModel;
 public interface IWCFServer
 {
     [OperationContract]
-    int getProcesses();
-
-    [OperationContract]
     string executeCommand(string arg);
 }

@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 public class ConnectionManager
 {
     List<Server> servers = new List<Server>();
+    int index;
 
     public ConnectionManager()
     {
+        index = 0;
     }
 
     public void addConnection(string IP, string port)
@@ -17,21 +19,11 @@ public class ConnectionManager
 
     private Server getNextAvailableServer()
     {
-        int minProc = servers[0].getProcesses();
-        Server result = servers[0];
+        var server = servers[index];
 
-        for (int i = 1; i < servers.Count; i++)
-        {
-            int temp = servers[i].getProcesses();
+        index = (index + 1) % servers.Count;
 
-            if (temp < minProc)
-            {
-                minProc = temp;
-                result = servers[i];
-            }
-        }
-
-        return result;
+        return server;
     }
 
     public List<Task<Result>> executeCommands(List<Params> args)
