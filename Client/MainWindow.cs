@@ -1,6 +1,9 @@
-using System;
+﻿using System;
 using Gtk;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using Domain.DTOs;
 
 public partial class MainWindow: Gtk.Window
 {

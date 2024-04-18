@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{7E553416-E3AB-4AF3-A2F1-39F845E3F1B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{072530F1-FA62-47F8-A69A-62DFDB1FFD1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{69AF1FD6-FD7E-47B5-AB92-E2FD979A0A80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -19,5 +23,13 @@ Global
 		{7E553416-E3AB-4AF3-A2F1-39F845E3F1B4}.Debug|x86.Build.0 = Debug|x86
 		{7E553416-E3AB-4AF3-A2F1-39F845E3F1B4}.Release|x86.ActiveCfg = Release|x86
 		{7E553416-E3AB-4AF3-A2F1-39F845E3F1B4}.Release|x86.Build.0 = Release|x86
+		{072530F1-FA62-47F8-A69A-62DFDB1FFD1D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{072530F1-FA62-47F8-A69A-62DFDB1FFD1D}.Debug|x86.Build.0 = Debug|Any CPU
+		{072530F1-FA62-47F8-A69A-62DFDB1FFD1D}.Release|x86.ActiveCfg = Release|Any CPU
+		{072530F1-FA62-47F8-A69A-62DFDB1FFD1D}.Release|x86.Build.0 = Release|Any CPU
+		{69AF1FD6-FD7E-47B5-AB92-E2FD979A0A80}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{69AF1FD6-FD7E-47B5-AB92-E2FD979A0A80}.Debug|x86.Build.0 = Debug|Any CPU
+		{69AF1FD6-FD7E-47B5-AB92-E2FD979A0A80}.Release|x86.ActiveCfg = Release|Any CPU
+		{69AF1FD6-FD7E-47B5-AB92-E2FD979A0A80}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
