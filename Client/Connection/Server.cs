@@ -17,11 +17,6 @@ public class Server
         server = channelFactory.CreateChannel();
     }
 
-    public int getProcesses()
-    {
-        return server.getProcesses();
-    }
-
     public Task<Result> executeCommand(Params arg)
     {
         var result = Task.Run(() =>

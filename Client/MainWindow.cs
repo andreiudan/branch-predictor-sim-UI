@@ -9,7 +9,7 @@ public partial class MainWindow: Gtk.Window
     {
         ConnectionManager connectionManager = new ConnectionManager();
 
-        connectionManager.addConnection("192.168.0.102", "3000");
+        connectionManager.addConnection("192.168.0.103", "3000");
 
         var tasks = connectionManager.executeCommands(new List<Params> { new Params(), new Params() });
 
