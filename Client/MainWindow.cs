@@ -1,29 +1,12 @@
 ﻿using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using Gtk;
+using System.Linq;
 
 public partial class MainWindow: Gtk.Window
 {
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
-    {
-        ConnectionManager connectionManager = new ConnectionManager();
-
-        connectionManager.addConnection("192.168.0.102", "3000");
-
-        var tasks = connectionManager.executeCommands(new List<Params> { new Params(), new Params() });
-
-        foreach(var task in tasks)
-        {
-            Task.Run(async () =>
-            {
-                var result = await task;
-
-                Console.WriteLine(result.benchName);
-            });
-        }
-
-        Build ();
+	{
+		Build ();
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -32,85 +15,133 @@ public partial class MainWindow: Gtk.Window
 		a.RetVal = true;
 	}
 
-	protected void OnBpredComboboxChanged (object sender, EventArgs e)
+	protected void OnConfigBrowseButtonClicked (object sender, EventArgs e)
 	{
-		switch(bpredCombobox.ActiveText){
-			case "nottaken":
-				HideBpredTypesOptions ();
-				break;
-			case "taken":
-				HideBpredTypesOptions ();
-				break;
-			case "bimod":
-				HideBpredTypesOptions ();
-				break;
-			case "2lev":
-				HideBpredTypesOptions ();
-				ShowBpred2levOptions ();
-				break;
-			case "comb":
-				HideBpredTypesOptions ();
-				break;
-			default:
-				break;
-		}
+		configEntry.Text = ChooseFilePath ();
 	}
 
-	private void HideBpredTypesOptions(){
+	protected void OnDumpBrowseButtonClicked (object sender, EventArgs e)
+	{
+		dumpEntry.Text = ChooseFilePath ();
+	}
+
+	protected void OnSimRedirBrowseButtonClicked (object sender, EventArgs e)
+	{
+		simRedirEntry.Text = ChooseFolderPath ();
+	}
+
+	protected void OnProgRedirBrowseButtonClicked (object sender, EventArgs e)
+	{
+		progRedirEntry.Text = ChooseFolderPath ();
+	}
+
+	private string ChooseFolderPath(){
+		string folderPath = "";
+
+		FileChooserDialog fileChooser = new FileChooserDialog (
+			"Select Folder",
+			this,
+			FileChooserAction.SelectFolder,
+			"Cancel", ResponseType.Cancel,
+			"Open", ResponseType.Accept);
+
+		if (fileChooser.Run () == (int)ResponseType.Accept) {
+			folderPath = fileChooser.Filename;
+		}
+
+		fileChooser.Destroy ();
+
+		return folderPath;
+	}
+
+	private string ChooseFilePath(){
+		string filePath = "";
+
+		FileChooserDialog fileChooser = new FileChooserDialog (
+			"Select File",
+			this,
+			FileChooserAction.Open,
+			"Cancel", ResponseType.Cancel,
+			"Open", ResponseType.Accept);
+
+		if (fileChooser.Run () == (int)ResponseType.Accept) {
+			filePath = fileChooser.Filename;
+		}
+
+		fileChooser.Destroy ();
+
+		return filePath;
+	}
+
+	protected void OnBenchBrowseButtonClicked (object sender, EventArgs e)
+	{
+		string benchmarkPath = ChooseFilePath (); 
+
+		string benchmarkName = benchmarkPath.Split ('/').Last();
+
+		benchmarkName = benchmarkName.Split ('.').First();
+
+		benchmarkName = char.ToUpper (benchmarkName [0]) + benchmarkName.Substring (1);
+
+		benchNameLabel.Text = benchmarkName;
+	}
+
+	protected void OnDefaultPredictorArgumentsActionActivated (object sender, EventArgs e)
+	{
+		SetDefaultPredictorArguments ();
+	}
+	protected void OnDefaultSimulatorSettingsActionActivated (object sender, EventArgs e)
+	{
+		SetDefaultSimulatorSettings ();
+	}
+
+	protected void OnDefaultConfigActionActivated (object sender, EventArgs e)
+	{
+		benchNameLabel.Text = "benchName";
+		bpredCombobox.Active = 0;
+
+		SetDefaultSimulatorSettings ();
+		SetDefaultPredictorArguments ();
+	}
+
+	private void SetDefaultPredictorArguments(){
 		//2lev
-		l1sizeLabel.Hide();
-		l1sizeSpinbutton.Hide();
-		l2sizeLabel.Hide();
-		l2sizeSpinbutton.Hide();
-		histSizeLabel.Hide();
-		histSizeSpinbutton.Hide();
-		xorLabel.Hide();
-		xorSpinbutton.Hide();
-
-		//bimod
-		tableSizeSpinbutton.Hide();
-		tableSizeSpinbutton.Hide();
-
-		//comb
-		metaTableSizeLabel.Hide();
-		metaTableSizeSpinbutton.Hide();
-
-		//ras
-		rasSizeLabel.Hide();
-		rasSizeSpinbutton.Hide();
+		l1sizeSpinbutton.Value = 1;
+		l2sizeSpinbutton.Value = 1024;
+		histSizeSpinbutton.Value = 8;
+		xorSpinbutton.Value = 0;
 
 		//btb
-		numSetsLabel.Hide();
-		numSetsSpinbutton.Hide();
-		assocLabel.Hide();
-		assocSpinbutton.Hide();
+		numSetsSpinbutton.Value = 512;
+		assocSpinbutton.Value = 4;
+
+		//comb
+		metaTableSizeSpinbutton.Value = 1024;
+
+		//ras
+		rasSizeSpinbutton.Value = 8;
+
+		//bimod
+		tableSizeSpinbutton.Value = 2048;
 	}
 
-	private void ShowBpred2levOptions(){
-		l1sizeLabel.Show();
-		l1sizeSpinbutton.Show();
-		l2sizeLabel.Show();
-		l2sizeSpinbutton.Show();
-		histSizeLabel.Show();
-		histSizeSpinbutton.Show();
-		xorLabel.Show();
-		xorSpinbutton.Show();
+	private void SetDefaultSimulatorSettings(){
+		seedSpinbutton.Value = 1;
+		configEntry.Text = "";
+		dumpEntry.Text = "";
+		simRedirEntry.Text = "";
+		progRedirEntry.Text = "";
+		helpCheckbutton.Active = false;
+		verboseCheckbutton.Active = false;
+		debugCheckbutton.Active = false;
+		dliteDebuggerCheckbutton.Active = false;
+		initAndEndCheckbutton.Active = false;
+		schedulingSpinbutton.Value = 0;
+		maxInstSpinbutton.Value = 1000000000;
 	}
 
-	private void ShowBpredNottakenOptions(){
-		
-	}
-
-	private void ShowBpredTakenOptions(){
-
-	}
-
-	private void ShowBpredBimodOptions(){
-		tableSizeLabel.Show();
-		tableSizeSpinbutton.Show();
-	}
-
-	private void ShowBpredCombOptions(){
-
+	protected void OnSimulateButtonClicked (object sender, EventArgs e)
+	{
+		throw new NotImplementedException ();	
 	}
 }

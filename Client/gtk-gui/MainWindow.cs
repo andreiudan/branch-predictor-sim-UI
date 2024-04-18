@@ -3,622 +3,1241 @@
 
 public partial class MainWindow
 {
-	private global::Gtk.Fixed fixed1;
+	private global::Gtk.UIManager UIManager;
 
-	private global::Gtk.Label dumpConfigLabel;
+	private global::Gtk.Action StartAction;
 
-	private global::Gtk.Label helpLabel;
+	private global::Gtk.Action StopAction;
 
-	private global::Gtk.Label verboseLabel;
+	private global::Gtk.Action SimulatorAction;
 
-	private global::Gtk.Label debugLabel;
+	private global::Gtk.Action StartAction1;
 
-	private global::Gtk.Label dliteDebuggerLabel;
+	private global::Gtk.Action StopAction1;
 
-	private global::Gtk.Label seedLabel;
+	private global::Gtk.Action ConfigAction;
+
+	private global::Gtk.Action DefaultPredictorArgumentsAction;
+
+	private global::Gtk.Action HelpAction;
+
+	private global::Gtk.Action AboutAction;
+
+	private global::Gtk.Action BenchmarkAction;
+
+	private global::Gtk.Action OpenAction;
+
+	private global::Gtk.Action DefaultSimulatorSettingsAction;
+
+	private global::Gtk.Action DefaultConfigAction;
+
+	private global::Gtk.VBox vbox1;
+
+	private global::Gtk.MenuBar menubar3;
+
+	private global::Gtk.Fixed mainWindow;
+
+	private global::Gtk.Label titleLabel;
+
+	private global::Gtk.Frame simSettingsFrame;
+
+	private global::Gtk.Alignment GtkAlignment4;
+
+	private global::Gtk.Table simSettingsTable;
 
 	private global::Gtk.Label abel;
 
 	private global::Gtk.Label checkpointLabel;
 
-	private global::Gtk.Label simRedirLabel;
-
-	private global::Gtk.Label progRedirLabel;
-
-	private global::Gtk.Label niceLabel;
+	private global::Gtk.Button configBrowseButton;
 
 	private global::Gtk.Entry configEntry;
 
 	private global::Gtk.Label configLabel;
 
+	private global::Gtk.CheckButton debugCheckbutton;
+
+	private global::Gtk.Label debugLabel;
+
+	private global::Gtk.CheckButton dliteDebuggerCheckbutton;
+
+	private global::Gtk.Label dliteDebuggerLabel;
+
+	private global::Gtk.Button dumpBrowseButton;
+
+	private global::Gtk.Label dumpConfigLabel;
+
 	private global::Gtk.Entry dumpEntry;
 
 	private global::Gtk.CheckButton helpCheckbutton;
 
-	private global::Gtk.CheckButton verboseCheckbutton;
-
-	private global::Gtk.CheckButton debugCheckbutton;
-
-	private global::Gtk.CheckButton dliteDebuggerCheckbutton;
+	private global::Gtk.Label helpLabel;
 
 	private global::Gtk.CheckButton initAndEndCheckbutton;
 
-	private global::Gtk.Button dumpBrowseButton;
+	private global::Gtk.Label maxInstLabel;
 
-	private global::Gtk.Entry simReditEntry;
+	private global::Gtk.SpinButton maxInstSpinbutton;
 
-	private global::Gtk.Button simRedirBrowseButton;
+	private global::Gtk.Label niceLabel;
 
 	private global::Gtk.Button progRedirBrowseButton;
 
 	private global::Gtk.Entry progRedirEntry;
 
+	private global::Gtk.Label progRedirLabel;
+
 	private global::Gtk.SpinButton schedulingSpinbutton;
+
+	private global::Gtk.Label seedLabel;
 
 	private global::Gtk.SpinButton seedSpinbutton;
 
-	private global::Gtk.SpinButton maxInstSpinbutton;
+	private global::Gtk.Button simRedirBrowseButton;
 
-	private global::Gtk.Label bpredLabel;
+	private global::Gtk.Entry simRedirEntry;
 
-	private global::Gtk.ComboBox bpredCombobox;
+	private global::Gtk.Label simRedirLabel;
 
-	private global::Gtk.Button configBrowseButton;
+	private global::Gtk.CheckButton verboseCheckbutton;
 
-	private global::Gtk.Label maxInstLabel;
+	private global::Gtk.Label verboseLabel;
 
-	private global::Gtk.Button simulateButton;
+	private global::Gtk.Label simSettingsFrameLabel;
 
-	private global::Gtk.Label l1sizeLabel;
+	private global::Gtk.Frame predTypeFrame;
 
-	private global::Gtk.SpinButton l1sizeSpinbutton;
+	private global::Gtk.Alignment GtkAlignment6;
 
-	private global::Gtk.Label l2sizeLabel;
+	private global::Gtk.Table predSettingsTable;
 
-	private global::Gtk.SpinButton l2sizeSpinbutton;
+	private global::Gtk.Frame predArgumentsFrame;
 
-	private global::Gtk.Label histSizeLabel;
+	private global::Gtk.Alignment GtkAlignment5;
 
-	private global::Gtk.SpinButton histSizeSpinbutton;
+	private global::Gtk.Table predArgumentsTable;
 
-	private global::Gtk.SpinButton xorSpinbutton;
+	private global::Gtk.Frame bimodFrame;
 
-	private global::Gtk.Label xorLabel;
+	private global::Gtk.Alignment GtkAlignment10;
 
-	private global::Gtk.Label titleLabel;
-
-	private global::Gtk.Label metaTableSizeLabel;
+	private global::Gtk.Table bimodTable;
 
 	private global::Gtk.Label tableSizeLabel;
 
 	private global::Gtk.SpinButton tableSizeSpinbutton;
 
-	private global::Gtk.SpinButton metaTableSizeSpinbutton;
+	private global::Gtk.Label bimodFrameLabel;
 
-	private global::Gtk.Label rasSizeLabel;
+	private global::Gtk.Frame btbFrame;
 
-	private global::Gtk.SpinButton rasSizeSpinbutton;
+	private global::Gtk.Alignment GtkAlignment9;
+
+	private global::Gtk.Table btbTable;
+
+	private global::Gtk.Label assocLabel;
+
+	private global::Gtk.SpinButton assocSpinbutton;
 
 	private global::Gtk.Label numSetsLabel;
 
 	private global::Gtk.SpinButton numSetsSpinbutton;
 
-	private global::Gtk.SpinButton assocSpinbutton;
+	private global::Gtk.Label btbFrameLabel;
 
-	private global::Gtk.Label assocLabel;
+	private global::Gtk.Frame combFrame;
+
+	private global::Gtk.Alignment GtkAlignment8;
+
+	private global::Gtk.Table combTable;
+
+	private global::Gtk.Label metaTableSizeLabel;
+
+	private global::Gtk.SpinButton metaTableSizeSpinbutton;
+
+	private global::Gtk.Label combFrameLabel;
+
+	private global::Gtk.Frame rasFrame;
+
+	private global::Gtk.Alignment GtkAlignment7;
+
+	private global::Gtk.Table rasTable;
+
+	private global::Gtk.Label rasSizeLabel;
+
+	private global::Gtk.SpinButton rasSizeSpinbutton;
+
+	private global::Gtk.Label rasFrameLabel;
+
+	private global::Gtk.Frame twoLevFrame;
+
+	private global::Gtk.Table twoLevTable;
+
+	private global::Gtk.Label histSizeLabel;
+
+	private global::Gtk.SpinButton histSizeSpinbutton;
+
+	private global::Gtk.SpinButton l1sizeSpinbutton;
+
+	private global::Gtk.SpinButton l2sizeSpinbutton;
+
+	private global::Gtk.Label levOneSizeLabel;
+
+	private global::Gtk.Label levTwoSizeLabel;
+
+	private global::Gtk.Label xorLabel;
+
+	private global::Gtk.SpinButton xorSpinbutton;
+
+	private global::Gtk.Label twoLevFrameLable;
+
+	private global::Gtk.Label predArgFrameLabel;
+
+	private global::Gtk.Table predTypeTable;
+
+	private global::Gtk.ComboBox bpredCombobox;
+
+	private global::Gtk.Label bpredLabel;
+
+	private global::Gtk.Label predTypeFrameLabel;
+
+	private global::Gtk.Button simulateButton;
+
+	private global::Gtk.Frame benchFrame;
+
+	private global::Gtk.Alignment GtkAlignment12;
+
+	private global::Gtk.Table benchTable;
+
+	private global::Gtk.Button benchBrowseButton;
+
+	private global::Gtk.Label benchNameLabel;
+
+	private global::Gtk.Label benchFrameLabel;
 
 	protected virtual void Build()
 	{
 		global::Stetic.Gui.Initialize(this);
 		// Widget MainWindow
+		this.UIManager = new global::Gtk.UIManager();
+		global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup("Default");
+		this.StartAction = new global::Gtk.Action("StartAction", global::Mono.Unix.Catalog.GetString("Start"), null, null);
+		this.StartAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Start");
+		w1.Add(this.StartAction, null);
+		this.StopAction = new global::Gtk.Action("StopAction", global::Mono.Unix.Catalog.GetString("Stop"), null, null);
+		this.StopAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Stop");
+		w1.Add(this.StopAction, null);
+		this.SimulatorAction = new global::Gtk.Action("SimulatorAction", global::Mono.Unix.Catalog.GetString("Simulator"), null, null);
+		this.SimulatorAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Simulator");
+		w1.Add(this.SimulatorAction, null);
+		this.StartAction1 = new global::Gtk.Action("StartAction1", global::Mono.Unix.Catalog.GetString("Start"), null, null);
+		this.StartAction1.ShortLabel = global::Mono.Unix.Catalog.GetString("Start");
+		w1.Add(this.StartAction1, null);
+		this.StopAction1 = new global::Gtk.Action("StopAction1", global::Mono.Unix.Catalog.GetString("Stop"), null, null);
+		this.StopAction1.ShortLabel = global::Mono.Unix.Catalog.GetString("Stop");
+		w1.Add(this.StopAction1, null);
+		this.ConfigAction = new global::Gtk.Action("ConfigAction", global::Mono.Unix.Catalog.GetString("Config"), null, null);
+		this.ConfigAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Config");
+		w1.Add(this.ConfigAction, null);
+		this.DefaultPredictorArgumentsAction = new global::Gtk.Action("DefaultPredictorArgumentsAction", global::Mono.Unix.Catalog.GetString("Default predictor arguments"), null, null);
+		this.DefaultPredictorArgumentsAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Reset default");
+		w1.Add(this.DefaultPredictorArgumentsAction, null);
+		this.HelpAction = new global::Gtk.Action("HelpAction", global::Mono.Unix.Catalog.GetString("Help"), null, null);
+		this.HelpAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Help");
+		w1.Add(this.HelpAction, null);
+		this.AboutAction = new global::Gtk.Action("AboutAction", global::Mono.Unix.Catalog.GetString("About"), null, null);
+		this.AboutAction.ShortLabel = global::Mono.Unix.Catalog.GetString("About");
+		w1.Add(this.AboutAction, null);
+		this.BenchmarkAction = new global::Gtk.Action("BenchmarkAction", global::Mono.Unix.Catalog.GetString("Benchmark"), null, null);
+		this.BenchmarkAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Benchmark");
+		w1.Add(this.BenchmarkAction, null);
+		this.OpenAction = new global::Gtk.Action("OpenAction", global::Mono.Unix.Catalog.GetString("Open"), null, null);
+		this.OpenAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Select");
+		w1.Add(this.OpenAction, null);
+		this.DefaultSimulatorSettingsAction = new global::Gtk.Action("DefaultSimulatorSettingsAction", global::Mono.Unix.Catalog.GetString("Default simulator settings"), null, null);
+		this.DefaultSimulatorSettingsAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Default simulator settings");
+		w1.Add(this.DefaultSimulatorSettingsAction, null);
+		this.DefaultConfigAction = new global::Gtk.Action("DefaultConfigAction", global::Mono.Unix.Catalog.GetString("Default config"), null, null);
+		this.DefaultConfigAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Default config");
+		w1.Add(this.DefaultConfigAction, null);
+		this.UIManager.InsertActionGroup(w1, 0);
+		this.AddAccelGroup(this.UIManager.AccelGroup);
+		this.WidthRequest = 820;
 		this.Name = "MainWindow";
 		this.Title = global::Mono.Unix.Catalog.GetString("MainWindow");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 		// Container child MainWindow.Gtk.Container+ContainerChild
-		this.fixed1 = new global::Gtk.Fixed();
-		this.fixed1.HasWindow = false;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.dumpConfigLabel = new global::Gtk.Label();
-		this.dumpConfigLabel.Name = "dumpConfigLabel";
-		this.dumpConfigLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Dump config file");
-		this.fixed1.Add(this.dumpConfigLabel);
-		global::Gtk.Fixed.FixedChild w1 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.dumpConfigLabel]));
-		w1.X = 27;
-		w1.Y = 134;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.helpLabel = new global::Gtk.Label();
-		this.helpLabel.Name = "helpLabel";
-		this.helpLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Help");
-		this.fixed1.Add(this.helpLabel);
-		global::Gtk.Fixed.FixedChild w2 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.helpLabel]));
-		w2.X = 29;
-		w2.Y = 186;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.verboseLabel = new global::Gtk.Label();
-		this.verboseLabel.Name = "verboseLabel";
-		this.verboseLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Verbose");
-		this.fixed1.Add(this.verboseLabel);
-		global::Gtk.Fixed.FixedChild w3 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.verboseLabel]));
-		w3.X = 26;
-		w3.Y = 239;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.debugLabel = new global::Gtk.Label();
-		this.debugLabel.Name = "debugLabel";
-		this.debugLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Debug message");
-		this.fixed1.Add(this.debugLabel);
-		global::Gtk.Fixed.FixedChild w4 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.debugLabel]));
-		w4.X = 25;
-		w4.Y = 287;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.dliteDebuggerLabel = new global::Gtk.Label();
-		this.dliteDebuggerLabel.Name = "dliteDebuggerLabel";
-		this.dliteDebuggerLabel.LabelProp = global::Mono.Unix.Catalog.GetString("DLite Debugger");
-		this.fixed1.Add(this.dliteDebuggerLabel);
-		global::Gtk.Fixed.FixedChild w5 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.dliteDebuggerLabel]));
-		w5.X = 25;
-		w5.Y = 337;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.seedLabel = new global::Gtk.Label();
-		this.seedLabel.Name = "seedLabel";
-		this.seedLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Seed");
-		this.fixed1.Add(this.seedLabel);
-		global::Gtk.Fixed.FixedChild w6 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.seedLabel]));
-		w6.X = 24;
-		w6.Y = 387;
-		// Container child fixed1.Gtk.Fixed+FixedChild
+		this.vbox1 = new global::Gtk.VBox();
+		this.vbox1.Name = "vbox1";
+		this.vbox1.Spacing = 6;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.UIManager.AddUiFromString(@"<ui><menubar name='menubar3'><menu name='BenchmarkAction' action='BenchmarkAction'><menuitem name='OpenAction' action='OpenAction'/></menu><menu name='SimulatorAction' action='SimulatorAction'><menuitem name='StartAction1' action='StartAction1'/><menuitem name='StopAction1' action='StopAction1'/></menu><menu name='ConfigAction' action='ConfigAction'><menuitem name='DefaultConfigAction' action='DefaultConfigAction'/><menuitem name='DefaultPredictorArgumentsAction' action='DefaultPredictorArgumentsAction'/><menuitem name='DefaultSimulatorSettingsAction' action='DefaultSimulatorSettingsAction'/></menu><menu name='HelpAction' action='HelpAction'/><menu name='AboutAction' action='AboutAction'/></menubar></ui>");
+		this.menubar3 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget("/menubar3")));
+		this.menubar3.Name = "menubar3";
+		this.vbox1.Add(this.menubar3);
+		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.menubar3]));
+		w2.Position = 0;
+		w2.Expand = false;
+		w2.Fill = false;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.mainWindow = new global::Gtk.Fixed();
+		this.mainWindow.WidthRequest = 820;
+		this.mainWindow.Name = "mainWindow";
+		this.mainWindow.HasWindow = false;
+		// Container child mainWindow.Gtk.Fixed+FixedChild
+		this.titleLabel = new global::Gtk.Label();
+		this.titleLabel.Name = "titleLabel";
+		this.titleLabel.Xpad = 608;
+		this.titleLabel.Ypad = 4;
+		this.titleLabel.LabelProp = "<big><b>Branch prediction simulator</b></big>";
+		this.titleLabel.UseMarkup = true;
+		this.mainWindow.Add(this.titleLabel);
+		global::Gtk.Fixed.FixedChild w3 = ((global::Gtk.Fixed.FixedChild)(this.mainWindow[this.titleLabel]));
+		w3.X = 74;
+		w3.Y = 17;
+		// Container child mainWindow.Gtk.Fixed+FixedChild
+		this.simSettingsFrame = new global::Gtk.Frame();
+		this.simSettingsFrame.WidthRequest = 493;
+		this.simSettingsFrame.HeightRequest = 688;
+		this.simSettingsFrame.Name = "simSettingsFrame";
+		this.simSettingsFrame.ShadowType = ((global::Gtk.ShadowType)(0));
+		this.simSettingsFrame.LabelXalign = 0.04F;
+		this.simSettingsFrame.LabelYalign = 0.6F;
+		// Container child simSettingsFrame.Gtk.Container+ContainerChild
+		this.GtkAlignment4 = new global::Gtk.Alignment(0F, 0F, 1F, 1F);
+		this.GtkAlignment4.Name = "GtkAlignment4";
+		this.GtkAlignment4.LeftPadding = ((uint)(12));
+		// Container child GtkAlignment4.Gtk.Container+ContainerChild
+		this.simSettingsTable = new global::Gtk.Table(((uint)(13)), ((uint)(3)), false);
+		this.simSettingsTable.Name = "simSettingsTable";
+		this.simSettingsTable.RowSpacing = ((uint)(18));
+		this.simSettingsTable.ColumnSpacing = ((uint)(6));
+		// Container child simSettingsTable.Gtk.Table+TableChild
 		this.abel = new global::Gtk.Label();
 		this.abel.Name = "abel";
-		this.abel.LabelProp = global::Mono.Unix.Catalog.GetString("Initialize and terminate immediately");
-		this.fixed1.Add(this.abel);
-		global::Gtk.Fixed.FixedChild w7 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.abel]));
-		w7.X = 22;
-		w7.Y = 434;
-		// Container child fixed1.Gtk.Fixed+FixedChild
+		this.abel.Xalign = 1F;
+		this.abel.LabelProp = global::Mono.Unix.Catalog.GetString("Init and end immediately");
+		this.simSettingsTable.Add(this.abel);
+		global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.abel]));
+		w4.TopAttach = ((uint)(7));
+		w4.BottomAttach = ((uint)(8));
+		w4.XOptions = ((global::Gtk.AttachOptions)(4));
+		w4.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
 		this.checkpointLabel = new global::Gtk.Label();
 		this.checkpointLabel.Name = "checkpointLabel";
+		this.checkpointLabel.Xalign = 1F;
 		this.checkpointLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Checkpoint");
-		this.fixed1.Add(this.checkpointLabel);
-		global::Gtk.Fixed.FixedChild w8 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.checkpointLabel]));
-		w8.X = 24;
-		w8.Y = 478;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.simRedirLabel = new global::Gtk.Label();
-		this.simRedirLabel.Name = "simRedirLabel";
-		this.simRedirLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Simout save location");
-		this.fixed1.Add(this.simRedirLabel);
-		global::Gtk.Fixed.FixedChild w9 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.simRedirLabel]));
-		w9.X = 23;
-		w9.Y = 525;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.progRedirLabel = new global::Gtk.Label();
-		this.progRedirLabel.Name = "progRedirLabel";
-		this.progRedirLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Progout save location");
-		this.fixed1.Add(this.progRedirLabel);
-		global::Gtk.Fixed.FixedChild w10 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.progRedirLabel]));
-		w10.X = 26;
-		w10.Y = 570;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.niceLabel = new global::Gtk.Label();
-		this.niceLabel.Name = "niceLabel";
-		this.niceLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Simulator scheduling priority");
-		this.fixed1.Add(this.niceLabel);
-		global::Gtk.Fixed.FixedChild w11 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.niceLabel]));
-		w11.X = 26;
-		w11.Y = 612;
-		// Container child fixed1.Gtk.Fixed+FixedChild
+		this.simSettingsTable.Add(this.checkpointLabel);
+		global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.checkpointLabel]));
+		w5.TopAttach = ((uint)(8));
+		w5.BottomAttach = ((uint)(9));
+		w5.XOptions = ((global::Gtk.AttachOptions)(4));
+		w5.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.configBrowseButton = new global::Gtk.Button();
+		this.configBrowseButton.CanDefault = true;
+		this.configBrowseButton.CanFocus = true;
+		this.configBrowseButton.Name = "configBrowseButton";
+		this.configBrowseButton.UseStock = true;
+		this.configBrowseButton.UseUnderline = true;
+		this.configBrowseButton.Label = "gtk-open";
+		this.simSettingsTable.Add(this.configBrowseButton);
+		global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.configBrowseButton]));
+		w6.LeftAttach = ((uint)(2));
+		w6.RightAttach = ((uint)(3));
+		w6.XPadding = ((uint)(23));
+		w6.XOptions = ((global::Gtk.AttachOptions)(4));
+		w6.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
 		this.configEntry = new global::Gtk.Entry();
 		this.configEntry.CanFocus = true;
 		this.configEntry.Name = "configEntry";
 		this.configEntry.IsEditable = true;
 		this.configEntry.InvisibleChar = '●';
-		this.fixed1.Add(this.configEntry);
-		global::Gtk.Fixed.FixedChild w12 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.configEntry]));
-		w12.X = 137;
-		w12.Y = 74;
-		// Container child fixed1.Gtk.Fixed+FixedChild
+		this.simSettingsTable.Add(this.configEntry);
+		global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.configEntry]));
+		w7.LeftAttach = ((uint)(1));
+		w7.RightAttach = ((uint)(2));
+		w7.XOptions = ((global::Gtk.AttachOptions)(4));
+		w7.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
 		this.configLabel = new global::Gtk.Label();
+		global::Gtk.Tooltips w8 = new Gtk.Tooltips();
+		w8.SetTip(this.configLabel, "Load configuration from a file", "Load configuration from a file");
 		this.configLabel.Name = "configLabel";
+		this.configLabel.Xalign = 1F;
 		this.configLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Config file");
-		this.fixed1.Add(this.configLabel);
-		global::Gtk.Fixed.FixedChild w13 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.configLabel]));
-		w13.X = 35;
-		w13.Y = 79;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.dumpEntry = new global::Gtk.Entry();
-		this.dumpEntry.CanFocus = true;
-		this.dumpEntry.Name = "dumpEntry";
-		this.dumpEntry.IsEditable = true;
-		this.dumpEntry.InvisibleChar = '●';
-		this.fixed1.Add(this.dumpEntry);
-		global::Gtk.Fixed.FixedChild w14 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.dumpEntry]));
-		w14.X = 174;
-		w14.Y = 130;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.helpCheckbutton = new global::Gtk.CheckButton();
-		this.helpCheckbutton.CanFocus = true;
-		this.helpCheckbutton.Name = "helpCheckbutton";
-		this.helpCheckbutton.Label = global::Mono.Unix.Catalog.GetString("help");
-		this.helpCheckbutton.DrawIndicator = true;
-		this.helpCheckbutton.UseUnderline = true;
-		this.fixed1.Add(this.helpCheckbutton);
-		global::Gtk.Fixed.FixedChild w15 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.helpCheckbutton]));
-		w15.X = 83;
-		w15.Y = 184;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.verboseCheckbutton = new global::Gtk.CheckButton();
-		this.verboseCheckbutton.CanFocus = true;
-		this.verboseCheckbutton.Name = "verboseCheckbutton";
-		this.verboseCheckbutton.Label = global::Mono.Unix.Catalog.GetString("verbose");
-		this.verboseCheckbutton.DrawIndicator = true;
-		this.verboseCheckbutton.UseUnderline = true;
-		this.fixed1.Add(this.verboseCheckbutton);
-		global::Gtk.Fixed.FixedChild w16 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.verboseCheckbutton]));
-		w16.X = 101;
-		w16.Y = 238;
-		// Container child fixed1.Gtk.Fixed+FixedChild
+		this.simSettingsTable.Add(this.configLabel);
+		global::Gtk.Table.TableChild w9 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.configLabel]));
+		w9.XOptions = ((global::Gtk.AttachOptions)(4));
+		w9.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
 		this.debugCheckbutton = new global::Gtk.CheckButton();
 		this.debugCheckbutton.CanFocus = true;
 		this.debugCheckbutton.Name = "debugCheckbutton";
 		this.debugCheckbutton.Label = global::Mono.Unix.Catalog.GetString("debug");
 		this.debugCheckbutton.DrawIndicator = true;
 		this.debugCheckbutton.UseUnderline = true;
-		this.fixed1.Add(this.debugCheckbutton);
-		global::Gtk.Fixed.FixedChild w17 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.debugCheckbutton]));
-		w17.X = 166;
-		w17.Y = 289;
-		// Container child fixed1.Gtk.Fixed+FixedChild
+		this.simSettingsTable.Add(this.debugCheckbutton);
+		global::Gtk.Table.TableChild w10 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.debugCheckbutton]));
+		w10.TopAttach = ((uint)(4));
+		w10.BottomAttach = ((uint)(5));
+		w10.LeftAttach = ((uint)(1));
+		w10.RightAttach = ((uint)(2));
+		w10.XOptions = ((global::Gtk.AttachOptions)(4));
+		w10.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.debugLabel = new global::Gtk.Label();
+		this.debugLabel.Name = "debugLabel";
+		this.debugLabel.Xalign = 1F;
+		this.debugLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Debug message");
+		this.simSettingsTable.Add(this.debugLabel);
+		global::Gtk.Table.TableChild w11 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.debugLabel]));
+		w11.TopAttach = ((uint)(4));
+		w11.BottomAttach = ((uint)(5));
+		w11.XOptions = ((global::Gtk.AttachOptions)(4));
+		w11.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
 		this.dliteDebuggerCheckbutton = new global::Gtk.CheckButton();
 		this.dliteDebuggerCheckbutton.CanFocus = true;
 		this.dliteDebuggerCheckbutton.Name = "dliteDebuggerCheckbutton";
 		this.dliteDebuggerCheckbutton.Label = global::Mono.Unix.Catalog.GetString("dlite");
 		this.dliteDebuggerCheckbutton.DrawIndicator = true;
 		this.dliteDebuggerCheckbutton.UseUnderline = true;
-		this.fixed1.Add(this.dliteDebuggerCheckbutton);
-		global::Gtk.Fixed.FixedChild w18 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.dliteDebuggerCheckbutton]));
-		w18.X = 161;
-		w18.Y = 337;
-		// Container child fixed1.Gtk.Fixed+FixedChild
+		this.simSettingsTable.Add(this.dliteDebuggerCheckbutton);
+		global::Gtk.Table.TableChild w12 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.dliteDebuggerCheckbutton]));
+		w12.TopAttach = ((uint)(5));
+		w12.BottomAttach = ((uint)(6));
+		w12.LeftAttach = ((uint)(1));
+		w12.RightAttach = ((uint)(2));
+		w12.XOptions = ((global::Gtk.AttachOptions)(4));
+		w12.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.dliteDebuggerLabel = new global::Gtk.Label();
+		this.dliteDebuggerLabel.Name = "dliteDebuggerLabel";
+		this.dliteDebuggerLabel.Xalign = 1F;
+		this.dliteDebuggerLabel.LabelProp = global::Mono.Unix.Catalog.GetString("DLite Debugger");
+		this.simSettingsTable.Add(this.dliteDebuggerLabel);
+		global::Gtk.Table.TableChild w13 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.dliteDebuggerLabel]));
+		w13.TopAttach = ((uint)(5));
+		w13.BottomAttach = ((uint)(6));
+		w13.XOptions = ((global::Gtk.AttachOptions)(4));
+		w13.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.dumpBrowseButton = new global::Gtk.Button();
+		this.dumpBrowseButton.WidthRequest = 0;
+		this.dumpBrowseButton.CanFocus = true;
+		this.dumpBrowseButton.Name = "dumpBrowseButton";
+		this.dumpBrowseButton.UseStock = true;
+		this.dumpBrowseButton.UseUnderline = true;
+		this.dumpBrowseButton.Label = "gtk-open";
+		this.simSettingsTable.Add(this.dumpBrowseButton);
+		global::Gtk.Table.TableChild w14 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.dumpBrowseButton]));
+		w14.TopAttach = ((uint)(1));
+		w14.BottomAttach = ((uint)(2));
+		w14.LeftAttach = ((uint)(2));
+		w14.RightAttach = ((uint)(3));
+		w14.XPadding = ((uint)(23));
+		w14.XOptions = ((global::Gtk.AttachOptions)(4));
+		w14.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.dumpConfigLabel = new global::Gtk.Label();
+		this.dumpConfigLabel.Name = "dumpConfigLabel";
+		this.dumpConfigLabel.Xalign = 1F;
+		this.dumpConfigLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Dump config file");
+		this.simSettingsTable.Add(this.dumpConfigLabel);
+		global::Gtk.Table.TableChild w15 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.dumpConfigLabel]));
+		w15.TopAttach = ((uint)(1));
+		w15.BottomAttach = ((uint)(2));
+		w15.XOptions = ((global::Gtk.AttachOptions)(4));
+		w15.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.dumpEntry = new global::Gtk.Entry();
+		this.dumpEntry.CanFocus = true;
+		this.dumpEntry.Name = "dumpEntry";
+		this.dumpEntry.IsEditable = true;
+		this.dumpEntry.InvisibleChar = '●';
+		this.simSettingsTable.Add(this.dumpEntry);
+		global::Gtk.Table.TableChild w16 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.dumpEntry]));
+		w16.TopAttach = ((uint)(1));
+		w16.BottomAttach = ((uint)(2));
+		w16.LeftAttach = ((uint)(1));
+		w16.RightAttach = ((uint)(2));
+		w16.XOptions = ((global::Gtk.AttachOptions)(4));
+		w16.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.helpCheckbutton = new global::Gtk.CheckButton();
+		this.helpCheckbutton.CanFocus = true;
+		this.helpCheckbutton.Name = "helpCheckbutton";
+		this.helpCheckbutton.Label = global::Mono.Unix.Catalog.GetString("help");
+		this.helpCheckbutton.DrawIndicator = true;
+		this.helpCheckbutton.UseUnderline = true;
+		this.simSettingsTable.Add(this.helpCheckbutton);
+		global::Gtk.Table.TableChild w17 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.helpCheckbutton]));
+		w17.TopAttach = ((uint)(2));
+		w17.BottomAttach = ((uint)(3));
+		w17.LeftAttach = ((uint)(1));
+		w17.RightAttach = ((uint)(2));
+		w17.XOptions = ((global::Gtk.AttachOptions)(4));
+		w17.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.helpLabel = new global::Gtk.Label();
+		this.helpLabel.Name = "helpLabel";
+		this.helpLabel.Xalign = 1F;
+		this.helpLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Help");
+		this.simSettingsTable.Add(this.helpLabel);
+		global::Gtk.Table.TableChild w18 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.helpLabel]));
+		w18.TopAttach = ((uint)(2));
+		w18.BottomAttach = ((uint)(3));
+		w18.XOptions = ((global::Gtk.AttachOptions)(4));
+		w18.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
 		this.initAndEndCheckbutton = new global::Gtk.CheckButton();
 		this.initAndEndCheckbutton.CanFocus = true;
 		this.initAndEndCheckbutton.Name = "initAndEndCheckbutton";
 		this.initAndEndCheckbutton.Label = global::Mono.Unix.Catalog.GetString("init/end");
 		this.initAndEndCheckbutton.DrawIndicator = true;
 		this.initAndEndCheckbutton.UseUnderline = true;
-		this.fixed1.Add(this.initAndEndCheckbutton);
-		global::Gtk.Fixed.FixedChild w19 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.initAndEndCheckbutton]));
-		w19.X = 326;
-		w19.Y = 432;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.dumpBrowseButton = new global::Gtk.Button();
-		this.dumpBrowseButton.CanFocus = true;
-		this.dumpBrowseButton.Name = "dumpBrowseButton";
-		this.dumpBrowseButton.UseUnderline = true;
-		this.dumpBrowseButton.Label = global::Mono.Unix.Catalog.GetString("Browse");
-		this.fixed1.Add(this.dumpBrowseButton);
-		global::Gtk.Fixed.FixedChild w20 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.dumpBrowseButton]));
-		w20.X = 350;
-		w20.Y = 132;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.simReditEntry = new global::Gtk.Entry();
-		this.simReditEntry.CanFocus = true;
-		this.simReditEntry.Name = "simReditEntry";
-		this.simReditEntry.IsEditable = true;
-		this.simReditEntry.InvisibleChar = '●';
-		this.fixed1.Add(this.simReditEntry);
-		global::Gtk.Fixed.FixedChild w21 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.simReditEntry]));
-		w21.X = 197;
-		w21.Y = 519;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.simRedirBrowseButton = new global::Gtk.Button();
-		this.simRedirBrowseButton.CanFocus = true;
-		this.simRedirBrowseButton.Name = "simRedirBrowseButton";
-		this.simRedirBrowseButton.UseUnderline = true;
-		this.simRedirBrowseButton.Label = global::Mono.Unix.Catalog.GetString("Browse");
-		this.fixed1.Add(this.simRedirBrowseButton);
-		global::Gtk.Fixed.FixedChild w22 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.simRedirBrowseButton]));
-		w22.X = 373;
-		w22.Y = 518;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.progRedirBrowseButton = new global::Gtk.Button();
-		this.progRedirBrowseButton.CanFocus = true;
-		this.progRedirBrowseButton.Name = "progRedirBrowseButton";
-		this.progRedirBrowseButton.UseUnderline = true;
-		this.progRedirBrowseButton.Label = global::Mono.Unix.Catalog.GetString("Browse");
-		this.fixed1.Add(this.progRedirBrowseButton);
-		global::Gtk.Fixed.FixedChild w23 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.progRedirBrowseButton]));
-		w23.X = 385;
-		w23.Y = 565;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.progRedirEntry = new global::Gtk.Entry();
-		this.progRedirEntry.CanFocus = true;
-		this.progRedirEntry.Name = "progRedirEntry";
-		this.progRedirEntry.IsEditable = true;
-		this.progRedirEntry.InvisibleChar = '●';
-		this.fixed1.Add(this.progRedirEntry);
-		global::Gtk.Fixed.FixedChild w24 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.progRedirEntry]));
-		w24.X = 209;
-		w24.Y = 564;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.schedulingSpinbutton = new global::Gtk.SpinButton(0D, 100D, 1D);
-		this.schedulingSpinbutton.CanFocus = true;
-		this.schedulingSpinbutton.Name = "schedulingSpinbutton";
-		this.schedulingSpinbutton.Adjustment.PageIncrement = 10D;
-		this.schedulingSpinbutton.ClimbRate = 1D;
-		this.schedulingSpinbutton.Numeric = true;
-		this.fixed1.Add(this.schedulingSpinbutton);
-		global::Gtk.Fixed.FixedChild w25 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.schedulingSpinbutton]));
-		w25.X = 274;
-		w25.Y = 609;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.seedSpinbutton = new global::Gtk.SpinButton(0D, 100D, 1D);
-		this.seedSpinbutton.CanFocus = true;
-		this.seedSpinbutton.Name = "seedSpinbutton";
-		this.seedSpinbutton.Adjustment.PageIncrement = 10D;
-		this.seedSpinbutton.ClimbRate = 1D;
-		this.seedSpinbutton.Numeric = true;
-		this.fixed1.Add(this.seedSpinbutton);
-		global::Gtk.Fixed.FixedChild w26 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.seedSpinbutton]));
-		w26.X = 74;
-		w26.Y = 381;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.maxInstSpinbutton = new global::Gtk.SpinButton(0D, 100D, 1D);
+		this.simSettingsTable.Add(this.initAndEndCheckbutton);
+		global::Gtk.Table.TableChild w19 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.initAndEndCheckbutton]));
+		w19.TopAttach = ((uint)(7));
+		w19.BottomAttach = ((uint)(8));
+		w19.LeftAttach = ((uint)(1));
+		w19.RightAttach = ((uint)(2));
+		w19.XOptions = ((global::Gtk.AttachOptions)(4));
+		w19.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.maxInstLabel = new global::Gtk.Label();
+		this.maxInstLabel.Name = "maxInstLabel";
+		this.maxInstLabel.Xalign = 1F;
+		this.maxInstLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Max instructions");
+		this.simSettingsTable.Add(this.maxInstLabel);
+		global::Gtk.Table.TableChild w20 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.maxInstLabel]));
+		w20.TopAttach = ((uint)(12));
+		w20.BottomAttach = ((uint)(13));
+		w20.XOptions = ((global::Gtk.AttachOptions)(4));
+		w20.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.maxInstSpinbutton = new global::Gtk.SpinButton(0D, 9999999999D, 1D);
 		this.maxInstSpinbutton.CanFocus = true;
 		this.maxInstSpinbutton.Name = "maxInstSpinbutton";
 		this.maxInstSpinbutton.Adjustment.PageIncrement = 10D;
 		this.maxInstSpinbutton.ClimbRate = 1D;
 		this.maxInstSpinbutton.Numeric = true;
-		this.fixed1.Add(this.maxInstSpinbutton);
-		global::Gtk.Fixed.FixedChild w27 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.maxInstSpinbutton]));
-		w27.X = 265;
-		w27.Y = 657;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.bpredLabel = new global::Gtk.Label();
-		this.bpredLabel.Name = "bpredLabel";
-		this.bpredLabel.LabelProp = global::Mono.Unix.Catalog.GetString("bpred");
-		this.fixed1.Add(this.bpredLabel);
-		global::Gtk.Fixed.FixedChild w28 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.bpredLabel]));
-		w28.X = 525;
-		w28.Y = 74;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.bpredCombobox = global::Gtk.ComboBox.NewText();
-		this.bpredCombobox.AppendText(global::Mono.Unix.Catalog.GetString("nottaken"));
-		this.bpredCombobox.AppendText(global::Mono.Unix.Catalog.GetString("taken"));
-		this.bpredCombobox.AppendText(global::Mono.Unix.Catalog.GetString("bimod"));
-		this.bpredCombobox.AppendText(global::Mono.Unix.Catalog.GetString("2lev"));
-		this.bpredCombobox.AppendText(global::Mono.Unix.Catalog.GetString("comb"));
-		this.bpredCombobox.Name = "bpredCombobox";
-		this.bpredCombobox.Active = 2;
-		this.fixed1.Add(this.bpredCombobox);
-		global::Gtk.Fixed.FixedChild w29 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.bpredCombobox]));
-		w29.X = 579;
-		w29.Y = 68;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.configBrowseButton = new global::Gtk.Button();
-		this.configBrowseButton.CanDefault = true;
-		this.configBrowseButton.CanFocus = true;
-		this.configBrowseButton.Name = "configBrowseButton";
-		this.configBrowseButton.UseUnderline = true;
-		this.configBrowseButton.Label = global::Mono.Unix.Catalog.GetString("Browse");
-		this.fixed1.Add(this.configBrowseButton);
-		global::Gtk.Fixed.FixedChild w30 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.configBrowseButton]));
-		w30.X = 315;
-		w30.Y = 74;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.maxInstLabel = new global::Gtk.Label();
-		this.maxInstLabel.Name = "maxInstLabel";
-		this.maxInstLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Max instructions to execute");
-		this.fixed1.Add(this.maxInstLabel);
-		global::Gtk.Fixed.FixedChild w31 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.maxInstLabel]));
-		w31.X = 27;
-		w31.Y = 662;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.simulateButton = new global::Gtk.Button();
-		this.simulateButton.CanFocus = true;
-		this.simulateButton.Name = "simulateButton";
-		this.simulateButton.UseUnderline = true;
-		this.simulateButton.Label = global::Mono.Unix.Catalog.GetString("Simulate");
-		this.fixed1.Add(this.simulateButton);
-		global::Gtk.Fixed.FixedChild w32 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.simulateButton]));
-		w32.X = 1289;
-		w32.Y = 649;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.l1sizeLabel = new global::Gtk.Label();
-		this.l1sizeLabel.Name = "l1sizeLabel";
-		this.l1sizeLabel.LabelProp = global::Mono.Unix.Catalog.GetString("l1size");
-		this.fixed1.Add(this.l1sizeLabel);
-		global::Gtk.Fixed.FixedChild w33 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.l1sizeLabel]));
-		w33.X = 793;
-		w33.Y = 74;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.l1sizeSpinbutton = new global::Gtk.SpinButton(0D, 100D, 1D);
-		this.l1sizeSpinbutton.CanFocus = true;
-		this.l1sizeSpinbutton.Name = "l1sizeSpinbutton";
-		this.l1sizeSpinbutton.Adjustment.PageIncrement = 10D;
-		this.l1sizeSpinbutton.ClimbRate = 1D;
-		this.l1sizeSpinbutton.Numeric = true;
-		this.fixed1.Add(this.l1sizeSpinbutton);
-		global::Gtk.Fixed.FixedChild w34 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.l1sizeSpinbutton]));
-		w34.X = 854;
-		w34.Y = 69;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.l2sizeLabel = new global::Gtk.Label();
-		this.l2sizeLabel.Name = "l2sizeLabel";
-		this.l2sizeLabel.LabelProp = global::Mono.Unix.Catalog.GetString("l2size");
-		this.fixed1.Add(this.l2sizeLabel);
-		global::Gtk.Fixed.FixedChild w35 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.l2sizeLabel]));
-		w35.X = 793;
-		w35.Y = 135;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.l2sizeSpinbutton = new global::Gtk.SpinButton(0D, 100D, 1D);
-		this.l2sizeSpinbutton.CanFocus = true;
-		this.l2sizeSpinbutton.Name = "l2sizeSpinbutton";
-		this.l2sizeSpinbutton.Adjustment.PageIncrement = 10D;
-		this.l2sizeSpinbutton.ClimbRate = 1D;
-		this.l2sizeSpinbutton.Numeric = true;
-		this.fixed1.Add(this.l2sizeSpinbutton);
-		global::Gtk.Fixed.FixedChild w36 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.l2sizeSpinbutton]));
-		w36.X = 854;
-		w36.Y = 130;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.histSizeLabel = new global::Gtk.Label();
-		this.histSizeLabel.Name = "histSizeLabel";
-		this.histSizeLabel.LabelProp = global::Mono.Unix.Catalog.GetString("histSize");
-		this.fixed1.Add(this.histSizeLabel);
-		global::Gtk.Fixed.FixedChild w37 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.histSizeLabel]));
-		w37.X = 985;
-		w37.Y = 76;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.histSizeSpinbutton = new global::Gtk.SpinButton(0D, 100D, 1D);
-		this.histSizeSpinbutton.CanFocus = true;
-		this.histSizeSpinbutton.Name = "histSizeSpinbutton";
-		this.histSizeSpinbutton.Adjustment.PageIncrement = 10D;
-		this.histSizeSpinbutton.ClimbRate = 1D;
-		this.histSizeSpinbutton.Numeric = true;
-		this.fixed1.Add(this.histSizeSpinbutton);
-		global::Gtk.Fixed.FixedChild w38 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.histSizeSpinbutton]));
-		w38.X = 1070;
-		w38.Y = 71;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.xorSpinbutton = new global::Gtk.SpinButton(0D, 100D, 1D);
-		this.xorSpinbutton.CanFocus = true;
-		this.xorSpinbutton.Name = "xorSpinbutton";
-		this.xorSpinbutton.Adjustment.PageIncrement = 10D;
-		this.xorSpinbutton.ClimbRate = 1D;
-		this.xorSpinbutton.Numeric = true;
-		this.fixed1.Add(this.xorSpinbutton);
-		global::Gtk.Fixed.FixedChild w39 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.xorSpinbutton]));
-		w39.X = 1071;
-		w39.Y = 126;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.xorLabel = new global::Gtk.Label();
-		this.xorLabel.Name = "xorLabel";
-		this.xorLabel.LabelProp = global::Mono.Unix.Catalog.GetString("xor");
-		this.fixed1.Add(this.xorLabel);
-		global::Gtk.Fixed.FixedChild w40 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.xorLabel]));
-		w40.X = 1023;
-		w40.Y = 133;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.titleLabel = new global::Gtk.Label();
-		this.titleLabel.Name = "titleLabel";
-		this.titleLabel.Xpad = 485;
-		this.titleLabel.Ypad = 4;
-		this.titleLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Branch prediction simulator");
-		this.fixed1.Add(this.titleLabel);
-		global::Gtk.Fixed.FixedChild w41 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.titleLabel]));
-		w41.X = 74;
-		w41.Y = 17;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.metaTableSizeLabel = new global::Gtk.Label();
-		this.metaTableSizeLabel.Name = "metaTableSizeLabel";
-		this.metaTableSizeLabel.LabelProp = global::Mono.Unix.Catalog.GetString("MetaTableSize");
-		this.fixed1.Add(this.metaTableSizeLabel);
-		global::Gtk.Fixed.FixedChild w42 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.metaTableSizeLabel]));
-		w42.X = 730;
-		w42.Y = 268;
-		// Container child fixed1.Gtk.Fixed+FixedChild
+		this.simSettingsTable.Add(this.maxInstSpinbutton);
+		global::Gtk.Table.TableChild w21 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.maxInstSpinbutton]));
+		w21.TopAttach = ((uint)(12));
+		w21.BottomAttach = ((uint)(13));
+		w21.LeftAttach = ((uint)(1));
+		w21.RightAttach = ((uint)(2));
+		w21.XOptions = ((global::Gtk.AttachOptions)(4));
+		w21.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.niceLabel = new global::Gtk.Label();
+		this.niceLabel.Name = "niceLabel";
+		this.niceLabel.Xalign = 1F;
+		this.niceLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Sim scheduling priority");
+		this.simSettingsTable.Add(this.niceLabel);
+		global::Gtk.Table.TableChild w22 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.niceLabel]));
+		w22.TopAttach = ((uint)(11));
+		w22.BottomAttach = ((uint)(12));
+		w22.XOptions = ((global::Gtk.AttachOptions)(4));
+		w22.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.progRedirBrowseButton = new global::Gtk.Button();
+		this.progRedirBrowseButton.CanFocus = true;
+		this.progRedirBrowseButton.Name = "progRedirBrowseButton";
+		this.progRedirBrowseButton.UseStock = true;
+		this.progRedirBrowseButton.UseUnderline = true;
+		this.progRedirBrowseButton.Label = "gtk-open";
+		this.simSettingsTable.Add(this.progRedirBrowseButton);
+		global::Gtk.Table.TableChild w23 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.progRedirBrowseButton]));
+		w23.TopAttach = ((uint)(10));
+		w23.BottomAttach = ((uint)(11));
+		w23.LeftAttach = ((uint)(2));
+		w23.RightAttach = ((uint)(3));
+		w23.XPadding = ((uint)(23));
+		w23.XOptions = ((global::Gtk.AttachOptions)(4));
+		w23.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.progRedirEntry = new global::Gtk.Entry();
+		this.progRedirEntry.CanFocus = true;
+		this.progRedirEntry.Name = "progRedirEntry";
+		this.progRedirEntry.IsEditable = true;
+		this.progRedirEntry.InvisibleChar = '●';
+		this.simSettingsTable.Add(this.progRedirEntry);
+		global::Gtk.Table.TableChild w24 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.progRedirEntry]));
+		w24.TopAttach = ((uint)(10));
+		w24.BottomAttach = ((uint)(11));
+		w24.LeftAttach = ((uint)(1));
+		w24.RightAttach = ((uint)(2));
+		w24.XOptions = ((global::Gtk.AttachOptions)(4));
+		w24.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.progRedirLabel = new global::Gtk.Label();
+		this.progRedirLabel.Name = "progRedirLabel";
+		this.progRedirLabel.Xalign = 1F;
+		this.progRedirLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Progout save location");
+		this.simSettingsTable.Add(this.progRedirLabel);
+		global::Gtk.Table.TableChild w25 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.progRedirLabel]));
+		w25.TopAttach = ((uint)(10));
+		w25.BottomAttach = ((uint)(11));
+		w25.XOptions = ((global::Gtk.AttachOptions)(4));
+		w25.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.schedulingSpinbutton = new global::Gtk.SpinButton(0D, 99999D, 1D);
+		this.schedulingSpinbutton.CanFocus = true;
+		this.schedulingSpinbutton.Name = "schedulingSpinbutton";
+		this.schedulingSpinbutton.Adjustment.PageIncrement = 10D;
+		this.schedulingSpinbutton.ClimbRate = 1D;
+		this.schedulingSpinbutton.Numeric = true;
+		this.simSettingsTable.Add(this.schedulingSpinbutton);
+		global::Gtk.Table.TableChild w26 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.schedulingSpinbutton]));
+		w26.TopAttach = ((uint)(11));
+		w26.BottomAttach = ((uint)(12));
+		w26.LeftAttach = ((uint)(1));
+		w26.RightAttach = ((uint)(2));
+		w26.XOptions = ((global::Gtk.AttachOptions)(4));
+		w26.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.seedLabel = new global::Gtk.Label();
+		this.seedLabel.Name = "seedLabel";
+		this.seedLabel.Xalign = 1F;
+		this.seedLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Seed");
+		this.simSettingsTable.Add(this.seedLabel);
+		global::Gtk.Table.TableChild w27 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.seedLabel]));
+		w27.TopAttach = ((uint)(6));
+		w27.BottomAttach = ((uint)(7));
+		w27.XOptions = ((global::Gtk.AttachOptions)(4));
+		w27.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.seedSpinbutton = new global::Gtk.SpinButton(0D, 9999999999D, 1D);
+		this.seedSpinbutton.CanFocus = true;
+		this.seedSpinbutton.Name = "seedSpinbutton";
+		this.seedSpinbutton.Adjustment.PageIncrement = 10D;
+		this.seedSpinbutton.ClimbRate = 1D;
+		this.seedSpinbutton.Numeric = true;
+		this.seedSpinbutton.Value = 1D;
+		this.simSettingsTable.Add(this.seedSpinbutton);
+		global::Gtk.Table.TableChild w28 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.seedSpinbutton]));
+		w28.TopAttach = ((uint)(6));
+		w28.BottomAttach = ((uint)(7));
+		w28.LeftAttach = ((uint)(1));
+		w28.RightAttach = ((uint)(2));
+		w28.XOptions = ((global::Gtk.AttachOptions)(4));
+		w28.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.simRedirBrowseButton = new global::Gtk.Button();
+		this.simRedirBrowseButton.CanFocus = true;
+		this.simRedirBrowseButton.Name = "simRedirBrowseButton";
+		this.simRedirBrowseButton.UseStock = true;
+		this.simRedirBrowseButton.UseUnderline = true;
+		this.simRedirBrowseButton.Label = "gtk-open";
+		this.simSettingsTable.Add(this.simRedirBrowseButton);
+		global::Gtk.Table.TableChild w29 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.simRedirBrowseButton]));
+		w29.TopAttach = ((uint)(9));
+		w29.BottomAttach = ((uint)(10));
+		w29.LeftAttach = ((uint)(2));
+		w29.RightAttach = ((uint)(3));
+		w29.XPadding = ((uint)(23));
+		w29.XOptions = ((global::Gtk.AttachOptions)(4));
+		w29.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.simRedirEntry = new global::Gtk.Entry();
+		this.simRedirEntry.CanFocus = true;
+		this.simRedirEntry.Name = "simRedirEntry";
+		this.simRedirEntry.IsEditable = true;
+		this.simRedirEntry.InvisibleChar = '●';
+		this.simSettingsTable.Add(this.simRedirEntry);
+		global::Gtk.Table.TableChild w30 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.simRedirEntry]));
+		w30.TopAttach = ((uint)(9));
+		w30.BottomAttach = ((uint)(10));
+		w30.LeftAttach = ((uint)(1));
+		w30.RightAttach = ((uint)(2));
+		w30.XOptions = ((global::Gtk.AttachOptions)(4));
+		w30.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.simRedirLabel = new global::Gtk.Label();
+		this.simRedirLabel.Name = "simRedirLabel";
+		this.simRedirLabel.Xalign = 1F;
+		this.simRedirLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Simout save location");
+		this.simSettingsTable.Add(this.simRedirLabel);
+		global::Gtk.Table.TableChild w31 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.simRedirLabel]));
+		w31.TopAttach = ((uint)(9));
+		w31.BottomAttach = ((uint)(10));
+		w31.XOptions = ((global::Gtk.AttachOptions)(4));
+		w31.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.verboseCheckbutton = new global::Gtk.CheckButton();
+		this.verboseCheckbutton.CanFocus = true;
+		this.verboseCheckbutton.Name = "verboseCheckbutton";
+		this.verboseCheckbutton.Label = global::Mono.Unix.Catalog.GetString("verbose");
+		this.verboseCheckbutton.DrawIndicator = true;
+		this.verboseCheckbutton.UseUnderline = true;
+		this.simSettingsTable.Add(this.verboseCheckbutton);
+		global::Gtk.Table.TableChild w32 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.verboseCheckbutton]));
+		w32.TopAttach = ((uint)(3));
+		w32.BottomAttach = ((uint)(4));
+		w32.LeftAttach = ((uint)(1));
+		w32.RightAttach = ((uint)(2));
+		w32.XOptions = ((global::Gtk.AttachOptions)(4));
+		w32.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child simSettingsTable.Gtk.Table+TableChild
+		this.verboseLabel = new global::Gtk.Label();
+		this.verboseLabel.Name = "verboseLabel";
+		this.verboseLabel.Xalign = 1F;
+		this.verboseLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Verbose");
+		this.simSettingsTable.Add(this.verboseLabel);
+		global::Gtk.Table.TableChild w33 = ((global::Gtk.Table.TableChild)(this.simSettingsTable[this.verboseLabel]));
+		w33.TopAttach = ((uint)(3));
+		w33.BottomAttach = ((uint)(4));
+		w33.XOptions = ((global::Gtk.AttachOptions)(4));
+		w33.YOptions = ((global::Gtk.AttachOptions)(4));
+		this.GtkAlignment4.Add(this.simSettingsTable);
+		this.simSettingsFrame.Add(this.GtkAlignment4);
+		this.simSettingsFrameLabel = new global::Gtk.Label();
+		this.simSettingsFrameLabel.Name = "simSettingsFrameLabel";
+		this.simSettingsFrameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<b>Simulator settings</b>");
+		this.simSettingsFrameLabel.UseMarkup = true;
+		this.simSettingsFrame.LabelWidget = this.simSettingsFrameLabel;
+		this.mainWindow.Add(this.simSettingsFrame);
+		global::Gtk.Fixed.FixedChild w36 = ((global::Gtk.Fixed.FixedChild)(this.mainWindow[this.simSettingsFrame]));
+		w36.X = 17;
+		w36.Y = 77;
+		// Container child mainWindow.Gtk.Fixed+FixedChild
+		this.predTypeFrame = new global::Gtk.Frame();
+		this.predTypeFrame.WidthRequest = 466;
+		this.predTypeFrame.HeightRequest = 570;
+		this.predTypeFrame.Name = "predTypeFrame";
+		this.predTypeFrame.ShadowType = ((global::Gtk.ShadowType)(0));
+		this.predTypeFrame.LabelXalign = 0.04F;
+		// Container child predTypeFrame.Gtk.Container+ContainerChild
+		this.GtkAlignment6 = new global::Gtk.Alignment(0F, 0F, 1F, 1F);
+		this.GtkAlignment6.Name = "GtkAlignment6";
+		this.GtkAlignment6.LeftPadding = ((uint)(12));
+		// Container child GtkAlignment6.Gtk.Container+ContainerChild
+		this.predSettingsTable = new global::Gtk.Table(((uint)(2)), ((uint)(1)), false);
+		this.predSettingsTable.Name = "predSettingsTable";
+		this.predSettingsTable.RowSpacing = ((uint)(6));
+		this.predSettingsTable.ColumnSpacing = ((uint)(6));
+		// Container child predSettingsTable.Gtk.Table+TableChild
+		this.predArgumentsFrame = new global::Gtk.Frame();
+		this.predArgumentsFrame.WidthRequest = 444;
+		this.predArgumentsFrame.HeightRequest = 481;
+		this.predArgumentsFrame.Name = "predArgumentsFrame";
+		this.predArgumentsFrame.ShadowType = ((global::Gtk.ShadowType)(0));
+		this.predArgumentsFrame.LabelXalign = 0.06F;
+		// Container child predArgumentsFrame.Gtk.Container+ContainerChild
+		this.GtkAlignment5 = new global::Gtk.Alignment(0F, 0F, 1F, 1F);
+		this.GtkAlignment5.Name = "GtkAlignment5";
+		this.GtkAlignment5.LeftPadding = ((uint)(12));
+		// Container child GtkAlignment5.Gtk.Container+ContainerChild
+		this.predArgumentsTable = new global::Gtk.Table(((uint)(5)), ((uint)(1)), false);
+		this.predArgumentsTable.Name = "predArgumentsTable";
+		this.predArgumentsTable.RowSpacing = ((uint)(6));
+		this.predArgumentsTable.ColumnSpacing = ((uint)(6));
+		// Container child predArgumentsTable.Gtk.Table+TableChild
+		this.bimodFrame = new global::Gtk.Frame();
+		this.bimodFrame.Name = "bimodFrame";
+		this.bimodFrame.ShadowType = ((global::Gtk.ShadowType)(0));
+		this.bimodFrame.LabelXalign = 0.05F;
+		// Container child bimodFrame.Gtk.Container+ContainerChild
+		this.GtkAlignment10 = new global::Gtk.Alignment(0F, 0F, 1F, 1F);
+		this.GtkAlignment10.Name = "GtkAlignment10";
+		this.GtkAlignment10.LeftPadding = ((uint)(12));
+		// Container child GtkAlignment10.Gtk.Container+ContainerChild
+		this.bimodTable = new global::Gtk.Table(((uint)(1)), ((uint)(2)), true);
+		this.bimodTable.WidthRequest = 176;
+		this.bimodTable.HeightRequest = 44;
+		this.bimodTable.Name = "bimodTable";
+		this.bimodTable.RowSpacing = ((uint)(6));
+		this.bimodTable.ColumnSpacing = ((uint)(6));
+		// Container child bimodTable.Gtk.Table+TableChild
 		this.tableSizeLabel = new global::Gtk.Label();
 		this.tableSizeLabel.Name = "tableSizeLabel";
 		this.tableSizeLabel.LabelProp = global::Mono.Unix.Catalog.GetString("TableSize");
-		this.fixed1.Add(this.tableSizeLabel);
-		global::Gtk.Fixed.FixedChild w43 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.tableSizeLabel]));
-		w43.X = 768;
-		w43.Y = 202;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.tableSizeSpinbutton = new global::Gtk.SpinButton(0D, 100D, 1D);
+		this.bimodTable.Add(this.tableSizeLabel);
+		global::Gtk.Table.TableChild w37 = ((global::Gtk.Table.TableChild)(this.bimodTable[this.tableSizeLabel]));
+		w37.XOptions = ((global::Gtk.AttachOptions)(4));
+		w37.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child bimodTable.Gtk.Table+TableChild
+		this.tableSizeSpinbutton = new global::Gtk.SpinButton(0D, 99999D, 1D);
 		this.tableSizeSpinbutton.CanFocus = true;
 		this.tableSizeSpinbutton.Name = "tableSizeSpinbutton";
 		this.tableSizeSpinbutton.Adjustment.PageIncrement = 10D;
 		this.tableSizeSpinbutton.ClimbRate = 1D;
 		this.tableSizeSpinbutton.Numeric = true;
-		this.fixed1.Add(this.tableSizeSpinbutton);
-		global::Gtk.Fixed.FixedChild w44 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.tableSizeSpinbutton]));
-		w44.X = 860;
-		w44.Y = 197;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.metaTableSizeSpinbutton = new global::Gtk.SpinButton(0D, 100D, 1D);
-		this.metaTableSizeSpinbutton.CanFocus = true;
-		this.metaTableSizeSpinbutton.Name = "metaTableSizeSpinbutton";
-		this.metaTableSizeSpinbutton.Adjustment.PageIncrement = 10D;
-		this.metaTableSizeSpinbutton.ClimbRate = 1D;
-		this.metaTableSizeSpinbutton.Numeric = true;
-		this.fixed1.Add(this.metaTableSizeSpinbutton);
-		global::Gtk.Fixed.FixedChild w45 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.metaTableSizeSpinbutton]));
-		w45.X = 860;
-		w45.Y = 254;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.rasSizeLabel = new global::Gtk.Label();
-		this.rasSizeLabel.Name = "rasSizeLabel";
-		this.rasSizeLabel.LabelProp = global::Mono.Unix.Catalog.GetString("rasSize");
-		this.fixed1.Add(this.rasSizeLabel);
-		global::Gtk.Fixed.FixedChild w46 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.rasSizeLabel]));
-		w46.X = 788;
-		w46.Y = 319;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.rasSizeSpinbutton = new global::Gtk.SpinButton(0D, 100D, 1D);
-		this.rasSizeSpinbutton.CanFocus = true;
-		this.rasSizeSpinbutton.Name = "rasSizeSpinbutton";
-		this.rasSizeSpinbutton.Adjustment.PageIncrement = 10D;
-		this.rasSizeSpinbutton.ClimbRate = 1D;
-		this.rasSizeSpinbutton.Numeric = true;
-		this.fixed1.Add(this.rasSizeSpinbutton);
-		global::Gtk.Fixed.FixedChild w47 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.rasSizeSpinbutton]));
-		w47.X = 860;
-		w47.Y = 310;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.numSetsLabel = new global::Gtk.Label();
-		this.numSetsLabel.Name = "numSetsLabel";
-		this.numSetsLabel.LabelProp = global::Mono.Unix.Catalog.GetString("numSets");
-		this.fixed1.Add(this.numSetsLabel);
-		global::Gtk.Fixed.FixedChild w48 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.numSetsLabel]));
-		w48.X = 778;
-		w48.Y = 369;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.numSetsSpinbutton = new global::Gtk.SpinButton(0D, 100D, 1D);
-		this.numSetsSpinbutton.CanFocus = true;
-		this.numSetsSpinbutton.Name = "numSetsSpinbutton";
-		this.numSetsSpinbutton.Adjustment.PageIncrement = 10D;
-		this.numSetsSpinbutton.ClimbRate = 1D;
-		this.numSetsSpinbutton.Numeric = true;
-		this.fixed1.Add(this.numSetsSpinbutton);
-		global::Gtk.Fixed.FixedChild w49 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.numSetsSpinbutton]));
-		w49.X = 861;
-		w49.Y = 362;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.assocSpinbutton = new global::Gtk.SpinButton(0D, 100D, 1D);
+		this.tableSizeSpinbutton.Value = 2048D;
+		this.bimodTable.Add(this.tableSizeSpinbutton);
+		global::Gtk.Table.TableChild w38 = ((global::Gtk.Table.TableChild)(this.bimodTable[this.tableSizeSpinbutton]));
+		w38.LeftAttach = ((uint)(1));
+		w38.RightAttach = ((uint)(2));
+		w38.XOptions = ((global::Gtk.AttachOptions)(4));
+		w38.YOptions = ((global::Gtk.AttachOptions)(4));
+		this.GtkAlignment10.Add(this.bimodTable);
+		this.bimodFrame.Add(this.GtkAlignment10);
+		this.bimodFrameLabel = new global::Gtk.Label();
+		this.bimodFrameLabel.Name = "bimodFrameLabel";
+		this.bimodFrameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<b>Bimod</b>");
+		this.bimodFrameLabel.UseMarkup = true;
+		this.bimodFrame.LabelWidget = this.bimodFrameLabel;
+		this.predArgumentsTable.Add(this.bimodFrame);
+		global::Gtk.Table.TableChild w41 = ((global::Gtk.Table.TableChild)(this.predArgumentsTable[this.bimodFrame]));
+		w41.TopAttach = ((uint)(4));
+		w41.BottomAttach = ((uint)(5));
+		w41.XOptions = ((global::Gtk.AttachOptions)(4));
+		w41.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child predArgumentsTable.Gtk.Table+TableChild
+		this.btbFrame = new global::Gtk.Frame();
+		this.btbFrame.Name = "btbFrame";
+		this.btbFrame.ShadowType = ((global::Gtk.ShadowType)(0));
+		this.btbFrame.LabelXalign = 0.07F;
+		// Container child btbFrame.Gtk.Container+ContainerChild
+		this.GtkAlignment9 = new global::Gtk.Alignment(0F, 0F, 1F, 1F);
+		this.GtkAlignment9.Name = "GtkAlignment9";
+		this.GtkAlignment9.LeftPadding = ((uint)(12));
+		// Container child GtkAlignment9.Gtk.Container+ContainerChild
+		this.btbTable = new global::Gtk.Table(((uint)(1)), ((uint)(4)), true);
+		this.btbTable.WidthRequest = 322;
+		this.btbTable.HeightRequest = 46;
+		this.btbTable.Name = "btbTable";
+		this.btbTable.RowSpacing = ((uint)(6));
+		this.btbTable.ColumnSpacing = ((uint)(6));
+		// Container child btbTable.Gtk.Table+TableChild
+		this.assocLabel = new global::Gtk.Label();
+		this.assocLabel.Name = "assocLabel";
+		this.assocLabel.LabelProp = global::Mono.Unix.Catalog.GetString("assoc");
+		this.btbTable.Add(this.assocLabel);
+		global::Gtk.Table.TableChild w42 = ((global::Gtk.Table.TableChild)(this.btbTable[this.assocLabel]));
+		w42.LeftAttach = ((uint)(2));
+		w42.RightAttach = ((uint)(3));
+		w42.XOptions = ((global::Gtk.AttachOptions)(4));
+		w42.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child btbTable.Gtk.Table+TableChild
+		this.assocSpinbutton = new global::Gtk.SpinButton(0D, 99999D, 1D);
 		this.assocSpinbutton.CanFocus = true;
 		this.assocSpinbutton.Name = "assocSpinbutton";
 		this.assocSpinbutton.Adjustment.PageIncrement = 10D;
 		this.assocSpinbutton.ClimbRate = 1D;
 		this.assocSpinbutton.Numeric = true;
-		this.fixed1.Add(this.assocSpinbutton);
-		global::Gtk.Fixed.FixedChild w50 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.assocSpinbutton]));
-		w50.X = 1072;
-		w50.Y = 363;
-		// Container child fixed1.Gtk.Fixed+FixedChild
-		this.assocLabel = new global::Gtk.Label();
-		this.assocLabel.Name = "assocLabel";
-		this.assocLabel.LabelProp = global::Mono.Unix.Catalog.GetString("assoc");
-		this.fixed1.Add(this.assocLabel);
-		global::Gtk.Fixed.FixedChild w51 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.assocLabel]));
-		w51.X = 1012;
-		w51.Y = 370;
-		this.Add(this.fixed1);
+		this.assocSpinbutton.Value = 4D;
+		this.btbTable.Add(this.assocSpinbutton);
+		global::Gtk.Table.TableChild w43 = ((global::Gtk.Table.TableChild)(this.btbTable[this.assocSpinbutton]));
+		w43.LeftAttach = ((uint)(3));
+		w43.RightAttach = ((uint)(4));
+		w43.XOptions = ((global::Gtk.AttachOptions)(4));
+		w43.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child btbTable.Gtk.Table+TableChild
+		this.numSetsLabel = new global::Gtk.Label();
+		this.numSetsLabel.Name = "numSetsLabel";
+		this.numSetsLabel.LabelProp = global::Mono.Unix.Catalog.GetString("numSets");
+		this.btbTable.Add(this.numSetsLabel);
+		global::Gtk.Table.TableChild w44 = ((global::Gtk.Table.TableChild)(this.btbTable[this.numSetsLabel]));
+		w44.XOptions = ((global::Gtk.AttachOptions)(4));
+		w44.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child btbTable.Gtk.Table+TableChild
+		this.numSetsSpinbutton = new global::Gtk.SpinButton(0D, 99999D, 1D);
+		this.numSetsSpinbutton.CanFocus = true;
+		this.numSetsSpinbutton.Name = "numSetsSpinbutton";
+		this.numSetsSpinbutton.Adjustment.PageIncrement = 10D;
+		this.numSetsSpinbutton.ClimbRate = 1D;
+		this.numSetsSpinbutton.Numeric = true;
+		this.numSetsSpinbutton.Value = 512D;
+		this.btbTable.Add(this.numSetsSpinbutton);
+		global::Gtk.Table.TableChild w45 = ((global::Gtk.Table.TableChild)(this.btbTable[this.numSetsSpinbutton]));
+		w45.LeftAttach = ((uint)(1));
+		w45.RightAttach = ((uint)(2));
+		w45.XOptions = ((global::Gtk.AttachOptions)(4));
+		w45.YOptions = ((global::Gtk.AttachOptions)(4));
+		this.GtkAlignment9.Add(this.btbTable);
+		this.btbFrame.Add(this.GtkAlignment9);
+		this.btbFrameLabel = new global::Gtk.Label();
+		this.btbFrameLabel.Name = "btbFrameLabel";
+		this.btbFrameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<b>Branch target buffer</b>");
+		this.btbFrameLabel.UseMarkup = true;
+		this.btbFrame.LabelWidget = this.btbFrameLabel;
+		this.predArgumentsTable.Add(this.btbFrame);
+		global::Gtk.Table.TableChild w48 = ((global::Gtk.Table.TableChild)(this.predArgumentsTable[this.btbFrame]));
+		w48.TopAttach = ((uint)(1));
+		w48.BottomAttach = ((uint)(2));
+		w48.XOptions = ((global::Gtk.AttachOptions)(4));
+		w48.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child predArgumentsTable.Gtk.Table+TableChild
+		this.combFrame = new global::Gtk.Frame();
+		this.combFrame.Name = "combFrame";
+		this.combFrame.ShadowType = ((global::Gtk.ShadowType)(0));
+		this.combFrame.LabelXalign = 0.07F;
+		this.combFrame.LabelYalign = 0.6F;
+		// Container child combFrame.Gtk.Container+ContainerChild
+		this.GtkAlignment8 = new global::Gtk.Alignment(0F, 0F, 1F, 1F);
+		this.GtkAlignment8.Name = "GtkAlignment8";
+		this.GtkAlignment8.LeftPadding = ((uint)(12));
+		// Container child GtkAlignment8.Gtk.Container+ContainerChild
+		this.combTable = new global::Gtk.Table(((uint)(1)), ((uint)(2)), true);
+		this.combTable.WidthRequest = 258;
+		this.combTable.HeightRequest = 45;
+		this.combTable.Name = "combTable";
+		this.combTable.RowSpacing = ((uint)(6));
+		this.combTable.ColumnSpacing = ((uint)(6));
+		// Container child combTable.Gtk.Table+TableChild
+		this.metaTableSizeLabel = new global::Gtk.Label();
+		this.metaTableSizeLabel.Name = "metaTableSizeLabel";
+		this.metaTableSizeLabel.LabelProp = global::Mono.Unix.Catalog.GetString("MetaTableSize");
+		this.combTable.Add(this.metaTableSizeLabel);
+		global::Gtk.Table.TableChild w49 = ((global::Gtk.Table.TableChild)(this.combTable[this.metaTableSizeLabel]));
+		w49.XOptions = ((global::Gtk.AttachOptions)(4));
+		w49.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child combTable.Gtk.Table+TableChild
+		this.metaTableSizeSpinbutton = new global::Gtk.SpinButton(0D, 99999D, 1D);
+		this.metaTableSizeSpinbutton.CanFocus = true;
+		this.metaTableSizeSpinbutton.Name = "metaTableSizeSpinbutton";
+		this.metaTableSizeSpinbutton.Adjustment.PageIncrement = 10D;
+		this.metaTableSizeSpinbutton.ClimbRate = 1D;
+		this.metaTableSizeSpinbutton.Numeric = true;
+		this.metaTableSizeSpinbutton.Value = 1024D;
+		this.combTable.Add(this.metaTableSizeSpinbutton);
+		global::Gtk.Table.TableChild w50 = ((global::Gtk.Table.TableChild)(this.combTable[this.metaTableSizeSpinbutton]));
+		w50.LeftAttach = ((uint)(1));
+		w50.RightAttach = ((uint)(2));
+		w50.XOptions = ((global::Gtk.AttachOptions)(4));
+		w50.YOptions = ((global::Gtk.AttachOptions)(4));
+		this.GtkAlignment8.Add(this.combTable);
+		this.combFrame.Add(this.GtkAlignment8);
+		this.combFrameLabel = new global::Gtk.Label();
+		this.combFrameLabel.Name = "combFrameLabel";
+		this.combFrameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<b>Combined predictor</b>");
+		this.combFrameLabel.UseMarkup = true;
+		this.combFrame.LabelWidget = this.combFrameLabel;
+		this.predArgumentsTable.Add(this.combFrame);
+		global::Gtk.Table.TableChild w53 = ((global::Gtk.Table.TableChild)(this.predArgumentsTable[this.combFrame]));
+		w53.TopAttach = ((uint)(2));
+		w53.BottomAttach = ((uint)(3));
+		w53.XOptions = ((global::Gtk.AttachOptions)(4));
+		w53.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child predArgumentsTable.Gtk.Table+TableChild
+		this.rasFrame = new global::Gtk.Frame();
+		this.rasFrame.WidthRequest = 185;
+		this.rasFrame.HeightRequest = 73;
+		this.rasFrame.Name = "rasFrame";
+		this.rasFrame.ShadowType = ((global::Gtk.ShadowType)(0));
+		this.rasFrame.LabelXalign = 0.07F;
+		this.rasFrame.LabelYalign = 0.6F;
+		this.rasFrame.BorderWidth = ((uint)(2));
+		// Container child rasFrame.Gtk.Container+ContainerChild
+		this.GtkAlignment7 = new global::Gtk.Alignment(0F, 0F, 1F, 1F);
+		this.GtkAlignment7.Name = "GtkAlignment7";
+		this.GtkAlignment7.LeftPadding = ((uint)(12));
+		// Container child GtkAlignment7.Gtk.Container+ContainerChild
+		this.rasTable = new global::Gtk.Table(((uint)(1)), ((uint)(2)), true);
+		this.rasTable.Name = "rasTable";
+		this.rasTable.RowSpacing = ((uint)(6));
+		this.rasTable.ColumnSpacing = ((uint)(6));
+		// Container child rasTable.Gtk.Table+TableChild
+		this.rasSizeLabel = new global::Gtk.Label();
+		this.rasSizeLabel.Name = "rasSizeLabel";
+		this.rasSizeLabel.Xalign = 0F;
+		this.rasSizeLabel.LabelProp = global::Mono.Unix.Catalog.GetString("rasSize");
+		this.rasTable.Add(this.rasSizeLabel);
+		global::Gtk.Table.TableChild w54 = ((global::Gtk.Table.TableChild)(this.rasTable[this.rasSizeLabel]));
+		w54.XOptions = ((global::Gtk.AttachOptions)(4));
+		w54.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child rasTable.Gtk.Table+TableChild
+		this.rasSizeSpinbutton = new global::Gtk.SpinButton(0D, 99999D, 1D);
+		this.rasSizeSpinbutton.CanFocus = true;
+		this.rasSizeSpinbutton.Name = "rasSizeSpinbutton";
+		this.rasSizeSpinbutton.Adjustment.PageIncrement = 10D;
+		this.rasSizeSpinbutton.ClimbRate = 1D;
+		this.rasSizeSpinbutton.Numeric = true;
+		this.rasSizeSpinbutton.Value = 8D;
+		this.rasTable.Add(this.rasSizeSpinbutton);
+		global::Gtk.Table.TableChild w55 = ((global::Gtk.Table.TableChild)(this.rasTable[this.rasSizeSpinbutton]));
+		w55.LeftAttach = ((uint)(1));
+		w55.RightAttach = ((uint)(2));
+		w55.XOptions = ((global::Gtk.AttachOptions)(4));
+		w55.YOptions = ((global::Gtk.AttachOptions)(4));
+		this.GtkAlignment7.Add(this.rasTable);
+		this.rasFrame.Add(this.GtkAlignment7);
+		this.rasFrameLabel = new global::Gtk.Label();
+		this.rasFrameLabel.Name = "rasFrameLabel";
+		this.rasFrameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<b>Return address size</b>");
+		this.rasFrameLabel.UseMarkup = true;
+		this.rasFrame.LabelWidget = this.rasFrameLabel;
+		this.predArgumentsTable.Add(this.rasFrame);
+		global::Gtk.Table.TableChild w58 = ((global::Gtk.Table.TableChild)(this.predArgumentsTable[this.rasFrame]));
+		w58.TopAttach = ((uint)(3));
+		w58.BottomAttach = ((uint)(4));
+		w58.XOptions = ((global::Gtk.AttachOptions)(4));
+		w58.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child predArgumentsTable.Gtk.Table+TableChild
+		this.twoLevFrame = new global::Gtk.Frame();
+		this.twoLevFrame.WidthRequest = 421;
+		this.twoLevFrame.Name = "twoLevFrame";
+		this.twoLevFrame.ShadowType = ((global::Gtk.ShadowType)(0));
+		this.twoLevFrame.LabelXalign = 0.04F;
+		this.twoLevFrame.LabelYalign = 0.6F;
+		this.twoLevFrame.BorderWidth = ((uint)(2));
+		// Container child twoLevFrame.Gtk.Container+ContainerChild
+		this.twoLevTable = new global::Gtk.Table(((uint)(2)), ((uint)(4)), true);
+		this.twoLevTable.WidthRequest = 354;
+		this.twoLevTable.Name = "twoLevTable";
+		this.twoLevTable.RowSpacing = ((uint)(6));
+		this.twoLevTable.ColumnSpacing = ((uint)(6));
+		this.twoLevTable.BorderWidth = ((uint)(4));
+		// Container child twoLevTable.Gtk.Table+TableChild
+		this.histSizeLabel = new global::Gtk.Label();
+		this.histSizeLabel.Name = "histSizeLabel";
+		this.histSizeLabel.LabelProp = global::Mono.Unix.Catalog.GetString("histSize");
+		this.twoLevTable.Add(this.histSizeLabel);
+		global::Gtk.Table.TableChild w59 = ((global::Gtk.Table.TableChild)(this.twoLevTable[this.histSizeLabel]));
+		w59.LeftAttach = ((uint)(2));
+		w59.RightAttach = ((uint)(3));
+		w59.XPadding = ((uint)(7));
+		w59.XOptions = ((global::Gtk.AttachOptions)(4));
+		w59.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child twoLevTable.Gtk.Table+TableChild
+		this.histSizeSpinbutton = new global::Gtk.SpinButton(0D, 99999D, 1D);
+		this.histSizeSpinbutton.WidthRequest = 0;
+		this.histSizeSpinbutton.CanFocus = true;
+		this.histSizeSpinbutton.Name = "histSizeSpinbutton";
+		this.histSizeSpinbutton.Adjustment.PageIncrement = 10D;
+		this.histSizeSpinbutton.ClimbRate = 1D;
+		this.histSizeSpinbutton.Numeric = true;
+		this.histSizeSpinbutton.Value = 8D;
+		this.twoLevTable.Add(this.histSizeSpinbutton);
+		global::Gtk.Table.TableChild w60 = ((global::Gtk.Table.TableChild)(this.twoLevTable[this.histSizeSpinbutton]));
+		w60.LeftAttach = ((uint)(3));
+		w60.RightAttach = ((uint)(4));
+		w60.XOptions = ((global::Gtk.AttachOptions)(4));
+		w60.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child twoLevTable.Gtk.Table+TableChild
+		this.l1sizeSpinbutton = new global::Gtk.SpinButton(0D, 99999D, 1D);
+		this.l1sizeSpinbutton.CanFocus = true;
+		this.l1sizeSpinbutton.Name = "l1sizeSpinbutton";
+		this.l1sizeSpinbutton.Adjustment.PageIncrement = 10D;
+		this.l1sizeSpinbutton.ClimbRate = 1D;
+		this.l1sizeSpinbutton.Numeric = true;
+		this.l1sizeSpinbutton.Value = 1D;
+		this.twoLevTable.Add(this.l1sizeSpinbutton);
+		global::Gtk.Table.TableChild w61 = ((global::Gtk.Table.TableChild)(this.twoLevTable[this.l1sizeSpinbutton]));
+		w61.LeftAttach = ((uint)(1));
+		w61.RightAttach = ((uint)(2));
+		w61.XOptions = ((global::Gtk.AttachOptions)(4));
+		w61.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child twoLevTable.Gtk.Table+TableChild
+		this.l2sizeSpinbutton = new global::Gtk.SpinButton(0D, 99999D, 1D);
+		this.l2sizeSpinbutton.CanFocus = true;
+		this.l2sizeSpinbutton.Name = "l2sizeSpinbutton";
+		this.l2sizeSpinbutton.Adjustment.PageIncrement = 10D;
+		this.l2sizeSpinbutton.ClimbRate = 1D;
+		this.l2sizeSpinbutton.Numeric = true;
+		this.l2sizeSpinbutton.Value = 1024D;
+		this.twoLevTable.Add(this.l2sizeSpinbutton);
+		global::Gtk.Table.TableChild w62 = ((global::Gtk.Table.TableChild)(this.twoLevTable[this.l2sizeSpinbutton]));
+		w62.TopAttach = ((uint)(1));
+		w62.BottomAttach = ((uint)(2));
+		w62.LeftAttach = ((uint)(1));
+		w62.RightAttach = ((uint)(2));
+		w62.XOptions = ((global::Gtk.AttachOptions)(4));
+		w62.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child twoLevTable.Gtk.Table+TableChild
+		this.levOneSizeLabel = new global::Gtk.Label();
+		this.levOneSizeLabel.Name = "levOneSizeLabel";
+		this.levOneSizeLabel.LabelProp = global::Mono.Unix.Catalog.GetString("l1size");
+		this.twoLevTable.Add(this.levOneSizeLabel);
+		global::Gtk.Table.TableChild w63 = ((global::Gtk.Table.TableChild)(this.twoLevTable[this.levOneSizeLabel]));
+		w63.XOptions = ((global::Gtk.AttachOptions)(4));
+		w63.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child twoLevTable.Gtk.Table+TableChild
+		this.levTwoSizeLabel = new global::Gtk.Label();
+		this.levTwoSizeLabel.Name = "levTwoSizeLabel";
+		this.levTwoSizeLabel.Xpad = 7;
+		this.levTwoSizeLabel.Ypad = 14;
+		this.levTwoSizeLabel.LabelProp = global::Mono.Unix.Catalog.GetString("l2size");
+		this.twoLevTable.Add(this.levTwoSizeLabel);
+		global::Gtk.Table.TableChild w64 = ((global::Gtk.Table.TableChild)(this.twoLevTable[this.levTwoSizeLabel]));
+		w64.TopAttach = ((uint)(1));
+		w64.BottomAttach = ((uint)(2));
+		w64.XOptions = ((global::Gtk.AttachOptions)(4));
+		w64.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child twoLevTable.Gtk.Table+TableChild
+		this.xorLabel = new global::Gtk.Label();
+		this.xorLabel.Name = "xorLabel";
+		this.xorLabel.LabelProp = global::Mono.Unix.Catalog.GetString("xor");
+		this.twoLevTable.Add(this.xorLabel);
+		global::Gtk.Table.TableChild w65 = ((global::Gtk.Table.TableChild)(this.twoLevTable[this.xorLabel]));
+		w65.TopAttach = ((uint)(1));
+		w65.BottomAttach = ((uint)(2));
+		w65.LeftAttach = ((uint)(2));
+		w65.RightAttach = ((uint)(3));
+		w65.XOptions = ((global::Gtk.AttachOptions)(4));
+		w65.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child twoLevTable.Gtk.Table+TableChild
+		this.xorSpinbutton = new global::Gtk.SpinButton(0D, 99999D, 1D);
+		this.xorSpinbutton.CanFocus = true;
+		this.xorSpinbutton.Name = "xorSpinbutton";
+		this.xorSpinbutton.Adjustment.PageIncrement = 10D;
+		this.xorSpinbutton.ClimbRate = 1D;
+		this.xorSpinbutton.Numeric = true;
+		this.twoLevTable.Add(this.xorSpinbutton);
+		global::Gtk.Table.TableChild w66 = ((global::Gtk.Table.TableChild)(this.twoLevTable[this.xorSpinbutton]));
+		w66.TopAttach = ((uint)(1));
+		w66.BottomAttach = ((uint)(2));
+		w66.LeftAttach = ((uint)(3));
+		w66.RightAttach = ((uint)(4));
+		w66.XOptions = ((global::Gtk.AttachOptions)(4));
+		w66.YOptions = ((global::Gtk.AttachOptions)(4));
+		this.twoLevFrame.Add(this.twoLevTable);
+		this.twoLevFrameLable = new global::Gtk.Label();
+		this.twoLevFrameLable.Name = "twoLevFrameLable";
+		this.twoLevFrameLable.LabelProp = global::Mono.Unix.Catalog.GetString("<b>2lev</b>");
+		this.twoLevFrameLable.UseMarkup = true;
+		this.twoLevFrame.LabelWidget = this.twoLevFrameLable;
+		this.predArgumentsTable.Add(this.twoLevFrame);
+		global::Gtk.Table.TableChild w68 = ((global::Gtk.Table.TableChild)(this.predArgumentsTable[this.twoLevFrame]));
+		w68.XOptions = ((global::Gtk.AttachOptions)(4));
+		w68.YOptions = ((global::Gtk.AttachOptions)(4));
+		this.GtkAlignment5.Add(this.predArgumentsTable);
+		this.predArgumentsFrame.Add(this.GtkAlignment5);
+		this.predArgFrameLabel = new global::Gtk.Label();
+		this.predArgFrameLabel.Name = "predArgFrameLabel";
+		this.predArgFrameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<b>Predictor Arguments</b>");
+		this.predArgFrameLabel.UseMarkup = true;
+		this.predArgumentsFrame.LabelWidget = this.predArgFrameLabel;
+		this.predSettingsTable.Add(this.predArgumentsFrame);
+		global::Gtk.Table.TableChild w71 = ((global::Gtk.Table.TableChild)(this.predSettingsTable[this.predArgumentsFrame]));
+		w71.TopAttach = ((uint)(1));
+		w71.BottomAttach = ((uint)(2));
+		w71.XOptions = ((global::Gtk.AttachOptions)(4));
+		w71.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child predSettingsTable.Gtk.Table+TableChild
+		this.predTypeTable = new global::Gtk.Table(((uint)(1)), ((uint)(2)), false);
+		this.predTypeTable.Name = "predTypeTable";
+		this.predTypeTable.RowSpacing = ((uint)(6));
+		this.predTypeTable.ColumnSpacing = ((uint)(6));
+		// Container child predTypeTable.Gtk.Table+TableChild
+		this.bpredCombobox = global::Gtk.ComboBox.NewText();
+		this.bpredCombobox.AppendText(global::Mono.Unix.Catalog.GetString("bimod"));
+		this.bpredCombobox.AppendText(global::Mono.Unix.Catalog.GetString("nottaken"));
+		this.bpredCombobox.AppendText(global::Mono.Unix.Catalog.GetString("taken"));
+		this.bpredCombobox.AppendText(global::Mono.Unix.Catalog.GetString("2lev"));
+		this.bpredCombobox.AppendText(global::Mono.Unix.Catalog.GetString("comb"));
+		this.bpredCombobox.Name = "bpredCombobox";
+		this.bpredCombobox.Active = 3;
+		this.predTypeTable.Add(this.bpredCombobox);
+		global::Gtk.Table.TableChild w72 = ((global::Gtk.Table.TableChild)(this.predTypeTable[this.bpredCombobox]));
+		w72.LeftAttach = ((uint)(1));
+		w72.RightAttach = ((uint)(2));
+		w72.YPadding = ((uint)(6));
+		w72.XOptions = ((global::Gtk.AttachOptions)(4));
+		w72.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child predTypeTable.Gtk.Table+TableChild
+		this.bpredLabel = new global::Gtk.Label();
+		this.bpredLabel.Name = "bpredLabel";
+		this.bpredLabel.Xpad = 12;
+		this.bpredLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Type");
+		this.predTypeTable.Add(this.bpredLabel);
+		global::Gtk.Table.TableChild w73 = ((global::Gtk.Table.TableChild)(this.predTypeTable[this.bpredLabel]));
+		w73.XOptions = ((global::Gtk.AttachOptions)(4));
+		w73.YOptions = ((global::Gtk.AttachOptions)(4));
+		this.predSettingsTable.Add(this.predTypeTable);
+		global::Gtk.Table.TableChild w74 = ((global::Gtk.Table.TableChild)(this.predSettingsTable[this.predTypeTable]));
+		w74.XOptions = ((global::Gtk.AttachOptions)(4));
+		w74.YOptions = ((global::Gtk.AttachOptions)(4));
+		this.GtkAlignment6.Add(this.predSettingsTable);
+		this.predTypeFrame.Add(this.GtkAlignment6);
+		this.predTypeFrameLabel = new global::Gtk.Label();
+		this.predTypeFrameLabel.Name = "predTypeFrameLabel";
+		this.predTypeFrameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<b>Predictor type</b>");
+		this.predTypeFrameLabel.UseMarkup = true;
+		this.predTypeFrame.LabelWidget = this.predTypeFrameLabel;
+		this.mainWindow.Add(this.predTypeFrame);
+		global::Gtk.Fixed.FixedChild w77 = ((global::Gtk.Fixed.FixedChild)(this.mainWindow[this.predTypeFrame]));
+		w77.X = 524;
+		w77.Y = 79;
+		// Container child mainWindow.Gtk.Fixed+FixedChild
+		this.simulateButton = new global::Gtk.Button();
+		this.simulateButton.CanFocus = true;
+		this.simulateButton.Name = "simulateButton";
+		this.simulateButton.UseUnderline = true;
+		this.simulateButton.Label = global::Mono.Unix.Catalog.GetString("Simulate");
+		this.mainWindow.Add(this.simulateButton);
+		global::Gtk.Fixed.FixedChild w78 = ((global::Gtk.Fixed.FixedChild)(this.mainWindow[this.simulateButton]));
+		w78.X = 1444;
+		w78.Y = 722;
+		// Container child mainWindow.Gtk.Fixed+FixedChild
+		this.benchFrame = new global::Gtk.Frame();
+		this.benchFrame.Name = "benchFrame";
+		this.benchFrame.ShadowType = ((global::Gtk.ShadowType)(0));
+		this.benchFrame.LabelXalign = 0.07F;
+		this.benchFrame.LabelYalign = 0.6F;
+		// Container child benchFrame.Gtk.Container+ContainerChild
+		this.GtkAlignment12 = new global::Gtk.Alignment(0F, 0F, 1F, 1F);
+		this.GtkAlignment12.Name = "GtkAlignment12";
+		this.GtkAlignment12.LeftPadding = ((uint)(12));
+		// Container child GtkAlignment12.Gtk.Container+ContainerChild
+		this.benchTable = new global::Gtk.Table(((uint)(1)), ((uint)(2)), true);
+		this.benchTable.Name = "benchTable";
+		this.benchTable.RowSpacing = ((uint)(6));
+		this.benchTable.ColumnSpacing = ((uint)(6));
+		// Container child benchTable.Gtk.Table+TableChild
+		this.benchBrowseButton = new global::Gtk.Button();
+		this.benchBrowseButton.CanFocus = true;
+		this.benchBrowseButton.Name = "benchBrowseButton";
+		this.benchBrowseButton.UseStock = true;
+		this.benchBrowseButton.UseUnderline = true;
+		this.benchBrowseButton.Label = "gtk-open";
+		this.benchTable.Add(this.benchBrowseButton);
+		global::Gtk.Table.TableChild w79 = ((global::Gtk.Table.TableChild)(this.benchTable[this.benchBrowseButton]));
+		w79.LeftAttach = ((uint)(1));
+		w79.RightAttach = ((uint)(2));
+		w79.XPadding = ((uint)(13));
+		w79.YPadding = ((uint)(8));
+		w79.XOptions = ((global::Gtk.AttachOptions)(4));
+		w79.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child benchTable.Gtk.Table+TableChild
+		this.benchNameLabel = new global::Gtk.Label();
+		this.benchNameLabel.Name = "benchNameLabel";
+		this.benchNameLabel.Xpad = 6;
+		this.benchNameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("benchName");
+		this.benchTable.Add(this.benchNameLabel);
+		global::Gtk.Table.TableChild w80 = ((global::Gtk.Table.TableChild)(this.benchTable[this.benchNameLabel]));
+		w80.XOptions = ((global::Gtk.AttachOptions)(4));
+		w80.YOptions = ((global::Gtk.AttachOptions)(4));
+		this.GtkAlignment12.Add(this.benchTable);
+		this.benchFrame.Add(this.GtkAlignment12);
+		this.benchFrameLabel = new global::Gtk.Label();
+		this.benchFrameLabel.Name = "benchFrameLabel";
+		this.benchFrameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<b>Benchmark</b>");
+		this.benchFrameLabel.UseMarkup = true;
+		this.benchFrame.LabelWidget = this.benchFrameLabel;
+		this.mainWindow.Add(this.benchFrame);
+		global::Gtk.Fixed.FixedChild w83 = ((global::Gtk.Fixed.FixedChild)(this.mainWindow[this.benchFrame]));
+		w83.X = 1000;
+		w83.Y = 77;
+		this.vbox1.Add(this.mainWindow);
+		global::Gtk.Box.BoxChild w84 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.mainWindow]));
+		w84.Position = 1;
+		w84.Expand = false;
+		w84.Fill = false;
+		this.Add(this.vbox1);
 		if ((this.Child != null))
 		{
 			this.Child.ShowAll();
 		}
-		this.DefaultWidth = 1412;
-		this.DefaultHeight = 750;
-		this.l1sizeLabel.Hide();
-		this.l1sizeSpinbutton.Hide();
-		this.l2sizeLabel.Hide();
-		this.l2sizeSpinbutton.Hide();
-		this.histSizeLabel.Hide();
-		this.histSizeSpinbutton.Hide();
-		this.xorSpinbutton.Hide();
-		this.xorLabel.Hide();
+		this.DefaultWidth = 2560;
+		this.DefaultHeight = 837;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
-		this.bpredCombobox.Changed += new global::System.EventHandler(this.OnBpredComboboxChanged);
+		this.DefaultPredictorArgumentsAction.Activated += new global::System.EventHandler(this.OnDefaultPredictorArgumentsActionActivated);
+		this.OpenAction.Activated += new global::System.EventHandler(this.OnBenchBrowseButtonClicked);
+		this.DefaultSimulatorSettingsAction.Activated += new global::System.EventHandler(this.OnDefaultSimulatorSettingsActionActivated);
+		this.DefaultConfigAction.Activated += new global::System.EventHandler(this.OnDefaultConfigActionActivated);
+		this.simRedirBrowseButton.Clicked += new global::System.EventHandler(this.OnSimRedirBrowseButtonClicked);
+		this.progRedirBrowseButton.Clicked += new global::System.EventHandler(this.OnProgRedirBrowseButtonClicked);
+		this.dumpBrowseButton.Clicked += new global::System.EventHandler(this.OnDumpBrowseButtonClicked);
+		this.configBrowseButton.Clicked += new global::System.EventHandler(this.OnConfigBrowseButtonClicked);
+		this.simulateButton.Clicked += new global::System.EventHandler(this.OnSimulateButtonClicked);
+		this.benchBrowseButton.Clicked += new global::System.EventHandler(this.OnBenchBrowseButtonClicked);
 	}
 }
