@@ -13,6 +13,9 @@ public partial class MainWindow : Gtk.Window
     private readonly Color whiteModeBackground = new Color(232, 232, 231);
     private readonly Color whiteModeText = new Color(46, 52, 54);
 
+    private int benchTableRowNum = 0;
+    private List<string> benchmarks = new List<string>();
+
     public MainWindow () : base (Gtk.WindowType.Toplevel)
     {
         ConnectionManager connectionManager = new ConnectionManager();
@@ -28,33 +31,33 @@ public partial class MainWindow : Gtk.Window
             new Params(),
             });
 
-        Build ();
+        Build();
     }
 
     protected void OnDeleteEvent (object sender, DeleteEventArgs a)
     {
-        Application.Quit ();
+        Application.Quit();
         a.RetVal = true;
     }
 
     protected void OnConfigBrowseButtonClicked (object sender, EventArgs e)
     {
-        configEntry.Text = ChooseFilePath ();
+        configEntry.Text = ChooseFilePath()[0];
     }
 
     protected void OnDumpBrowseButtonClicked (object sender, EventArgs e)
     {
-        dumpEntry.Text = ChooseFilePath ();
+        dumpEntry.Text = ChooseFilePath()[0];
     }
 
     protected void OnSimRedirBrowseButtonClicked (object sender, EventArgs e)
     {
-        simRedirEntry.Text = ChooseFolderPath ();
+        simRedirEntry.Text = ChooseFolderPath();
     }
 
     protected void OnProgRedirBrowseButtonClicked (object sender, EventArgs e)
     {
-        progRedirEntry.Text = ChooseFolderPath ();
+        progRedirEntry.Text = ChooseFolderPath();
     }
 
     private string ChooseFolderPath(){
@@ -76,8 +79,8 @@ public partial class MainWindow : Gtk.Window
         return folderPath;
     }
 
-    private string ChooseFilePath(){
-        string filePath = "";
+    private string[] ChooseFilePath(){
+        string[] filesPaths = null;
 
         FileChooserDialog fileChooser = new FileChooserDialog (
             "Select File",
@@ -86,39 +89,123 @@ public partial class MainWindow : Gtk.Window
             "Cancel", ResponseType.Cancel,
             "Open", ResponseType.Accept);
 
+        fileChooser.SelectMultiple = true;
+
         if (fileChooser.Run () == (int)ResponseType.Accept) {
-            filePath = fileChooser.Filename;
+            filesPaths = fileChooser.Filenames;
         }
 
         fileChooser.Destroy ();
 
-        return filePath;
+        return filesPaths;
     }
 
     protected void OnBenchBrowseButtonClicked(object sender, EventArgs e)
     {
-        string benchSelectionErrorTitle = "Selected file not supported!";
-        string benchSelectionErrorMessage = " The file you have selected does not contain the expected '.ss' extension. ";
+        string[] benchmarksPaths = ChooseFilePath();
 
-        string benchmarkPath = ChooseFilePath();
-
-        if (benchmarkPath == string.Empty)
+        if (benchmarksPaths == null)
         {
             return;
         }
 
-        string benchmarkName = benchmarkPath.Split ('/').Last();
-        string[] benchmark = benchmarkName.Split ('.');
+        ExtractBenchmarksNamesFromPath(benchmarksPaths);
 
-        if (benchmark.Last() != "ss")
+        AddBenchmarksToTable(benchmarks);
+    }
+
+    private void ExtractBenchmarksNamesFromPath(string[] benchmarksPaths) 
+    {
+        string benchmarksErrors = "";
+        string benchSelectionErrorTitle = "One or more files are not supported!";
+        string benchSelectionErrorMessage = " The files: {0} do not contain the expected '.ss' extension. ";
+
+        foreach (string benchmarkPath in benchmarksPaths)
         {
-            ShowMessageBox(this, benchSelectionErrorTitle, benchSelectionErrorMessage);
+            string[] benchmark = benchmarkPath.Split('/').Last().Split('.');
+
+            if (benchmark.Last() != "ss")
+            {
+                benchmarksErrors += benchmark.First() + ", ";
+                continue;
+            }
+
+            string benchmarkName = char.ToUpper(benchmark.First()[0]) + benchmark.First().Substring(1);
+
+            if (benchmarks.Contains(benchmarkName))
+            {
+                continue;
+            }
+
+            benchmarks.Add(benchmarkName);
+        }
+
+        if (benchmarksErrors != "")
+        {
+            ShowMessageBox(this, benchSelectionErrorTitle, string.Format(benchSelectionErrorMessage, benchmarksErrors));
+        }
+    }
+
+    protected void OnClearBenchButtonClicked(object sender, EventArgs e)
+    {
+        ClearBenchmarksTable();
+    }
+
+    private void ClearBenchmarksTable()
+    {
+        if (benchmarks.Count == 0)
+        {
             return;
         }
 
-        benchmarkName = char.ToUpper(benchmark.First()[0]) + benchmark.First().Substring(1);
+        foreach (string benchmark in benchmarks)
+        {
+            var labelToRemove = benchTable.Children.First(x => x.Name.Equals($"{benchmark}Label"));
+            benchTable.Remove(labelToRemove);
 
-        benchNameLabel.Text = benchmarkName;
+            if (benchTableRowNum > 2)
+            {
+                benchTable.NRows--;
+                benchFrame.HeightRequest -= 50;
+            }
+
+            benchTableRowNum--;
+        }
+
+        benchmarks = new List<string>();
+
+        benchTable.Attach(noBenchLabel, 0, 1, 0, 1, AttachOptions.Fill, AttachOptions.Fill, 0 , 0);
+    }
+
+    private void AddBenchmarksToTable(List<string> benchmarksNames)
+    {
+        benchTable.Remove(noBenchLabel);
+
+        foreach (string benchmark in benchmarksNames)
+        {
+            if (benchTable.Children.Any(x => x.Name.Equals($"{benchmark}Label")))
+            {
+                continue;
+            }
+
+            Label benchmarkLabel = new Label(benchmark);
+            benchmarkLabel.Justify = Justification.Left;
+            benchmarkLabel.Xpad = 12;
+            benchmarkLabel.Name = $"{benchmark}Label";
+
+            if (benchTableRowNum > 1)
+            {
+                benchTable.NRows++;
+                benchFrame.HeightRequest += 50;
+            }
+
+            benchTable.Attach(benchmarkLabel, 0, 1, (uint)benchTableRowNum, (uint)benchTableRowNum + 1, 
+                                AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+
+            benchTableRowNum++;
+        }
+
+        ShowAll();
     }
 
     private void ShowMessageBox(Gtk.Window parent, string title, string message)
@@ -156,7 +243,7 @@ public partial class MainWindow : Gtk.Window
 
     protected void OnDefaultConfigActionActivated (object sender, EventArgs e)
     {
-        benchNameLabel.Text = "benchName";
+        //benchNameLabel.Text = "benchName";
         bpredCombobox.Active = 0;
 
         SetDefaultSimulatorSettings ();
@@ -210,7 +297,7 @@ public partial class MainWindow : Gtk.Window
     {
         Params predictorSettings = new Params
         {
-            benchName = benchNameLabel.Text,
+            //benchName = benchNameLabel.Text,
             maxInst = maxInstSpinbutton.ValueAsInt,
             bpred = bpredCombobox.ActiveText,
             l1Size = l1sizeSpinbutton.ValueAsInt,
@@ -225,7 +312,7 @@ public partial class MainWindow : Gtk.Window
         };
     }
 
-    private void ModifyWidgetColors(Widget widget, Gdk.Color backgroundColor, Gdk.Color textColor)
+    private void ModifyWidgetColors(Widget widget, Color backgroundColor, Color textColor)
     {
         if (widget is Button || widget is SpinButton)
         {

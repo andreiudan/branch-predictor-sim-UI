@@ -15,3 +15,4 @@ Domain/obj/Debug/Domain.csproj.FileListAbsolute.txt
 /Interfaces/obj
 
 **/*.o
+.vs/branch-predictor-sim-UI/xs/UserPrefs.xml
