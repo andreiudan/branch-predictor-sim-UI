@@ -107,7 +107,7 @@ public partial class MainWindow
 
 	private global::Gtk.Label simSettingsFrameLabel;
 
-	private global::Gtk.Frame predTypeFrame;
+	private global::Gtk.Frame predSettingsFrame;
 
 	private global::Gtk.Alignment GtkAlignment6;
 
@@ -201,7 +201,7 @@ public partial class MainWindow
 
 	private global::Gtk.Label bpredLabel;
 
-	private global::Gtk.Label predTypeFrameLabel;
+	private global::Gtk.Label predSettingsFrameLabel;
 
 	private global::Gtk.Table bench_ServerTable;
 
@@ -735,13 +735,13 @@ public partial class MainWindow
 		w37.X = 7;
 		w37.Y = 73;
 		// Container child mainWindow.Gtk.Fixed+FixedChild
-		this.predTypeFrame = new global::Gtk.Frame();
-		this.predTypeFrame.WidthRequest = 527;
-		this.predTypeFrame.HeightRequest = 570;
-		this.predTypeFrame.Name = "predTypeFrame";
-		this.predTypeFrame.ShadowType = ((global::Gtk.ShadowType)(0));
-		this.predTypeFrame.LabelXalign = 0.04F;
-		// Container child predTypeFrame.Gtk.Container+ContainerChild
+		this.predSettingsFrame = new global::Gtk.Frame();
+		this.predSettingsFrame.WidthRequest = 527;
+		this.predSettingsFrame.HeightRequest = 602;
+		this.predSettingsFrame.Name = "predSettingsFrame";
+		this.predSettingsFrame.ShadowType = ((global::Gtk.ShadowType)(0));
+		this.predSettingsFrame.LabelXalign = 0.04F;
+		// Container child predSettingsFrame.Gtk.Container+ContainerChild
 		this.GtkAlignment6 = new global::Gtk.Alignment(0F, 0F, 1F, 1F);
 		this.GtkAlignment6.Name = "GtkAlignment6";
 		this.GtkAlignment6.LeftPadding = ((uint)(12));
@@ -753,7 +753,7 @@ public partial class MainWindow
 		// Container child predSettingsTable.Gtk.Table+TableChild
 		this.predArgumentsFrame = new global::Gtk.Frame();
 		this.predArgumentsFrame.WidthRequest = 502;
-		this.predArgumentsFrame.HeightRequest = 481;
+		this.predArgumentsFrame.HeightRequest = 512;
 		this.predArgumentsFrame.Name = "predArgumentsFrame";
 		this.predArgumentsFrame.ShadowType = ((global::Gtk.ShadowType)(0));
 		this.predArgumentsFrame.LabelXalign = 0.06F;
@@ -764,7 +764,7 @@ public partial class MainWindow
 		// Container child GtkAlignment5.Gtk.Container+ContainerChild
 		this.predArgumentsTable = new global::Gtk.Table(((uint)(5)), ((uint)(1)), false);
 		this.predArgumentsTable.Name = "predArgumentsTable";
-		this.predArgumentsTable.RowSpacing = ((uint)(6));
+		this.predArgumentsTable.RowSpacing = ((uint)(14));
 		this.predArgumentsTable.ColumnSpacing = ((uint)(6));
 		// Container child predArgumentsTable.Gtk.Table+TableChild
 		this.bimodFrame = new global::Gtk.Frame();
@@ -977,7 +977,7 @@ public partial class MainWindow
 		this.rasSizeSpinbutton.Adjustment.PageIncrement = 10D;
 		this.rasSizeSpinbutton.ClimbRate = 1D;
 		this.rasSizeSpinbutton.Numeric = true;
-		this.rasSizeSpinbutton.Value = 7D;
+		this.rasSizeSpinbutton.Value = 8D;
 		this.rasTable.Add(this.rasSizeSpinbutton);
 		global::Gtk.Table.TableChild w56 = ((global::Gtk.Table.TableChild)(this.rasTable[this.rasSizeSpinbutton]));
 		w56.LeftAttach = ((uint)(1));
@@ -1173,14 +1173,14 @@ public partial class MainWindow
 		w75.XOptions = ((global::Gtk.AttachOptions)(4));
 		w75.YOptions = ((global::Gtk.AttachOptions)(4));
 		this.GtkAlignment6.Add(this.predSettingsTable);
-		this.predTypeFrame.Add(this.GtkAlignment6);
-		this.predTypeFrameLabel = new global::Gtk.Label();
-		this.predTypeFrameLabel.Name = "predTypeFrameLabel";
-		this.predTypeFrameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<b>Predictor type</b>");
-		this.predTypeFrameLabel.UseMarkup = true;
-		this.predTypeFrame.LabelWidget = this.predTypeFrameLabel;
-		this.mainWindow.Add(this.predTypeFrame);
-		global::Gtk.Fixed.FixedChild w78 = ((global::Gtk.Fixed.FixedChild)(this.mainWindow[this.predTypeFrame]));
+		this.predSettingsFrame.Add(this.GtkAlignment6);
+		this.predSettingsFrameLabel = new global::Gtk.Label();
+		this.predSettingsFrameLabel.Name = "predSettingsFrameLabel";
+		this.predSettingsFrameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<b>Predictor settings</b>");
+		this.predSettingsFrameLabel.UseMarkup = true;
+		this.predSettingsFrame.LabelWidget = this.predSettingsFrameLabel;
+		this.mainWindow.Add(this.predSettingsFrame);
+		global::Gtk.Fixed.FixedChild w78 = ((global::Gtk.Fixed.FixedChild)(this.mainWindow[this.predSettingsFrame]));
 		w78.X = 512;
 		w78.Y = 75;
 		// Container child mainWindow.Gtk.Fixed+FixedChild
@@ -1309,12 +1309,9 @@ public partial class MainWindow
 		this.OpenAction.Activated += new global::System.EventHandler(this.OnBenchBrowseButtonClicked);
 		this.DefaultSimulatorSettingsAction.Activated += new global::System.EventHandler(this.OnDefaultSimulatorSettingsActionActivated);
 		this.DefaultConfigAction.Activated += new global::System.EventHandler(this.OnDefaultConfigActionActivated);
-		this.simulateButton.Clicked += new global::System.EventHandler(this.OnSimulateButtonClicked);
-		this.darkModeTogglebutton.Toggled += new global::System.EventHandler(this.OnDarkModeTogglebuttonToggled);
 		this.simRedirBrowseButton.Clicked += new global::System.EventHandler(this.OnSimRedirBrowseButtonClicked);
 		this.progRedirBrowseButton.Clicked += new global::System.EventHandler(this.OnProgRedirBrowseButtonClicked);
 		this.dumpBrowseButton.Clicked += new global::System.EventHandler(this.OnDumpBrowseButtonClicked);
 		this.configBrowseButton.Clicked += new global::System.EventHandler(this.OnConfigBrowseButtonClicked);
-		this.benchBrowseButton.Clicked += new global::System.EventHandler(this.OnBenchBrowseButtonClicked);
 	}
 }

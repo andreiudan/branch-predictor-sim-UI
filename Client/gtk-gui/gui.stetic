@@ -6,7 +6,6 @@
   </configuration>
   <import>
     <widget-library name="../bin/Debug/Client.exe" internal="true" />
-    <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="1554 809">
     <action-group name="Default">
@@ -128,7 +127,6 @@
                 <property name="Type">TextOnly</property>
                 <property name="Label" translatable="yes">Simulate</property>
                 <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnSimulateButtonClicked" />
               </widget>
               <packing>
                 <property name="X">1441</property>
@@ -142,7 +140,6 @@
                 <property name="Type">TextOnly</property>
                 <property name="Label" translatable="yes">Dark Mode</property>
                 <property name="UseUnderline">True</property>
-                <signal name="Toggled" handler="OnDarkModeTogglebuttonToggled" />
               </widget>
               <packing>
                 <property name="X">1331</property>
@@ -1708,7 +1705,6 @@ comb</property>
                                 <property name="UseStock">True</property>
                                 <property name="Type">StockItem</property>
                                 <property name="StockId">gtk-open</property>
-                                <signal name="Clicked" handler="OnBenchBrowseButtonClicked" />
                                 <property name="label">gtk-open</property>
                               </widget>
                               <packing>

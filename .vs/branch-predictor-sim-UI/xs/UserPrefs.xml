@@ -1,27 +1,19 @@
 ﻿<Properties StartupConfiguration="{7E553416-E3AB-4AF3-A2F1-39F845E3F1B4}|Default">
   <MonoDevelop.Ide.ItemProperties.Server PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Client PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Client/Connection/ConnectionManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Server/CommandExecutor.cs">
     <Files>
-      <File FileName="Client/Program.cs" Line="9" Column="24" />
-      <File FileName="Client/MainWindow.cs" Line="221" Column="11" />
-      <File FileName="Domain/DTOs/Result.cs" Line="1" Column="1" />
-      <File FileName="Domain/DTOs/Params.cs" Line="19" Column="44" />
+      <File FileName="Server/Connection/WCFServer.cs" Line="29" Column="35" />
+      <File FileName="Client/Connection/ConnectionManager.cs" Line="23" Column="95" />
+      <File FileName="Client/MainWindow.cs" Line="29" Column="16" />
+      <File FileName="Server/Server.csproj" Line="1" Column="1" />
+      <File FileName="Server/CommandExecutor.cs" Line="12" Column="6" />
+      <File FileName="Interfaces/Properties/AssemblyInfo.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="branch-predictor-sim-UI" expanded="True">
-            <Node name="Client" expanded="True" selected="True">
-              <Node name="Connection" expanded="True" />
-            </Node>
-            <Node name="Interfaces" expanded="True">
-              <Node name="Properties" expanded="True" />
-            </Node>
-            <Node name="Server" expanded="True">
-              <Node name="Connection" expanded="True" />
-            </Node>
-          </Node>
+          <Node name="branch-predictor-sim-UI" expanded="True" />
         </State>
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">

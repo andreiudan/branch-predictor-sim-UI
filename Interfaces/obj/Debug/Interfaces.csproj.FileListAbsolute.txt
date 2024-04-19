@@ -4,3 +4,9 @@
 /home/andreiudan/GitHub/branch-predictor-sim-UI/Interfaces/obj/Debug/Interfaces.csproj.CoreCompileInputs.cache
 /home/andreiudan/GitHub/branch-predictor-sim-UI/Interfaces/obj/Debug/Interfaces.dll
 /home/andreiudan/GitHub/branch-predictor-sim-UI/Interfaces/obj/Debug/Interfaces.pdb
+/home/bogdan/Desktop/Arhitecturi Avansate/branch-predictor-sim-UI/Interfaces/bin/Debug/Interfaces.dll
+/home/bogdan/Desktop/Arhitecturi Avansate/branch-predictor-sim-UI/Interfaces/bin/Debug/Interfaces.pdb
+/home/bogdan/Desktop/Arhitecturi Avansate/branch-predictor-sim-UI/Interfaces/obj/Debug/Interfaces.csproj.AssemblyReference.cache
+/home/bogdan/Desktop/Arhitecturi Avansate/branch-predictor-sim-UI/Interfaces/obj/Debug/Interfaces.csproj.CoreCompileInputs.cache
+/home/bogdan/Desktop/Arhitecturi Avansate/branch-predictor-sim-UI/Interfaces/obj/Debug/Interfaces.dll
+/home/bogdan/Desktop/Arhitecturi Avansate/branch-predictor-sim-UI/Interfaces/obj/Debug/Interfaces.pdb

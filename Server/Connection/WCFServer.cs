@@ -3,13 +3,16 @@ using System.Threading;
 using Domain.DTOs;
 using Interfaces;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class WCFServer : IWCFServer
 {
     static int processes = 0;
+    CommandExecutor commandExecutor;
 
     public WCFServer()
     {
+        commandExecutor = new CommandExecutor();
     }
 
     public int getProcessesNo()
@@ -19,15 +22,34 @@ public class WCFServer : IWCFServer
 
     public string executeCommands(string serializedParams)
     {
-        processes++;
+        List<Params> args = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Params>>(serializedParams);
 
-        List<Params> arg = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Params>>(serializedParams);
+        List<Task<Result>> resultTasks = new List<Task<Result>>();
 
-        Thread.Sleep(10000);
+        foreach(var param in args)
+        {
+            var newTask = Task.Run(() =>
+            {
+                processes++;
 
-        Console.WriteLine(serializedParams);
+                var result = commandExecutor.execute(param);
 
-        processes--;
+                processes--;
+
+                return result;
+            });
+
+            resultTasks.Add(newTask);
+        }
+
+        Task.WaitAll(resultTasks.ToArray());
+
+        List<Result> results = new List<Result>();
+
+        foreach(var resultTask in resultTasks)
+        {
+            results.Add(resultTask.Result);
+        }
 
         return "";
     }

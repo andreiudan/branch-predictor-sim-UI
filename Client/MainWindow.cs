@@ -20,7 +20,13 @@ public partial class MainWindow : Gtk.Window
         connectionManager.addConnection("192.168.0.103", "3000");
         connectionManager.addConnection("192.168.0.103", "3001");
 
-        var tasks = connectionManager.executeCommands(new List<Params> { new Params(), new Params() });
+        var tasks = connectionManager.executeCommands(new List<Params> { 
+            new Params(), 
+            new Params(),
+            new Params(),
+            new Params(),
+            new Params(),
+            });
 
         Build ();
     }
@@ -69,8 +75,6 @@ public partial class MainWindow : Gtk.Window
 
         return folderPath;
     }
-        return folderPath;
-    }
 
     private string ChooseFilePath(){
         string filePath = "";
@@ -88,8 +92,6 @@ public partial class MainWindow : Gtk.Window
 
         fileChooser.Destroy ();
 
-        return filePath;
-    }
         return filePath;
     }
 
@@ -185,9 +187,6 @@ public partial class MainWindow : Gtk.Window
         //ras
         rasSizeSpinbutton.Value = 8;
 
-        //bimod
-        tableSizeSpinbutton.Value = 2048;
-    }
         //bimod
         tableSizeSpinbutton.Value = 2048;
     }

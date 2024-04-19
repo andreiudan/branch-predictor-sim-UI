@@ -13,3 +13,5 @@ Domain/obj/Debug/Domain.csproj.FileListAbsolute.txt
 
 /Interfaces/bin
 /Interfaces/obj
+
+**/*.o
