@@ -20,15 +20,16 @@ public partial class MainWindow : Gtk.Window
     {
         ConnectionManager connectionManager = new ConnectionManager();
 
-        connectionManager.addConnection("192.168.0.103", "3000");
-        connectionManager.addConnection("192.168.0.103", "3001");
+        connectionManager.addConnection("192.168.114.91", "3000");
+       // connectionManager.addConnection("192.168.0.103", "3001");
 
         var tasks = connectionManager.executeCommands(new List<Params> { 
-            new Params(), 
-            new Params(),
-            new Params(),
-            new Params(),
-            new Params(),
+            new Params()
+            {
+                benchName= "Applu",
+                maxInst= 100
+
+            }
             });
 
         Build();

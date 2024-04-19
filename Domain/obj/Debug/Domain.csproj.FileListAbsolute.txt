@@ -9,3 +9,4 @@
 /home/bogdan/Desktop/Arhitecturi Avansate/branch-predictor-sim-UI/Domain/obj/Debug/Domain.csproj.CoreCompileInputs.cache
 /home/bogdan/Desktop/Arhitecturi Avansate/branch-predictor-sim-UI/Domain/obj/Debug/Domain.dll
 /home/bogdan/Desktop/Arhitecturi Avansate/branch-predictor-sim-UI/Domain/obj/Debug/Domain.pdb
+/home/bogdan/Desktop/Arhitecturi Avansate/branch-predictor-sim-UI/Domain/obj/Debug/Domain.csproj.AssemblyReference.cache
