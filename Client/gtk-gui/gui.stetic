@@ -5,6 +5,7 @@
     <target-gtk-version>2.4</target-gtk-version>
   </configuration>
   <import>
+    <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/Client.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="1554 809">
@@ -1673,181 +1674,6 @@ comb</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Table" id="bench_ServerTable">
-                <property name="MemberName" />
-                <property name="NColumns">2</property>
-                <property name="Homogeneous">True</property>
-                <property name="RowSpacing">6</property>
-                <property name="ColumnSpacing">12</property>
-                <child>
-                  <widget class="Gtk.Frame" id="benchFrame">
-                    <property name="MemberName" />
-                    <property name="ShadowType">None</property>
-                    <property name="LabelXalign">0.07</property>
-                    <property name="LabelYalign">0.6</property>
-                    <child>
-                      <widget class="Gtk.Alignment" id="GtkAlignment12">
-                        <property name="MemberName" />
-                        <property name="Xalign">0</property>
-                        <property name="Yalign">0</property>
-                        <property name="LeftPadding">12</property>
-                        <child>
-                          <widget class="Gtk.Table" id="benchTable">
-                            <property name="MemberName" />
-                            <property name="NColumns">2</property>
-                            <property name="Homogeneous">True</property>
-                            <property name="RowSpacing">6</property>
-                            <property name="ColumnSpacing">6</property>
-                            <child>
-                              <widget class="Gtk.Button" id="benchBrowseButton">
-                                <property name="MemberName" />
-                                <property name="CanFocus">True</property>
-                                <property name="UseStock">True</property>
-                                <property name="Type">StockItem</property>
-                                <property name="StockId">gtk-open</property>
-                                <property name="label">gtk-open</property>
-                              </widget>
-                              <packing>
-                                <property name="LeftAttach">1</property>
-                                <property name="RightAttach">2</property>
-                                <property name="XPadding">13</property>
-                                <property name="YPadding">8</property>
-                                <property name="AutoSize">True</property>
-                                <property name="XOptions">Fill</property>
-                                <property name="YOptions">Fill</property>
-                                <property name="XExpand">False</property>
-                                <property name="XFill">True</property>
-                                <property name="XShrink">False</property>
-                                <property name="YExpand">False</property>
-                                <property name="YFill">True</property>
-                                <property name="YShrink">False</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <widget class="Gtk.Label" id="benchNameLabel">
-                                <property name="MemberName" />
-                                <property name="Xpad">6</property>
-                                <property name="LabelProp" translatable="yes">benchName</property>
-                              </widget>
-                              <packing>
-                                <property name="AutoSize">True</property>
-                                <property name="XOptions">Fill</property>
-                                <property name="YOptions">Fill</property>
-                                <property name="XExpand">False</property>
-                                <property name="XFill">True</property>
-                                <property name="XShrink">False</property>
-                                <property name="YExpand">False</property>
-                                <property name="YFill">True</property>
-                                <property name="YShrink">False</property>
-                              </packing>
-                            </child>
-                          </widget>
-                        </child>
-                      </widget>
-                    </child>
-                    <child>
-                      <widget class="Gtk.Label" id="benchFrameLabel">
-                        <property name="MemberName" />
-                        <property name="LabelProp" translatable="yes">&lt;b&gt;Benchmark&lt;/b&gt;</property>
-                        <property name="UseMarkup">True</property>
-                      </widget>
-                      <packing>
-                        <property name="type">label_item</property>
-                      </packing>
-                    </child>
-                  </widget>
-                  <packing>
-                    <property name="AutoSize">True</property>
-                    <property name="XOptions">Fill</property>
-                    <property name="YOptions">Fill</property>
-                    <property name="XExpand">False</property>
-                    <property name="XFill">True</property>
-                    <property name="XShrink">False</property>
-                    <property name="YExpand">False</property>
-                    <property name="YFill">True</property>
-                    <property name="YShrink">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="Gtk.Frame" id="serverConnectionFrame">
-                    <property name="MemberName" />
-                    <property name="ShadowType">None</property>
-                    <property name="LabelXalign">0.07</property>
-                    <property name="LabelYalign">0.58</property>
-                    <child>
-                      <widget class="Gtk.Table" id="serverConnTable">
-                        <property name="MemberName" />
-                        <property name="NColumns">2</property>
-                        <property name="RowSpacing">6</property>
-                        <property name="ColumnSpacing">6</property>
-                        <child>
-                          <widget class="Gtk.Label" id="connStatusLabel">
-                            <property name="MemberName" />
-                            <property name="Xalign">0</property>
-                            <property name="LabelProp" translatable="yes">Not connected</property>
-                          </widget>
-                          <packing>
-                            <property name="LeftAttach">1</property>
-                            <property name="RightAttach">2</property>
-                            <property name="AutoSize">False</property>
-                            <property name="YOptions">Fill</property>
-                            <property name="XExpand">True</property>
-                            <property name="XFill">True</property>
-                            <property name="XShrink">False</property>
-                            <property name="YExpand">False</property>
-                            <property name="YFill">True</property>
-                            <property name="YShrink">False</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <widget class="Gtk.Label" id="statusLabel">
-                            <property name="MemberName" />
-                            <property name="LabelProp" translatable="yes">Status: </property>
-                          </widget>
-                          <packing>
-                            <property name="AutoSize">False</property>
-                            <property name="XExpand">True</property>
-                            <property name="XFill">True</property>
-                            <property name="XShrink">False</property>
-                            <property name="YExpand">True</property>
-                            <property name="YFill">True</property>
-                            <property name="YShrink">False</property>
-                          </packing>
-                        </child>
-                      </widget>
-                    </child>
-                    <child>
-                      <widget class="Gtk.Label" id="serverConnFrameLabel">
-                        <property name="MemberName" />
-                        <property name="LabelProp" translatable="yes">&lt;b&gt;Server Connection&lt;/b&gt;</property>
-                        <property name="UseMarkup">True</property>
-                      </widget>
-                      <packing>
-                        <property name="type">label_item</property>
-                      </packing>
-                    </child>
-                  </widget>
-                  <packing>
-                    <property name="LeftAttach">1</property>
-                    <property name="RightAttach">2</property>
-                    <property name="AutoSize">True</property>
-                    <property name="XOptions">Fill</property>
-                    <property name="YOptions">Fill</property>
-                    <property name="XExpand">False</property>
-                    <property name="XFill">True</property>
-                    <property name="XShrink">False</property>
-                    <property name="YExpand">False</property>
-                    <property name="YFill">True</property>
-                    <property name="YShrink">False</property>
-                  </packing>
-                </child>
-              </widget>
-              <packing>
-                <property name="X">1053</property>
-                <property name="Y">74</property>
-              </packing>
-            </child>
-            <child>
               <widget class="Gtk.Label" id="titleLabel">
                 <property name="MemberName" />
                 <property name="Xpad">608</property>
@@ -1858,6 +1684,190 @@ comb</property>
               <packing>
                 <property name="X">33</property>
                 <property name="Y">23</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Frame" id="benchFrame">
+                <property name="MemberName" />
+                <property name="WidthRequest">251</property>
+                <property name="HeightRequest">141</property>
+                <property name="ShadowType">None</property>
+                <property name="LabelXalign">0.07</property>
+                <property name="LabelYalign">0.6</property>
+                <child>
+                  <widget class="Gtk.Alignment" id="GtkAlignment12">
+                    <property name="MemberName" />
+                    <property name="Xalign">0</property>
+                    <property name="Yalign">0</property>
+                    <property name="LeftPadding">12</property>
+                    <child>
+                      <widget class="Gtk.Table" id="benchTable">
+                        <property name="MemberName" />
+                        <property name="NRows">2</property>
+                        <property name="NColumns">2</property>
+                        <property name="Homogeneous">True</property>
+                        <property name="RowSpacing">6</property>
+                        <property name="ColumnSpacing">6</property>
+                        <child>
+                          <placeholder />
+                        </child>
+                        <child>
+                          <widget class="Gtk.Button" id="benchBrowseButton">
+                            <property name="MemberName" />
+                            <property name="WidthRequest">92</property>
+                            <property name="CanFocus">True</property>
+                            <property name="UseStock">True</property>
+                            <property name="Type">StockItem</property>
+                            <property name="StockId">gtk-open</property>
+                            <signal name="Clicked" handler="OnBenchBrowseButtonClicked" />
+                            <property name="label">gtk-open</property>
+                          </widget>
+                          <packing>
+                            <property name="LeftAttach">1</property>
+                            <property name="RightAttach">2</property>
+                            <property name="XPadding">13</property>
+                            <property name="YPadding">8</property>
+                            <property name="AutoSize">False</property>
+                            <property name="XOptions">Fill</property>
+                            <property name="YOptions">Fill</property>
+                            <property name="XExpand">False</property>
+                            <property name="XFill">True</property>
+                            <property name="XShrink">False</property>
+                            <property name="YExpand">False</property>
+                            <property name="YFill">True</property>
+                            <property name="YShrink">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Button" id="clearBenchButton">
+                            <property name="MemberName" />
+                            <property name="WidthRequest">92</property>
+                            <property name="CanFocus">True</property>
+                            <property name="Type">TextOnly</property>
+                            <property name="Label" translatable="yes">Clear</property>
+                            <property name="UseUnderline">True</property>
+                            <signal name="Clicked" handler="OnClearBenchButtonClicked" />
+                          </widget>
+                          <packing>
+                            <property name="TopAttach">1</property>
+                            <property name="BottomAttach">2</property>
+                            <property name="LeftAttach">1</property>
+                            <property name="RightAttach">2</property>
+                            <property name="XPadding">13</property>
+                            <property name="YPadding">8</property>
+                            <property name="AutoSize">False</property>
+                            <property name="XOptions">Fill</property>
+                            <property name="YOptions">Fill</property>
+                            <property name="XExpand">False</property>
+                            <property name="XFill">True</property>
+                            <property name="XShrink">False</property>
+                            <property name="YExpand">False</property>
+                            <property name="YFill">True</property>
+                            <property name="YShrink">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Label" id="noBenchLabel">
+                            <property name="MemberName" />
+                            <property name="LabelProp" translatable="yes">No benchmark
+selected</property>
+                          </widget>
+                          <packing>
+                            <property name="AutoSize">True</property>
+                            <property name="XOptions">Fill</property>
+                            <property name="YOptions">Fill</property>
+                            <property name="XExpand">False</property>
+                            <property name="XFill">True</property>
+                            <property name="XShrink">False</property>
+                            <property name="YExpand">False</property>
+                            <property name="YFill">True</property>
+                            <property name="YShrink">False</property>
+                          </packing>
+                        </child>
+                      </widget>
+                    </child>
+                  </widget>
+                </child>
+                <child>
+                  <widget class="Gtk.Label" id="benchFrameLabel">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">&lt;b&gt;Benchmarks&lt;/b&gt;</property>
+                    <property name="UseMarkup">True</property>
+                  </widget>
+                  <packing>
+                    <property name="type">label_item</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="X">1049</property>
+                <property name="Y">73</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Frame" id="serverConnectionFrame">
+                <property name="MemberName" />
+                <property name="WidthRequest">215</property>
+                <property name="HeightRequest">79</property>
+                <property name="ShadowType">None</property>
+                <property name="LabelXalign">0.14</property>
+                <property name="LabelYalign">0.6</property>
+                <child>
+                  <widget class="Gtk.Table" id="serverConnTable">
+                    <property name="MemberName" />
+                    <property name="NColumns">2</property>
+                    <property name="RowSpacing">6</property>
+                    <property name="ColumnSpacing">6</property>
+                    <child>
+                      <widget class="Gtk.Label" id="connStatusLabel">
+                        <property name="MemberName" />
+                        <property name="Xalign">0</property>
+                        <property name="LabelProp" translatable="yes">Not connected</property>
+                      </widget>
+                      <packing>
+                        <property name="LeftAttach">1</property>
+                        <property name="RightAttach">2</property>
+                        <property name="AutoSize">False</property>
+                        <property name="YOptions">Fill</property>
+                        <property name="XExpand">True</property>
+                        <property name="XFill">True</property>
+                        <property name="XShrink">False</property>
+                        <property name="YExpand">False</property>
+                        <property name="YFill">True</property>
+                        <property name="YShrink">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="statusLabel">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">Status: </property>
+                      </widget>
+                      <packing>
+                        <property name="AutoSize">False</property>
+                        <property name="XExpand">True</property>
+                        <property name="XFill">True</property>
+                        <property name="XShrink">False</property>
+                        <property name="YExpand">True</property>
+                        <property name="YFill">True</property>
+                        <property name="YShrink">False</property>
+                      </packing>
+                    </child>
+                  </widget>
+                </child>
+                <child>
+                  <widget class="Gtk.Label" id="serverConnFrameLabel">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">&lt;b&gt;Server Connection&lt;/b&gt;</property>
+                    <property name="UseMarkup">True</property>
+                  </widget>
+                  <packing>
+                    <property name="type">label_item</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="X">1311</property>
+                <property name="Y">73</property>
               </packing>
             </child>
           </widget>

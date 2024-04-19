@@ -203,7 +203,7 @@ public partial class MainWindow
 
 	private global::Gtk.Label predSettingsFrameLabel;
 
-	private global::Gtk.Table bench_ServerTable;
+	private global::Gtk.Label titleLabel;
 
 	private global::Gtk.Frame benchFrame;
 
@@ -213,7 +213,9 @@ public partial class MainWindow
 
 	private global::Gtk.Button benchBrowseButton;
 
-	private global::Gtk.Label benchNameLabel;
+	private global::Gtk.Button clearBenchButton;
+
+	private global::Gtk.Label noBenchLabel;
 
 	private global::Gtk.Label benchFrameLabel;
 
@@ -226,8 +228,6 @@ public partial class MainWindow
 	private global::Gtk.Label statusLabel;
 
 	private global::Gtk.Label serverConnFrameLabel;
-
-	private global::Gtk.Label titleLabel;
 
 	protected virtual void Build()
 	{
@@ -1184,12 +1184,20 @@ public partial class MainWindow
 		w78.X = 512;
 		w78.Y = 75;
 		// Container child mainWindow.Gtk.Fixed+FixedChild
-		this.bench_ServerTable = new global::Gtk.Table(((uint)(1)), ((uint)(2)), true);
-		this.bench_ServerTable.Name = "bench_ServerTable";
-		this.bench_ServerTable.RowSpacing = ((uint)(6));
-		this.bench_ServerTable.ColumnSpacing = ((uint)(12));
-		// Container child bench_ServerTable.Gtk.Table+TableChild
+		this.titleLabel = new global::Gtk.Label();
+		this.titleLabel.Name = "titleLabel";
+		this.titleLabel.Xpad = 608;
+		this.titleLabel.Ypad = 4;
+		this.titleLabel.LabelProp = "<big><b>Branch prediction simulator</b></big>";
+		this.titleLabel.UseMarkup = true;
+		this.mainWindow.Add(this.titleLabel);
+		global::Gtk.Fixed.FixedChild w79 = ((global::Gtk.Fixed.FixedChild)(this.mainWindow[this.titleLabel]));
+		w79.X = 33;
+		w79.Y = 23;
+		// Container child mainWindow.Gtk.Fixed+FixedChild
 		this.benchFrame = new global::Gtk.Frame();
+		this.benchFrame.WidthRequest = 251;
+		this.benchFrame.HeightRequest = 141;
 		this.benchFrame.Name = "benchFrame";
 		this.benchFrame.ShadowType = ((global::Gtk.ShadowType)(0));
 		this.benchFrame.LabelXalign = 0.07F;
@@ -1199,51 +1207,70 @@ public partial class MainWindow
 		this.GtkAlignment12.Name = "GtkAlignment12";
 		this.GtkAlignment12.LeftPadding = ((uint)(12));
 		// Container child GtkAlignment12.Gtk.Container+ContainerChild
-		this.benchTable = new global::Gtk.Table(((uint)(1)), ((uint)(2)), true);
+		this.benchTable = new global::Gtk.Table(((uint)(2)), ((uint)(2)), true);
 		this.benchTable.Name = "benchTable";
 		this.benchTable.RowSpacing = ((uint)(6));
 		this.benchTable.ColumnSpacing = ((uint)(6));
 		// Container child benchTable.Gtk.Table+TableChild
 		this.benchBrowseButton = new global::Gtk.Button();
+		this.benchBrowseButton.WidthRequest = 92;
 		this.benchBrowseButton.CanFocus = true;
 		this.benchBrowseButton.Name = "benchBrowseButton";
 		this.benchBrowseButton.UseStock = true;
 		this.benchBrowseButton.UseUnderline = true;
 		this.benchBrowseButton.Label = "gtk-open";
 		this.benchTable.Add(this.benchBrowseButton);
-		global::Gtk.Table.TableChild w79 = ((global::Gtk.Table.TableChild)(this.benchTable[this.benchBrowseButton]));
-		w79.LeftAttach = ((uint)(1));
-		w79.RightAttach = ((uint)(2));
-		w79.XPadding = ((uint)(13));
-		w79.YPadding = ((uint)(8));
-		w79.XOptions = ((global::Gtk.AttachOptions)(4));
-		w79.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child benchTable.Gtk.Table+TableChild
-		this.benchNameLabel = new global::Gtk.Label();
-		this.benchNameLabel.Name = "benchNameLabel";
-		this.benchNameLabel.Xpad = 6;
-		this.benchNameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("benchName");
-		this.benchTable.Add(this.benchNameLabel);
-		global::Gtk.Table.TableChild w80 = ((global::Gtk.Table.TableChild)(this.benchTable[this.benchNameLabel]));
+		global::Gtk.Table.TableChild w80 = ((global::Gtk.Table.TableChild)(this.benchTable[this.benchBrowseButton]));
+		w80.LeftAttach = ((uint)(1));
+		w80.RightAttach = ((uint)(2));
+		w80.XPadding = ((uint)(13));
+		w80.YPadding = ((uint)(8));
 		w80.XOptions = ((global::Gtk.AttachOptions)(4));
 		w80.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child benchTable.Gtk.Table+TableChild
+		this.clearBenchButton = new global::Gtk.Button();
+		this.clearBenchButton.WidthRequest = 92;
+		this.clearBenchButton.CanFocus = true;
+		this.clearBenchButton.Name = "clearBenchButton";
+		this.clearBenchButton.UseUnderline = true;
+		this.clearBenchButton.Label = global::Mono.Unix.Catalog.GetString("Clear");
+		this.benchTable.Add(this.clearBenchButton);
+		global::Gtk.Table.TableChild w81 = ((global::Gtk.Table.TableChild)(this.benchTable[this.clearBenchButton]));
+		w81.TopAttach = ((uint)(1));
+		w81.BottomAttach = ((uint)(2));
+		w81.LeftAttach = ((uint)(1));
+		w81.RightAttach = ((uint)(2));
+		w81.XPadding = ((uint)(13));
+		w81.YPadding = ((uint)(8));
+		w81.XOptions = ((global::Gtk.AttachOptions)(4));
+		w81.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child benchTable.Gtk.Table+TableChild
+		this.noBenchLabel = new global::Gtk.Label();
+		this.noBenchLabel.Name = "noBenchLabel";
+		this.noBenchLabel.LabelProp = global::Mono.Unix.Catalog.GetString("No benchmark\nselected");
+		this.benchTable.Add(this.noBenchLabel);
+		global::Gtk.Table.TableChild w82 = ((global::Gtk.Table.TableChild)(this.benchTable[this.noBenchLabel]));
+		w82.XOptions = ((global::Gtk.AttachOptions)(4));
+		w82.YOptions = ((global::Gtk.AttachOptions)(4));
 		this.GtkAlignment12.Add(this.benchTable);
 		this.benchFrame.Add(this.GtkAlignment12);
 		this.benchFrameLabel = new global::Gtk.Label();
 		this.benchFrameLabel.Name = "benchFrameLabel";
-		this.benchFrameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<b>Benchmark</b>");
+		this.benchFrameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<b>Benchmarks</b>");
 		this.benchFrameLabel.UseMarkup = true;
 		this.benchFrame.LabelWidget = this.benchFrameLabel;
-		this.bench_ServerTable.Add(this.benchFrame);
-		global::Gtk.Table.TableChild w83 = ((global::Gtk.Table.TableChild)(this.bench_ServerTable[this.benchFrame]));
-		w83.XOptions = ((global::Gtk.AttachOptions)(4));
-		w83.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child bench_ServerTable.Gtk.Table+TableChild
+		this.mainWindow.Add(this.benchFrame);
+		global::Gtk.Fixed.FixedChild w85 = ((global::Gtk.Fixed.FixedChild)(this.mainWindow[this.benchFrame]));
+		w85.X = 1049;
+		w85.Y = 73;
+		// Container child mainWindow.Gtk.Fixed+FixedChild
 		this.serverConnectionFrame = new global::Gtk.Frame();
+		this.serverConnectionFrame.WidthRequest = 215;
+		this.serverConnectionFrame.HeightRequest = 79;
 		this.serverConnectionFrame.Name = "serverConnectionFrame";
 		this.serverConnectionFrame.ShadowType = ((global::Gtk.ShadowType)(0));
-		this.serverConnectionFrame.LabelXalign = 0.07F;
-		this.serverConnectionFrame.LabelYalign = 0.58F;
+		this.serverConnectionFrame.LabelXalign = 0.14F;
+		this.serverConnectionFrame.LabelYalign = 0.6F;
 		// Container child serverConnectionFrame.Gtk.Container+ContainerChild
 		this.serverConnTable = new global::Gtk.Table(((uint)(1)), ((uint)(2)), false);
 		this.serverConnTable.Name = "serverConnTable";
@@ -1255,10 +1282,10 @@ public partial class MainWindow
 		this.connStatusLabel.Xalign = 0F;
 		this.connStatusLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Not connected");
 		this.serverConnTable.Add(this.connStatusLabel);
-		global::Gtk.Table.TableChild w84 = ((global::Gtk.Table.TableChild)(this.serverConnTable[this.connStatusLabel]));
-		w84.LeftAttach = ((uint)(1));
-		w84.RightAttach = ((uint)(2));
-		w84.YOptions = ((global::Gtk.AttachOptions)(4));
+		global::Gtk.Table.TableChild w86 = ((global::Gtk.Table.TableChild)(this.serverConnTable[this.connStatusLabel]));
+		w86.LeftAttach = ((uint)(1));
+		w86.RightAttach = ((uint)(2));
+		w86.YOptions = ((global::Gtk.AttachOptions)(4));
 		// Container child serverConnTable.Gtk.Table+TableChild
 		this.statusLabel = new global::Gtk.Label();
 		this.statusLabel.Name = "statusLabel";
@@ -1270,27 +1297,10 @@ public partial class MainWindow
 		this.serverConnFrameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<b>Server Connection</b>");
 		this.serverConnFrameLabel.UseMarkup = true;
 		this.serverConnectionFrame.LabelWidget = this.serverConnFrameLabel;
-		this.bench_ServerTable.Add(this.serverConnectionFrame);
-		global::Gtk.Table.TableChild w87 = ((global::Gtk.Table.TableChild)(this.bench_ServerTable[this.serverConnectionFrame]));
-		w87.LeftAttach = ((uint)(1));
-		w87.RightAttach = ((uint)(2));
-		w87.XOptions = ((global::Gtk.AttachOptions)(4));
-		w87.YOptions = ((global::Gtk.AttachOptions)(4));
-		this.mainWindow.Add(this.bench_ServerTable);
-		global::Gtk.Fixed.FixedChild w88 = ((global::Gtk.Fixed.FixedChild)(this.mainWindow[this.bench_ServerTable]));
-		w88.X = 1053;
-		w88.Y = 74;
-		// Container child mainWindow.Gtk.Fixed+FixedChild
-		this.titleLabel = new global::Gtk.Label();
-		this.titleLabel.Name = "titleLabel";
-		this.titleLabel.Xpad = 608;
-		this.titleLabel.Ypad = 4;
-		this.titleLabel.LabelProp = "<big><b>Branch prediction simulator</b></big>";
-		this.titleLabel.UseMarkup = true;
-		this.mainWindow.Add(this.titleLabel);
-		global::Gtk.Fixed.FixedChild w89 = ((global::Gtk.Fixed.FixedChild)(this.mainWindow[this.titleLabel]));
-		w89.X = 33;
-		w89.Y = 23;
+		this.mainWindow.Add(this.serverConnectionFrame);
+		global::Gtk.Fixed.FixedChild w89 = ((global::Gtk.Fixed.FixedChild)(this.mainWindow[this.serverConnectionFrame]));
+		w89.X = 1311;
+		w89.Y = 73;
 		this.vbox1.Add(this.mainWindow);
 		global::Gtk.Box.BoxChild w90 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.mainWindow]));
 		w90.Position = 1;
@@ -1313,5 +1323,7 @@ public partial class MainWindow
 		this.progRedirBrowseButton.Clicked += new global::System.EventHandler(this.OnProgRedirBrowseButtonClicked);
 		this.dumpBrowseButton.Clicked += new global::System.EventHandler(this.OnDumpBrowseButtonClicked);
 		this.configBrowseButton.Clicked += new global::System.EventHandler(this.OnConfigBrowseButtonClicked);
+		this.clearBenchButton.Clicked += new global::System.EventHandler(this.OnClearBenchButtonClicked);
+		this.benchBrowseButton.Clicked += new global::System.EventHandler(this.OnBenchBrowseButtonClicked);
 	}
 }
