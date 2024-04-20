@@ -223,11 +223,11 @@ public partial class MainWindow
 
 	private global::Gtk.Button addConnButton;
 
-	private global::Gtk.Label connStatusLabel;
-
 	private global::Gtk.Label ipLabel;
 
 	private global::Gtk.Label portLabel;
+
+	private global::Gtk.Label statusLabel;
 
 	private global::Gtk.Label serverConnFrameLabel;
 
@@ -1289,31 +1289,31 @@ public partial class MainWindow
 		w85.XOptions = ((global::Gtk.AttachOptions)(4));
 		w85.YOptions = ((global::Gtk.AttachOptions)(4));
 		// Container child serverConnTable.Gtk.Table+TableChild
-		this.connStatusLabel = new global::Gtk.Label();
-		this.connStatusLabel.Name = "connStatusLabel";
-		this.connStatusLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Status");
-		this.serverConnTable.Add(this.connStatusLabel);
-		global::Gtk.Table.TableChild w86 = ((global::Gtk.Table.TableChild)(this.serverConnTable[this.connStatusLabel]));
-		w86.LeftAttach = ((uint)(2));
-		w86.RightAttach = ((uint)(3));
-		w86.XOptions = ((global::Gtk.AttachOptions)(4));
-		w86.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child serverConnTable.Gtk.Table+TableChild
 		this.ipLabel = new global::Gtk.Label();
 		this.ipLabel.Name = "ipLabel";
 		this.ipLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Ip ");
 		this.serverConnTable.Add(this.ipLabel);
-		global::Gtk.Table.TableChild w87 = ((global::Gtk.Table.TableChild)(this.serverConnTable[this.ipLabel]));
-		w87.XOptions = ((global::Gtk.AttachOptions)(4));
-		w87.YOptions = ((global::Gtk.AttachOptions)(4));
+		global::Gtk.Table.TableChild w86 = ((global::Gtk.Table.TableChild)(this.serverConnTable[this.ipLabel]));
+		w86.XOptions = ((global::Gtk.AttachOptions)(4));
+		w86.YOptions = ((global::Gtk.AttachOptions)(4));
 		// Container child serverConnTable.Gtk.Table+TableChild
 		this.portLabel = new global::Gtk.Label();
 		this.portLabel.Name = "portLabel";
 		this.portLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Port");
 		this.serverConnTable.Add(this.portLabel);
-		global::Gtk.Table.TableChild w88 = ((global::Gtk.Table.TableChild)(this.serverConnTable[this.portLabel]));
-		w88.LeftAttach = ((uint)(1));
-		w88.RightAttach = ((uint)(2));
+		global::Gtk.Table.TableChild w87 = ((global::Gtk.Table.TableChild)(this.serverConnTable[this.portLabel]));
+		w87.LeftAttach = ((uint)(1));
+		w87.RightAttach = ((uint)(2));
+		w87.XOptions = ((global::Gtk.AttachOptions)(4));
+		w87.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child serverConnTable.Gtk.Table+TableChild
+		this.statusLabel = new global::Gtk.Label();
+		this.statusLabel.Name = "statusLabel";
+		this.statusLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Status");
+		this.serverConnTable.Add(this.statusLabel);
+		global::Gtk.Table.TableChild w88 = ((global::Gtk.Table.TableChild)(this.serverConnTable[this.statusLabel]));
+		w88.LeftAttach = ((uint)(2));
+		w88.RightAttach = ((uint)(3));
 		w88.XOptions = ((global::Gtk.AttachOptions)(4));
 		w88.YOptions = ((global::Gtk.AttachOptions)(4));
 		this.serverConnectionFrame.Add(this.serverConnTable);
@@ -1356,7 +1356,7 @@ public partial class MainWindow
 		{
 			this.Child.ShowAll();
 		}
-		this.DefaultWidth = 1831;
+		this.DefaultWidth = 1911;
 		this.DefaultHeight = 809;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);

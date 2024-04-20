@@ -9,6 +9,7 @@ using Client.Connection;
 using Client;
 using Domain.Models;
 using Domain.EventArgs;
+using System.IO;
 
 public partial class MainWindow : Gtk.Window
 {
@@ -51,20 +52,13 @@ public partial class MainWindow : Gtk.Window
         await Task.Run(() => ChangeConnectionStatus(this, new ConnectionStatusEventArgs(ipAddress, port, 
                                                                     ServerStatus.Connecting.ToString())));
             
-        //if (await connectionManager.addConnection(ipAddress, port) == ServerStatus.ConnectionFailed)
-        //{
-        //    ShowMessageBox(this, connectionFailedDialogTitle,
-        //        string.Format(connectionFailedDialogMessage, ipAddress, port));
-
-        //    return ServerStatus.ConnectionFailed;
-        //}
-
-        ipAddresses.Add(new Connection
+        if (await connectionManager.addConnection(ipAddress, port) == ServerStatus.ConnectionFailed)
         {
-            Ip = ipAddress,
-            Port = port,
-            StatusLabelName = $"{ipAddress}:{port}StatusLabel"
-        });
+            ShowMessageBox(this, connectionFailedDialogTitle,
+                string.Format(connectionFailedDialogMessage, ipAddress, port));
+
+            return ServerStatus.ConnectionFailed;
+        }
 
         return ServerStatus.Connected;
     }
@@ -231,10 +225,12 @@ public partial class MainWindow : Gtk.Window
                 continue;
             }
 
-            Label benchmarkLabel = new Label(benchmark);
-            benchmarkLabel.Justify = Justification.Left;
-            benchmarkLabel.Xpad = 12;
-            benchmarkLabel.Name = $"{benchmark}Label";
+            Label benchmarkLabel = new Label(benchmark)
+            {
+                Justify = Justification.Left,
+                Xpad = 12,
+                Name = $"{benchmark}Label"
+            };
 
             if (benchTableRowNum > 1)
             {
@@ -286,7 +282,6 @@ public partial class MainWindow : Gtk.Window
 
     protected void OnDefaultConfigActionActivated(object sender, EventArgs e)
     {
-        //benchNameLabel.Text = "benchName";
         bpredCombobox.Active = 0;
 
         SetDefaultSimulatorSettings();
@@ -303,17 +298,10 @@ public partial class MainWindow : Gtk.Window
         //btb
         numSetsSpinbutton.Value = 512;
         assocSpinbutton.Value = 4;
-        //btb
-        numSetsSpinbutton.Value = 512;
-        assocSpinbutton.Value = 4;
 
         //comb
         metaTableSizeSpinbutton.Value = 1024;
-        //comb
-        metaTableSizeSpinbutton.Value = 1024;
 
-        //ras
-        rasSizeSpinbutton.Value = 8;
         //ras
         rasSizeSpinbutton.Value = 8;
 
@@ -322,11 +310,19 @@ public partial class MainWindow : Gtk.Window
     }
 
     private void SetDefaultSimulatorSettings() {
+        string resultsPath = "./../../simplesim-3.0/results";
+
+        if (!Directory.Exists(resultsPath))
+        {
+            Directory.CreateDirectory(resultsPath);
+        }
+
+        simRedirEntry.Text = System.IO.Path.GetFullPath(resultsPath);
+        progRedirEntry.Text = System.IO.Path.GetFullPath(resultsPath);
+
         seedSpinbutton.Value = 1;
         configEntry.Text = "";
         dumpEntry.Text = "";
-        simRedirEntry.Text = "";
-        progRedirEntry.Text = "";
         helpCheckbutton.Active = false;
         verboseCheckbutton.Active = false;
         debugCheckbutton.Active = false;
@@ -341,21 +337,8 @@ public partial class MainWindow : Gtk.Window
         string noConnectionsFoundDialogTitle = "No connections available";
         string noConnectionsFoundDialogMessage = "No connection available to simulate at this time.";
 
-        Params predictorSettings = new Params
-        {
-            //benchName = benchNameLabel.Text,
-            maxInst = maxInstSpinbutton.ValueAsInt,
-            bpred = bpredCombobox.ActiveText,
-            l1Size = l1sizeSpinbutton.ValueAsInt,
-            l2Size = l2sizeSpinbutton.ValueAsInt,
-            tableSize = tableSizeSpinbutton.ValueAsInt,
-            metaTableSize = metaTableSizeSpinbutton.ValueAsInt,
-            rasSize = rasSizeSpinbutton.ValueAsInt,
-            numSets = numSetsSpinbutton.ValueAsInt,
-            histSize = numSetsSpinbutton.ValueAsInt,
-            xor = xorSpinbutton.ValueAsInt,
-            assoc = assocSpinbutton.ValueAsInt
-        };
+        string noBenchSelectedDialogTitle = "No benchmark selected";
+        string noBenchSelectedDialogMessage = "Please add a benchmark to be able to run the simulation.";
 
         if (connectionManager is null || ipAddresses.Count == 0)
         {
@@ -363,14 +346,34 @@ public partial class MainWindow : Gtk.Window
             return;
         }
 
-        var tasks = connectionManager.executeCommands(new List<Params> {
-            new Params()
-            {
-                benchName= "Applu",
-                maxInst= 100
+        if (benchmarks.Count == 0) 
+        {
+            ShowMessageBox(this, noBenchSelectedDialogTitle, noBenchSelectedDialogMessage);
+            return;
+        }
 
-            }
-        });
+        List<Params> simulationsParams = new List<Params>();
+
+        foreach (string benchmark in benchmarks)
+        {
+            simulationsParams.Add(new Params
+            {
+                benchName = benchmark,
+                maxInst = maxInstSpinbutton.ValueAsInt,
+                bpred = bpredCombobox.ActiveText,
+                l1Size = l1sizeSpinbutton.ValueAsInt,
+                l2Size = l2sizeSpinbutton.ValueAsInt,
+                tableSize = tableSizeSpinbutton.ValueAsInt,
+                metaTableSize = metaTableSizeSpinbutton.ValueAsInt,
+                rasSize = rasSizeSpinbutton.ValueAsInt,
+                numSets = numSetsSpinbutton.ValueAsInt,
+                histSize = numSetsSpinbutton.ValueAsInt,
+                xor = xorSpinbutton.ValueAsInt,
+                assoc = assocSpinbutton.ValueAsInt
+            });
+        }
+
+        var tasks = connectionManager.executeCommands(simulationsParams);
     }
 
     private void ModifyWidgetColors(Widget widget, Color backgroundColor, Color textColor)
@@ -438,12 +441,16 @@ public partial class MainWindow : Gtk.Window
             return;
         }
 
-        if (await ConnectToServer(ip, port) == ServerStatus.ConnectionFailed)
+        ipAddresses.Add(new Connection
         {
-            return;
-        }
+            Ip = ip,
+            Port = port,
+            StatusLabelName = $"{ip}:{port}StatusLabel"
+        });
 
         PopulateConnectionsTable();
+
+        await ConnectToServer(ip, port);
     }
 
     private void PopulateConnectionsTable()
@@ -452,24 +459,24 @@ public partial class MainWindow : Gtk.Window
 
         foreach (Connection connection in ipAddresses)
         {
-            Label ipLabel = new Label(connection.Ip);
-            Label portLabel = new Label(connection.Port);
-            Label statusLabel = new Label(ServerStatus.NotConnected.ToString());
-            Button deleteConnButton = new Button();
+            Label connIpLabel = new Label(connection.Ip);
+            Label connPortLabel = new Label(connection.Port);
+            Label connStatusLabel = new Label(ServerStatus.NotConnected.ToString());
+            Button connDeleteConnButton = new Button();
 
-            ipLabel.Name = $"{ipLabel.Text}:{portLabel.Text}IpLabel";
-            portLabel.Name = $"{ipLabel.Text}:{portLabel.Text}PortLabel";
-            statusLabel.Name = $"{ipLabel.Text}:{portLabel.Text}StatusLabel";
+            connIpLabel.Name = $"{connIpLabel.Text}:{connPortLabel.Text}IpLabel";
+            connPortLabel.Name = $"{connIpLabel.Text}:{connPortLabel.Text}PortLabel";
+            connStatusLabel.Name = $"{connIpLabel.Text}:{connPortLabel.Text}StatusLabel";
 
-            deleteConnButton.Label = "Delete";
-            deleteConnButton.Name = $"{ipLabel.Text}:{portLabel.Text}DeleteButton";
-            deleteConnButton.Clicked += OnDeleteConnectionButtonClicked;
+            connDeleteConnButton.Label = "Delete";
+            connDeleteConnButton.Name = $"{connIpLabel.Text}:{connPortLabel.Text}DeleteButton";
+            connDeleteConnButton.Clicked += OnDeleteConnectionButtonClicked;
 
             serverConnTable.NRows++;
-            serverConnTable.Attach(ipLabel, 0, 1, (uint)connRowsNum, (uint)connRowsNum + 1, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
-            serverConnTable.Attach(portLabel, 1, 2, (uint)connRowsNum, (uint)connRowsNum + 1, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
-            serverConnTable.Attach(statusLabel, 2, 3, (uint)connRowsNum, (uint)connRowsNum + 1, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
-            serverConnTable.Attach(deleteConnButton, 3, 4, (uint)connRowsNum, (uint)connRowsNum + 1, AttachOptions.Fill, AttachOptions.Fill, 5, 0);
+            serverConnTable.Attach(connIpLabel, 0, 1, (uint)connRowsNum, (uint)connRowsNum + 1, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+            serverConnTable.Attach(connPortLabel, 1, 2, (uint)connRowsNum, (uint)connRowsNum + 1, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+            serverConnTable.Attach(connStatusLabel, 2, 3, (uint)connRowsNum, (uint)connRowsNum + 1, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+            serverConnTable.Attach(connDeleteConnButton, 3, 4, (uint)connRowsNum, (uint)connRowsNum + 1, AttachOptions.Fill, AttachOptions.Fill, 5, 0);
 
             connRowsNum++;
             serverConnectionFrame.HeightRequest += 50;

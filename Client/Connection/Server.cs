@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.ServiceModel;
+﻿using System.ServiceModel;
 using Domain.DTOs;
 using Interfaces;
 using System.Collections.Generic;
