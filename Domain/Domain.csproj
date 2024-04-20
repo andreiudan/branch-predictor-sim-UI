@@ -34,9 +34,13 @@
     <Compile Include="DTOs\Params.cs" />
     <Compile Include="DTOs\Result.cs" />
     <Compile Include="Benchmark.cs" />
+    <Compile Include="Models\Connection.cs" />
+    <Compile Include="EventArgs\ConnectionStatusEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DTOs\" />
+    <Folder Include="Models\" />
+    <Folder Include="EventArgs\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
