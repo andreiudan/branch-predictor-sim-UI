@@ -1,17 +1,11 @@
 ﻿using System;
 using Domain.DTOs;
-using System.Threading;
 using System.Diagnostics;
-using System.Collections.Generic;
 using System.IO;
 
 public class CommandExecutor
 {
     string simulatorBasePath= "./../../../simplesim-3.0/";
-
-    public CommandExecutor()
-    {
-    }
 
     private string prepareArguments(Params param, string uniqueId)
     {

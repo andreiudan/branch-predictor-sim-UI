@@ -1,11 +1,15 @@
-﻿<Properties StartupConfiguration="{7E553416-E3AB-4AF3-A2F1-39F845E3F1B4}|Default">
+﻿<Properties StartupConfiguration="{2D74ED63-52CD-488B-815E-00F40867094C}|Default">
   <MonoDevelop.Ide.ItemProperties.Server PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Client PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Client/MainWindow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Client/Connection/ConnectionManager.cs">
     <Files>
-      <File FileName="Client/Connection/ServerStatus.cs" Line="1" Column="1" />
-      <File FileName="Client/Connection/Server.cs" Line="12" Column="11" />
-      <File FileName="Client/MainWindow.cs" Line="52" Column="39" />
+      <File FileName="Client/ConnectDialog.cs" Line="1" Column="1" />
+      <File FileName="Client/MainWindow.cs" Line="487" Column="1" />
+      <File FileName="Domain/Benchmark.cs" Line="50" Column="7" />
+      <File FileName="Client/Connection/ConnectionManager.cs" Line="23" Column="33" />
+      <File FileName="Server/Program.cs" Line="21" Column="80" />
+      <File FileName="Client/Connection/Server.cs" Line="1" Column="1" />
+      <File FileName="Server/Connection/WCFServer.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,8 +17,9 @@
           <Node name="branch-predictor-sim-UI" expanded="True">
             <Node name="Client" expanded="True">
               <Node name="UserInterface" expanded="True" />
-              <Node name="Connection" expanded="True" />
-              <Node name="MainWindow.cs" selected="True" />
+              <Node name="Connection" expanded="True">
+                <Node name="ConnectionManager.cs" selected="True" />
+              </Node>
             </Node>
             <Node name="Domain" expanded="True">
               <Node name="DTOs" expanded="True" />
@@ -28,15 +33,14 @@
           </Node>
         </State>
       </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
-      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/home/andreiudan/GitHub/branch-predictor-sim-UI/Client/Connection/ConnectionManager.cs" relfile="Client/Connection/ConnectionManager.cs" line="101" column="21" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading;
-using Domain.DTOs;
+﻿using Domain.DTOs;
 using Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;

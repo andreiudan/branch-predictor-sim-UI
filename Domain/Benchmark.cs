@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
 public class Benchmark
 {
     public string benchmarkFile { get; set; }
@@ -48,8 +48,4 @@ public class Benchmark
             }
         }
     };
-
-    public Benchmark()
-    {
-    }
 }
