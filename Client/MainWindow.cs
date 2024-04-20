@@ -5,85 +5,127 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Domain.DTOs;
+using Client.Connection;
+using Client;
+using Domain.Models;
+using Domain.EventArgs;
 
 public partial class MainWindow : Gtk.Window
 {
     private readonly Color darkModeBackground = new Color(51, 57, 59);
-    private readonly Color darkModeText = new Color(238, 238 ,236);
+    private readonly Color darkModeText = new Color(238, 238, 236);
     private readonly Color whiteModeBackground = new Color(232, 232, 231);
     private readonly Color whiteModeText = new Color(46, 52, 54);
 
     private int benchTableRowNum = 0;
     private List<string> benchmarks = new List<string>();
 
-    public MainWindow () : base (Gtk.WindowType.Toplevel)
+    private int connRowsNum = 1;
+    private List<Connection> ipAddresses = new List<Connection>();
+
+    private ConnectionManager connectionManager;
+
+    public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
-        ConnectionManager connectionManager = new ConnectionManager();
-
-        connectionManager.addConnection("192.168.114.91", "3000");
-       // connectionManager.addConnection("192.168.0.103", "3001");
-
-        var tasks = connectionManager.executeCommands(new List<Params> { 
-            new Params()
-            {
-                benchName= "Applu",
-                maxInst= 100
-
-            }
-            });
-
         Build();
+
+        SetDefaultSimulatorSettings();
+        SetDefaultPredictorArguments();
     }
 
-    protected void OnDeleteEvent (object sender, DeleteEventArgs a)
+    protected void OnDeleteEvent(object sender, DeleteEventArgs a)
     {
         Application.Quit();
         a.RetVal = true;
     }
 
-    protected void OnConfigBrowseButtonClicked (object sender, EventArgs e)
+    private async Task<ServerStatus> ConnectToServer(string ipAddress, string port)
+    {
+        string connectionFailedDialogTitle = "Connection failed";
+        string connectionFailedDialogMessage = "Connection attempt for ip addess: {0} with port: {1} failed.";
+
+        connectionManager = new ConnectionManager();
+
+        connectionManager.ConnectionStatusModified += ChangeConnectionStatus;
+
+        await Task.Run(() => ChangeConnectionStatus(this, new ConnectionStatusEventArgs(ipAddress, port, 
+                                                                    ServerStatus.Connecting.ToString())));
+            
+        //if (await connectionManager.addConnection(ipAddress, port) == ServerStatus.ConnectionFailed)
+        //{
+        //    ShowMessageBox(this, connectionFailedDialogTitle,
+        //        string.Format(connectionFailedDialogMessage, ipAddress, port));
+
+        //    return ServerStatus.ConnectionFailed;
+        //}
+
+        ipAddresses.Add(new Connection
+        {
+            Ip = ipAddress,
+            Port = port,
+            StatusLabelName = $"{ipAddress}:{port}StatusLabel"
+        });
+
+        return ServerStatus.Connected;
+    }
+
+    private void ChangeConnectionStatus(object sender, ConnectionStatusEventArgs args)
+    {
+        foreach (var child in serverConnTable.Children.Where(child => child.Name.Contains("Status")))
+        {
+            if (child.Name.Equals($"{args.Ip}:{args.Port}StatusLabel"))
+            {
+                Label connLabel = child as Label;
+                connLabel.Text = args.Status;
+                break;
+            }
+        }
+        ShowAll();
+    }
+
+    protected void OnConfigBrowseButtonClicked(object sender, EventArgs e)
     {
         configEntry.Text = ChooseFilePath()[0];
     }
 
-    protected void OnDumpBrowseButtonClicked (object sender, EventArgs e)
+    protected void OnDumpBrowseButtonClicked(object sender, EventArgs e)
     {
         dumpEntry.Text = ChooseFilePath()[0];
     }
 
-    protected void OnSimRedirBrowseButtonClicked (object sender, EventArgs e)
+    protected void OnSimRedirBrowseButtonClicked(object sender, EventArgs e)
     {
         simRedirEntry.Text = ChooseFolderPath();
     }
 
-    protected void OnProgRedirBrowseButtonClicked (object sender, EventArgs e)
+    protected void OnProgRedirBrowseButtonClicked(object sender, EventArgs e)
     {
         progRedirEntry.Text = ChooseFolderPath();
     }
 
-    private string ChooseFolderPath(){
+    private string ChooseFolderPath() {
         string folderPath = "";
 
-        FileChooserDialog fileChooser = new FileChooserDialog (
+        FileChooserDialog fileChooser = new FileChooserDialog(
             "Select Folder",
             this,
             FileChooserAction.SelectFolder,
             "Cancel", ResponseType.Cancel,
             "Open", ResponseType.Accept);
 
-        if (fileChooser.Run () == (int)ResponseType.Accept) {
+        if (fileChooser.Run() == (int)ResponseType.Accept) {
             folderPath = fileChooser.Filename;
         }
 
-        fileChooser.Destroy ();
+        fileChooser.Destroy();
 
         return folderPath;
     }
 
-    private string[] ChooseFilePath(){
+    private string[] ChooseFilePath() {
         string[] filesPaths = null;
 
-        FileChooserDialog fileChooser = new FileChooserDialog (
+        FileChooserDialog fileChooser = new FileChooserDialog(
             "Select File",
             this,
             FileChooserAction.Open,
@@ -92,11 +134,11 @@ public partial class MainWindow : Gtk.Window
 
         fileChooser.SelectMultiple = true;
 
-        if (fileChooser.Run () == (int)ResponseType.Accept) {
+        if (fileChooser.Run() == (int)ResponseType.Accept) {
             filesPaths = fileChooser.Filenames;
         }
 
-        fileChooser.Destroy ();
+        fileChooser.Destroy();
 
         return filesPaths;
     }
@@ -115,7 +157,7 @@ public partial class MainWindow : Gtk.Window
         AddBenchmarksToTable(benchmarks);
     }
 
-    private void ExtractBenchmarksNamesFromPath(string[] benchmarksPaths) 
+    private void ExtractBenchmarksNamesFromPath(string[] benchmarksPaths)
     {
         string benchmarksErrors = "";
         string benchSelectionErrorTitle = "One or more files are not supported!";
@@ -175,7 +217,7 @@ public partial class MainWindow : Gtk.Window
 
         benchmarks = new List<string>();
 
-        benchTable.Attach(noBenchLabel, 0, 1, 0, 1, AttachOptions.Fill, AttachOptions.Fill, 0 , 0);
+        benchTable.Attach(noBenchLabel, 0, 1, 0, 1, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
     }
 
     private void AddBenchmarksToTable(List<string> benchmarksNames)
@@ -200,7 +242,7 @@ public partial class MainWindow : Gtk.Window
                 benchFrame.HeightRequest += 50;
             }
 
-            benchTable.Attach(benchmarkLabel, 0, 1, (uint)benchTableRowNum, (uint)benchTableRowNum + 1, 
+            benchTable.Attach(benchmarkLabel, 0, 1, (uint)benchTableRowNum, (uint)benchTableRowNum + 1,
                                 AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 
             benchTableRowNum++;
@@ -215,15 +257,15 @@ public partial class MainWindow : Gtk.Window
 
         try
         {
-            dialog = new Dialog(title, parent, 
-                DialogFlags.DestroyWithParent | DialogFlags.Modal, 
+            dialog = new Dialog(title, parent,
+                DialogFlags.DestroyWithParent | DialogFlags.Modal,
                 "Ok", ResponseType.Ok);
             dialog.VBox.Add(new Label(message));
             dialog.ShowAll();
 
             dialog.Run();
         }
-        finally 
+        finally
         {
             if (dialog != null)
             {
@@ -232,26 +274,26 @@ public partial class MainWindow : Gtk.Window
         }
     }
 
-    protected void OnDefaultPredictorArgumentsActionActivated (object sender, EventArgs e)
+    protected void OnDefaultPredictorArgumentsActionActivated(object sender, EventArgs e)
     {
-        SetDefaultPredictorArguments ();
+        SetDefaultPredictorArguments();
     }
 
-    protected void OnDefaultSimulatorSettingsActionActivated (object sender, EventArgs e)
+    protected void OnDefaultSimulatorSettingsActionActivated(object sender, EventArgs e)
     {
-        SetDefaultSimulatorSettings ();
+        SetDefaultSimulatorSettings();
     }
 
-    protected void OnDefaultConfigActionActivated (object sender, EventArgs e)
+    protected void OnDefaultConfigActionActivated(object sender, EventArgs e)
     {
         //benchNameLabel.Text = "benchName";
         bpredCombobox.Active = 0;
 
-        SetDefaultSimulatorSettings ();
-        SetDefaultPredictorArguments ();
+        SetDefaultSimulatorSettings();
+        SetDefaultPredictorArguments();
     }
 
-    private void SetDefaultPredictorArguments(){
+    private void SetDefaultPredictorArguments() {
         //2lev
         l1sizeSpinbutton.Value = 1;
         l2sizeSpinbutton.Value = 1024;
@@ -279,7 +321,7 @@ public partial class MainWindow : Gtk.Window
         tableSizeSpinbutton.Value = 2048;
     }
 
-    private void SetDefaultSimulatorSettings(){
+    private void SetDefaultSimulatorSettings() {
         seedSpinbutton.Value = 1;
         configEntry.Text = "";
         dumpEntry.Text = "";
@@ -294,8 +336,11 @@ public partial class MainWindow : Gtk.Window
         maxInstSpinbutton.Value = 1000000000;
     }
 
-    protected void OnSimulateButtonClicked (object sender, EventArgs e)
+    protected void OnSimulateButtonClicked(object sender, EventArgs e)
     {
+        string noConnectionsFoundDialogTitle = "No connections available";
+        string noConnectionsFoundDialogMessage = "No connection available to simulate at this time.";
+
         Params predictorSettings = new Params
         {
             //benchName = benchNameLabel.Text,
@@ -311,6 +356,21 @@ public partial class MainWindow : Gtk.Window
             xor = xorSpinbutton.ValueAsInt,
             assoc = assocSpinbutton.ValueAsInt
         };
+
+        if (connectionManager is null || ipAddresses.Count == 0)
+        {
+            ShowMessageBox(this, noConnectionsFoundDialogTitle, noConnectionsFoundDialogMessage);
+            return;
+        }
+
+        var tasks = connectionManager.executeCommands(new List<Params> {
+            new Params()
+            {
+                benchName= "Applu",
+                maxInst= 100
+
+            }
+        });
     }
 
     private void ModifyWidgetColors(Widget widget, Color backgroundColor, Color textColor)
@@ -353,5 +413,94 @@ public partial class MainWindow : Gtk.Window
         {
             ModifyWidgetColors(this, whiteModeBackground, whiteModeText);
         }
+    }
+
+    protected void OnAddConnButtonClicked(object sender, EventArgs e)
+    {
+        ConnectDialog connectDialog = new ConnectDialog();
+
+        connectDialog.ValuesSubmited += OnConnectionAddressSubmitted;
+
+        connectDialog.Run();
+    }
+
+    private async void OnConnectionAddressSubmitted(object sender, Tuple<string, string> connectionAddress)
+    {
+        string connectionExistsDialogTitle = "Connection exists";
+        string connectionExistsDialogMessage = "A connection with ip: {0} and port: {1} already exists";
+
+        string ip = connectionAddress.Item1;
+        string port = connectionAddress.Item2;
+
+        if (ipAddresses.Any(x => x.StatusLabelName == $"{ip}:{port}StatusLabel"))
+        {
+            ShowMessageBox(this, connectionExistsDialogTitle, string.Format(connectionExistsDialogMessage, ip, port));
+            return;
+        }
+
+        if (await ConnectToServer(ip, port) == ServerStatus.ConnectionFailed)
+        {
+            return;
+        }
+
+        PopulateConnectionsTable();
+    }
+
+    private void PopulateConnectionsTable()
+    {
+        ClearConnectionsTable();
+
+        foreach (Connection connection in ipAddresses)
+        {
+            Label ipLabel = new Label(connection.Ip);
+            Label portLabel = new Label(connection.Port);
+            Label statusLabel = new Label(ServerStatus.NotConnected.ToString());
+            Button deleteConnButton = new Button();
+
+            ipLabel.Name = $"{ipLabel.Text}:{portLabel.Text}IpLabel";
+            portLabel.Name = $"{ipLabel.Text}:{portLabel.Text}PortLabel";
+            statusLabel.Name = $"{ipLabel.Text}:{portLabel.Text}StatusLabel";
+
+            deleteConnButton.Label = "Delete";
+            deleteConnButton.Name = $"{ipLabel.Text}:{portLabel.Text}DeleteButton";
+            deleteConnButton.Clicked += OnDeleteConnectionButtonClicked;
+
+            serverConnTable.NRows++;
+            serverConnTable.Attach(ipLabel, 0, 1, (uint)connRowsNum, (uint)connRowsNum + 1, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+            serverConnTable.Attach(portLabel, 1, 2, (uint)connRowsNum, (uint)connRowsNum + 1, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+            serverConnTable.Attach(statusLabel, 2, 3, (uint)connRowsNum, (uint)connRowsNum + 1, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+            serverConnTable.Attach(deleteConnButton, 3, 4, (uint)connRowsNum, (uint)connRowsNum + 1, AttachOptions.Fill, AttachOptions.Fill, 5, 0);
+
+            connRowsNum++;
+            serverConnectionFrame.HeightRequest += 50;
+        }
+
+        ShowAll();
+    }
+
+    private void ClearConnectionsTable()
+    {
+        foreach (var child in serverConnTable.Children.Where(x => !x.Name.Equals("ipLabel") &&
+                                                                  !x.Name.Equals("portLabel") &&
+                                                                  !x.Name.Equals("connStatusLabel") &&
+                                                                  !x.Name.Equals("addConnButton"))){
+            serverConnTable.Remove(child);
+        }
+
+        connRowsNum = 1;
+        serverConnTable.NRows = 1;
+        serverConnectionFrame.HeightRequest = 68;
+    }
+
+    private void OnDeleteConnectionButtonClicked(object sender, EventArgs e)
+    {
+        Button deleteButton = sender as Button;
+
+        string key = deleteButton.Name.Replace("DeleteButton", "StatusLabel");
+
+        Connection connectionToRemove = ipAddresses.FirstOrDefault(x => x.StatusLabelName.Equals(key));
+        ipAddresses.Remove(connectionToRemove);
+
+        PopulateConnectionsTable();
     }
 }

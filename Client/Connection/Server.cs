@@ -8,9 +8,13 @@ public class Server
 {
     IWCFServer server;
     public int instanceProcesses;
+    public string Ip { get; set; }
+    public string Port { get; set; }
 
     public Server(string IP, string port)
     {
+        Ip = IP;
+        Port = port;
         instanceProcesses = 0;
 
         NetTcpBinding binding = new NetTcpBinding();
