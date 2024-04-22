@@ -2,6 +2,7 @@
 using Domain.DTOs;
 using Interfaces;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 public class Server
 {
@@ -17,6 +18,12 @@ public class Server
         instanceProcesses = 0;
 
         NetTcpBinding binding = new NetTcpBinding();
+        binding.MaxReceivedMessageSize = 49152;
+        binding.MaxBufferSize = 49152;
+        binding.MaxBufferPoolSize = 49152;
+
+        binding.ReaderQuotas.MaxStringContentLength = 49152;
+
         string url = $"net.tcp://{IP}:{port}/wcfserver";
         EndpointAddress address = new EndpointAddress(url);
 
