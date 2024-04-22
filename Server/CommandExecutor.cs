@@ -36,6 +36,8 @@ public class CommandExecutor
     {
         string uniqueId = Guid.NewGuid().ToString();
 
+        var command = simulatorBasePath + "sim-bpred " + prepareArguments(param, uniqueId);
+
         Process process = Process.Start(simulatorBasePath + "sim-bpred", prepareArguments(param, uniqueId));
         process.Start();
         process.WaitForExit();
@@ -45,6 +47,8 @@ public class CommandExecutor
 
         StreamReader progoutReader = new StreamReader($"./{uniqueId}-prog.res");
         var progoutRes = progoutReader.ReadToEnd();
+
+        Console.WriteLine(command);
 
         cleanup(uniqueId);
 

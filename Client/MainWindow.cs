@@ -33,6 +33,9 @@ public partial class MainWindow : Gtk.Window
         SetDefaultSimulatorSettings();
         SetDefaultPredictorArguments();
         LinkBenchmarksAndInputs();
+
+        connectionManager = new ConnectionManager();
+        connectionManager.ConnectionStatusModified += ChangeConnectionStatus;
     }
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -46,20 +49,10 @@ public partial class MainWindow : Gtk.Window
         string connectionFailedDialogTitle = "Connection failed";
         string connectionFailedDialogMessage = "Connection attempt for ip addess: {0} with port: {1} failed.";
 
-        connectionManager = new ConnectionManager();
-
-        connectionManager.ConnectionStatusModified += ChangeConnectionStatus;
-
-        await Task.Run(() => ChangeConnectionStatus(this, new ConnectionStatusEventArgs(ipAddress, port,
+        await Task.Run(() => ChangeConnectionStatus(this, new ConnectionStatusEventArgs(ipAddress, port, 
                                                                     ServerStatus.Connecting.ToString())));
 
-        if (await connectionManager.addConnection(ipAddress, port) == ServerStatus.ConnectionFailed)
-        {
-            ShowMessageBox(this, connectionFailedDialogTitle,
-                string.Format(connectionFailedDialogMessage, ipAddress, port));
-
-            return ServerStatus.ConnectionFailed;
-        }
+        connectionManager.addConnection(ipAddress, port);
 
         return ServerStatus.Connected;
     }
@@ -380,9 +373,15 @@ public partial class MainWindow : Gtk.Window
             });
         }
 
-        var tasks = await Task.Run(() => connectionManager.executeCommands(simulationsParams, simRedirEntry.Text, progRedirEntry.Text));
+        var tasks = await Task.Run(()=>connectionManager.executeCommands(simulationsParams));
 
-        Console.WriteLine("123");
+        foreach (var task in tasks)
+        {
+            using (StreamWriter streamWriter = new StreamWriter(simRedirEntry.Text + "/" + task.benchName + "_simout.res"))
+            {
+                streamWriter.Write(task.simoutFile);
+            }
+        }
     }
 
     private void ModifyWidgetColors(Widget widget, Color backgroundColor, Color textColor)

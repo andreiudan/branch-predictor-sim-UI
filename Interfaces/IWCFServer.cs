@@ -10,5 +10,8 @@ namespace Interfaces
 
         [OperationContract]
         string executeCommands(string arg);
+
+        [OperationContract]
+        string ping();
     }
 }

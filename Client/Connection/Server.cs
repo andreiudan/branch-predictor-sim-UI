@@ -3,6 +3,8 @@ using Domain.DTOs;
 using Interfaces;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Client.Connection;
+using System;
 
 public class Server
 {
@@ -48,5 +50,19 @@ public class Server
 
         return Newtonsoft.Json.JsonConvert.DeserializeObject<List<Result>>(serializedResult);
 
+    }
+
+    public ServerStatus ping()
+    {
+        try
+        {
+            server.ping();
+
+            return ServerStatus.Connected;
+        }
+        catch (Exception ex)
+        {
+            return ServerStatus.ConnectionFailed;
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Domain.DTOs;
 using Domain.EventArgs;
 using System.IO;
+using System.Threading;
 
 namespace Client.Connection
 {
@@ -15,20 +16,23 @@ namespace Client.Connection
 
         List<Server> servers = new List<Server>();
 
-        public async Task<ServerStatus> addConnection(string IP, string port)
+        public void addConnection(string IP, string port)
         {
-            try
-            {
-                servers.Add(new Server(IP, port));
-            }
-            catch(Exception ex)
-            {
-                await Task.Run(() => OnConnectionStatusModified(IP, port, ServerStatus.ConnectionFailed.ToString()));
-                return ServerStatus.ConnectionFailed;
-            }
+            var server = new Server(IP, port);
 
-            await Task.Run(() => OnConnectionStatusModified(IP, port, ServerStatus.Connected.ToString()));
-            return ServerStatus.Connected;
+            servers.Add(server);
+
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    var status = server.ping();
+
+                    OnConnectionStatusModified(IP, port, status.ToString());
+
+                    Thread.Sleep(1000);
+                }
+            });
         }
 
         protected virtual void OnConnectionStatusModified(string ip, string port, string status)
@@ -82,7 +86,7 @@ namespace Client.Connection
             return processesMap;
         }
 
-        public List<Result> executeCommands(List<Params> args, string simRedir, string progRedir)
+        public List<Result> executeCommands(List<Params> args)
         {
             var balancedCommands = balanceCommands(args);
             List<Result> results = new List<Result>();
@@ -94,15 +98,6 @@ namespace Client.Connection
                 var temp = comm.Key.executeCommands(comm.Value);
 
                 results.AddRange(temp);
-
-                foreach(var res in results)
-                {
-                    using(StreamWriter streamWriter = new StreamWriter(simRedir + "/" + res.benchName + "_simout.res"))
-                    {
-                        streamWriter.Write(res.simoutFile);
-
-                    }
-                }
 
                 OnConnectionStatusModified(comm.Key.Ip, comm.Key.Port, ServerStatus.Simulated.ToString());
             }
