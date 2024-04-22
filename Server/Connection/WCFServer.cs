@@ -51,4 +51,9 @@ public class WCFServer : IWCFServer
 
         return Newtonsoft.Json.JsonConvert.SerializeObject(results);
     }
+
+    public string ping()
+    {
+        return "OK";
+    }
 }
