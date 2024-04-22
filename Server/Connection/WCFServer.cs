@@ -49,6 +49,6 @@ public class WCFServer : IWCFServer
             results.Add(resultTask.Result);
         }
 
-        return "";
+        return Newtonsoft.Json.JsonConvert.SerializeObject(results);
     }
 }

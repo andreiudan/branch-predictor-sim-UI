@@ -332,7 +332,7 @@ public partial class MainWindow : Gtk.Window
         maxInstSpinbutton.Value = 1000000000;
     }
 
-    protected void OnSimulateButtonClicked(object sender, EventArgs e)
+    protected async void OnSimulateButtonClicked(object sender, EventArgs e)
     {
         string noConnectionsFoundDialogTitle = "No connections available";
         string noConnectionsFoundDialogMessage = "No connection available to simulate at this time.";
@@ -373,7 +373,9 @@ public partial class MainWindow : Gtk.Window
             });
         }
 
-        var tasks = connectionManager.executeCommands(simulationsParams);
+        var tasks = await Task.Run(()=>connectionManager.executeCommands(simulationsParams, simRedirEntry.Text, progRedirEntry.Text));
+
+        Console.WriteLine("123");
     }
 
     private void ModifyWidgetColors(Widget widget, Color backgroundColor, Color textColor)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain.DTOs;
 using Domain.EventArgs;
+using System.IO;
 
 namespace Client.Connection
 {
@@ -81,21 +82,29 @@ namespace Client.Connection
             return processesMap;
         }
 
-        public async Task<List<Result>> executeCommands(List<Params> args)
+        public List<Result> executeCommands(List<Params> args, string simRedir, string progRedir)
         {
             var balancedCommands = balanceCommands(args);
             List<Result> results = new List<Result>();
 
             foreach (var comm in balancedCommands)
             {
-                await Task.Run(() => OnConnectionStatusModified(comm.Key.Ip, comm.Key.Port, ServerStatus.Simulating.ToString()));
+                OnConnectionStatusModified(comm.Key.Ip, comm.Key.Port, ServerStatus.Simulating.ToString());
 
-                await Task.Run(() =>
+                var temp = comm.Key.executeCommands(comm.Value);
+
+                results.AddRange(temp);
+
+                foreach(var res in results)
                 {
-                    results.AddRange(comm.Key.executeCommands(comm.Value));
-                });
+                    using(StreamWriter streamWriter = new StreamWriter(simRedir + "/" + res.benchName + "_simout.res"))
+                    {
+                        streamWriter.Write(res.simoutFile);
 
-                await Task.Run(() => OnConnectionStatusModified(comm.Key.Ip, comm.Key.Port, ServerStatus.Simulated.ToString()));
+                    }
+                }
+
+                OnConnectionStatusModified(comm.Key.Ip, comm.Key.Port, ServerStatus.Simulated.ToString());
             }
 
             return results;
