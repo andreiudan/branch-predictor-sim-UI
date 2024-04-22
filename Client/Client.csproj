@@ -76,6 +76,8 @@
     <Compile Include="Connection\ServerStatus.cs" />
     <Compile Include="ConnectDialog.cs" />
     <Compile Include="gtk-gui\Client.ConnectDialog.cs" />
+    <Compile Include="BenchmarkImportDialog.cs" />
+    <Compile Include="gtk-gui\Client.BenchmarkImportDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Connection\" />

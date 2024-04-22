@@ -32,6 +32,7 @@ public partial class MainWindow : Gtk.Window
 
         SetDefaultSimulatorSettings();
         SetDefaultPredictorArguments();
+        LinkBenchmarksAndInputs();
     }
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -49,9 +50,9 @@ public partial class MainWindow : Gtk.Window
 
         connectionManager.ConnectionStatusModified += ChangeConnectionStatus;
 
-        await Task.Run(() => ChangeConnectionStatus(this, new ConnectionStatusEventArgs(ipAddress, port, 
+        await Task.Run(() => ChangeConnectionStatus(this, new ConnectionStatusEventArgs(ipAddress, port,
                                                                     ServerStatus.Connecting.ToString())));
-            
+
         if (await connectionManager.addConnection(ipAddress, port) == ServerStatus.ConnectionFailed)
         {
             ShowMessageBox(this, connectionFailedDialogTitle,
@@ -97,7 +98,8 @@ public partial class MainWindow : Gtk.Window
         progRedirEntry.Text = ChooseFolderPath();
     }
 
-    private string ChooseFolderPath() {
+    private string ChooseFolderPath()
+    {
         string folderPath = "";
 
         FileChooserDialog fileChooser = new FileChooserDialog(
@@ -107,7 +109,8 @@ public partial class MainWindow : Gtk.Window
             "Cancel", ResponseType.Cancel,
             "Open", ResponseType.Accept);
 
-        if (fileChooser.Run() == (int)ResponseType.Accept) {
+        if (fileChooser.Run() == (int)ResponseType.Accept)
+        {
             folderPath = fileChooser.Filename;
         }
 
@@ -116,7 +119,8 @@ public partial class MainWindow : Gtk.Window
         return folderPath;
     }
 
-    private string[] ChooseFilePath() {
+    private string[] ChooseFilePath()
+    {
         string[] filesPaths = null;
 
         FileChooserDialog fileChooser = new FileChooserDialog(
@@ -128,7 +132,8 @@ public partial class MainWindow : Gtk.Window
 
         fileChooser.SelectMultiple = true;
 
-        if (fileChooser.Run() == (int)ResponseType.Accept) {
+        if (fileChooser.Run() == (int)ResponseType.Accept)
+        {
             filesPaths = fileChooser.Filenames;
         }
 
@@ -148,7 +153,7 @@ public partial class MainWindow : Gtk.Window
 
         ExtractBenchmarksNamesFromPath(benchmarksPaths);
 
-        AddBenchmarksToTable(benchmarks);
+        AddBenchmarksToTable();
     }
 
     private void ExtractBenchmarksNamesFromPath(string[] benchmarksPaths)
@@ -214,11 +219,11 @@ public partial class MainWindow : Gtk.Window
         benchTable.Attach(noBenchLabel, 0, 1, 0, 1, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
     }
 
-    private void AddBenchmarksToTable(List<string> benchmarksNames)
+    private void AddBenchmarksToTable()
     {
         benchTable.Remove(noBenchLabel);
 
-        foreach (string benchmark in benchmarksNames)
+        foreach (string benchmark in benchmarks)
         {
             if (benchTable.Children.Any(x => x.Name.Equals($"{benchmark}Label")))
             {
@@ -288,7 +293,8 @@ public partial class MainWindow : Gtk.Window
         SetDefaultPredictorArguments();
     }
 
-    private void SetDefaultPredictorArguments() {
+    private void SetDefaultPredictorArguments()
+    {
         //2lev
         l1sizeSpinbutton.Value = 1;
         l2sizeSpinbutton.Value = 1024;
@@ -309,8 +315,9 @@ public partial class MainWindow : Gtk.Window
         tableSizeSpinbutton.Value = 2048;
     }
 
-    private void SetDefaultSimulatorSettings() {
-        string resultsPath = "./../../simplesim-3.0/results";
+    private void SetDefaultSimulatorSettings()
+    {
+        string resultsPath = "./../../../simplesim-3.0/results";
 
         if (!Directory.Exists(resultsPath))
         {
@@ -346,7 +353,7 @@ public partial class MainWindow : Gtk.Window
             return;
         }
 
-        if (benchmarks.Count == 0) 
+        if (benchmarks.Count == 0)
         {
             ShowMessageBox(this, noBenchSelectedDialogTitle, noBenchSelectedDialogMessage);
             return;
@@ -373,7 +380,7 @@ public partial class MainWindow : Gtk.Window
             });
         }
 
-        var tasks = await Task.Run(()=>connectionManager.executeCommands(simulationsParams, simRedirEntry.Text, progRedirEntry.Text));
+        var tasks = await Task.Run(() => connectionManager.executeCommands(simulationsParams, simRedirEntry.Text, progRedirEntry.Text));
 
         Console.WriteLine("123");
     }
@@ -492,7 +499,8 @@ public partial class MainWindow : Gtk.Window
         foreach (var child in serverConnTable.Children.Where(x => !x.Name.Equals("ipLabel") &&
                                                                   !x.Name.Equals("portLabel") &&
                                                                   !x.Name.Equals("connStatusLabel") &&
-                                                                  !x.Name.Equals("addConnButton"))){
+                                                                  !x.Name.Equals("addConnButton")))
+        {
             serverConnTable.Remove(child);
         }
 
@@ -511,5 +519,87 @@ public partial class MainWindow : Gtk.Window
         ipAddresses.Remove(connectionToRemove);
 
         PopulateConnectionsTable();
+    }
+
+    private void OnNewBenchmarkImported(object sender, Tuple<string, string> benchmark)
+    {
+        string benchmarkName = benchmark.Item1;
+        string input = benchmark.Item2;
+
+        if (benchmarks.Contains(benchmarkName))
+        {
+            return;
+        }
+
+        Benchmark.Benchmarks.Add(benchmarkName, new Benchmark
+        {
+            benchmarkFile = $"benchmarks/{benchmarkName.ToLower()}/{benchmarkName.ToLower()}.ss",
+            inFile = $"benchmarks/{benchmarkName}/{input}"
+        });
+
+        benchmarks.Add(benchmarkName);
+
+        AddBenchmarksToTable();
+    }
+
+    private void LinkBenchmarksAndInputs()
+    {
+        string benchmarksPath = "./../../../simplesim-3.0/benchmarks/";
+
+        string fileNumberInDirectoryDialogTitle = "The number of files in directory is not as expected.";
+        string fileNumberInDirectoryDialogMessage = "There should be 2 files in each benchmark directory and {0} " +
+            "files were found.";
+
+        string fileErrorDialogTitle = "One or more files not found.";
+        string fileErrorDialogMessage = "Benchmark or input file were not found in the expected directory.";
+
+        foreach (string benchDirectory in Directory.GetDirectories(benchmarksPath))
+        {
+            string[] filesPaths = Directory.GetFiles(benchDirectory);
+
+            if (filesPaths.Length != 2)
+            {
+                ShowMessageBox(this, fileNumberInDirectoryDialogTitle,
+                    string.Format(fileNumberInDirectoryDialogMessage, filesPaths.Length));
+                continue;
+            }
+
+            string input = "";
+            string bench = "";
+
+            foreach (string filePath in filesPaths)
+            {
+                string file = filePath.Split('/').Last();
+
+                if (!file.Contains("ss"))
+                {
+                    input = file;
+                }
+
+                bench = file.Split('.').First();
+                bench = char.ToUpper(bench[0]) + bench.Substring(1);
+            }
+
+            if (bench == "" || input == "")
+            {
+                ShowMessageBox(this, fileErrorDialogTitle, fileErrorDialogMessage);
+                continue;
+            }
+
+            Benchmark.Benchmarks.Add(bench, new Benchmark
+            {
+                benchmarkFile = $"/benchmarks/{bench.ToLower()}/{bench.ToLower()}.ss",
+                inFile = $"/benchmarks/{bench.ToLower()}/{input}"
+            });
+        }
+    }
+
+    protected void OnImportActionActivated(object sender, EventArgs e)
+    {
+        BenchmarkImportDialog benchmarkImportDialog = new BenchmarkImportDialog();
+
+        benchmarkImportDialog.FilesAdded += OnNewBenchmarkImported;
+
+        benchmarkImportDialog.Run();
     }
 }

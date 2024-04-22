@@ -31,6 +31,10 @@ public partial class MainWindow
 
 	private global::Gtk.Action DefaultConfigAction;
 
+	private global::Gtk.Action ClearAction;
+
+	private global::Gtk.Action ImportAction;
+
 	private global::Gtk.VBox vbox1;
 
 	private global::Gtk.MenuBar menubar3;
@@ -280,6 +284,12 @@ public partial class MainWindow
 		this.DefaultConfigAction = new global::Gtk.Action("DefaultConfigAction", global::Mono.Unix.Catalog.GetString("Default config"), null, null);
 		this.DefaultConfigAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Default config");
 		w1.Add(this.DefaultConfigAction, null);
+		this.ClearAction = new global::Gtk.Action("ClearAction", global::Mono.Unix.Catalog.GetString("Clear"), null, null);
+		this.ClearAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Clear");
+		w1.Add(this.ClearAction, null);
+		this.ImportAction = new global::Gtk.Action("ImportAction", global::Mono.Unix.Catalog.GetString("Import"), null, null);
+		this.ImportAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Import");
+		w1.Add(this.ImportAction, null);
 		this.UIManager.InsertActionGroup(w1, 0);
 		this.AddAccelGroup(this.UIManager.AccelGroup);
 		this.WidthRequest = 1200;
@@ -291,7 +301,7 @@ public partial class MainWindow
 		this.vbox1.Name = "vbox1";
 		this.vbox1.Spacing = 6;
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString(@"<ui><menubar name='menubar3'><menu name='BenchmarkAction' action='BenchmarkAction'><menuitem name='OpenAction' action='OpenAction'/></menu><menu name='SimulatorAction' action='SimulatorAction'><menuitem name='StartAction1' action='StartAction1'/><menuitem name='StopAction1' action='StopAction1'/></menu><menu name='ConfigAction' action='ConfigAction'><menuitem name='DefaultConfigAction' action='DefaultConfigAction'/><menuitem name='DefaultPredictorArgumentsAction' action='DefaultPredictorArgumentsAction'/><menuitem name='DefaultSimulatorSettingsAction' action='DefaultSimulatorSettingsAction'/></menu><menu name='HelpAction' action='HelpAction'/><menu name='AboutAction' action='AboutAction'/></menubar></ui>");
+		this.UIManager.AddUiFromString(@"<ui><menubar name='menubar3'><menu name='BenchmarkAction' action='BenchmarkAction'><menuitem name='OpenAction' action='OpenAction'/><menuitem name='ClearAction' action='ClearAction'/><menuitem name='ImportAction' action='ImportAction'/></menu><menu name='SimulatorAction' action='SimulatorAction'><menuitem name='StartAction1' action='StartAction1'/><menuitem name='StopAction1' action='StopAction1'/></menu><menu name='ConfigAction' action='ConfigAction'><menuitem name='DefaultConfigAction' action='DefaultConfigAction'/><menuitem name='DefaultPredictorArgumentsAction' action='DefaultPredictorArgumentsAction'/><menuitem name='DefaultSimulatorSettingsAction' action='DefaultSimulatorSettingsAction'/></menu><menu name='HelpAction' action='HelpAction'/><menu name='AboutAction' action='AboutAction'/></menubar></ui>");
 		this.menubar3 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget("/menubar3")));
 		this.menubar3.Name = "menubar3";
 		this.vbox1.Add(this.menubar3);
@@ -1200,7 +1210,7 @@ public partial class MainWindow
 		this.benchFrame.HeightRequest = 141;
 		this.benchFrame.Name = "benchFrame";
 		this.benchFrame.ShadowType = ((global::Gtk.ShadowType)(0));
-		this.benchFrame.LabelXalign = 0.07F;
+		this.benchFrame.LabelXalign = 0.14F;
 		this.benchFrame.LabelYalign = 0.6F;
 		// Container child benchFrame.Gtk.Container+ContainerChild
 		this.GtkAlignment12 = new global::Gtk.Alignment(0F, 0F, 1F, 1F);
@@ -1256,7 +1266,7 @@ public partial class MainWindow
 		this.benchFrame.Add(this.GtkAlignment12);
 		this.benchFrameLabel = new global::Gtk.Label();
 		this.benchFrameLabel.Name = "benchFrameLabel";
-		this.benchFrameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<b>Benchmarks</b>");
+		this.benchFrameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<b>Selected benchmarks</b>");
 		this.benchFrameLabel.UseMarkup = true;
 		this.benchFrame.LabelWidget = this.benchFrameLabel;
 		this.mainWindow.Add(this.benchFrame);
@@ -1364,6 +1374,7 @@ public partial class MainWindow
 		this.OpenAction.Activated += new global::System.EventHandler(this.OnBenchBrowseButtonClicked);
 		this.DefaultSimulatorSettingsAction.Activated += new global::System.EventHandler(this.OnDefaultSimulatorSettingsActionActivated);
 		this.DefaultConfigAction.Activated += new global::System.EventHandler(this.OnDefaultConfigActionActivated);
+		this.ImportAction.Activated += new global::System.EventHandler(this.OnImportActionActivated);
 		this.simRedirBrowseButton.Clicked += new global::System.EventHandler(this.OnSimRedirBrowseButtonClicked);
 		this.progRedirBrowseButton.Clicked += new global::System.EventHandler(this.OnProgRedirBrowseButtonClicked);
 		this.dumpBrowseButton.Clicked += new global::System.EventHandler(this.OnDumpBrowseButtonClicked);
