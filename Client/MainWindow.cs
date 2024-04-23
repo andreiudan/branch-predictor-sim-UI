@@ -334,24 +334,28 @@ public partial class MainWindow : Gtk.Window
 
     protected async void OnSimulateButtonClicked(object sender, EventArgs e)
     {
+        // Definire mesaje de eroare
         string noConnectionsFoundDialogTitle = "No connections available";
         string noConnectionsFoundDialogMessage = "No connection available to simulate at this time.";
 
         string noBenchSelectedDialogTitle = "No benchmark selected";
         string noBenchSelectedDialogMessage = "Please add a benchmark to be able to run the simulation.";
 
+        // Verificare daca exista conexiune
         if (connectionManager is null || ipAddresses.Count == 0)
         {
             ShowMessageBox(this, noConnectionsFoundDialogTitle, noConnectionsFoundDialogMessage);
             return;
         }
 
+        // Verificare daca s-au selectat benchmark-uri
         if (benchmarks.Count == 0)
         {
             ShowMessageBox(this, noBenchSelectedDialogTitle, noBenchSelectedDialogMessage);
             return;
         }
 
+        // Obtinerea si construirea obiectelor
         List<Params> simulationsParams = new List<Params>();
 
         foreach (string benchmark in benchmarks)
@@ -373,8 +377,10 @@ public partial class MainWindow : Gtk.Window
             });
         }
 
+        // Trimierea catre executie
         var tasks = await Task.Run(()=>connectionManager.executeCommands(simulationsParams));
 
+        // Prelucrarea rezultatelor
         foreach (var task in tasks)
         {
             using (StreamWriter streamWriter = new StreamWriter(simRedirEntry.Text + "/" + task.benchName + "_simout.res"))

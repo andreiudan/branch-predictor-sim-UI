@@ -42,8 +42,10 @@ namespace Client.Connection
 
         private Dictionary<Server, List<Params>> balanceCommands(List<Params> paramList)
         {
-            var processMap = getProcessMap();
+            // Obtine numarul de procese curente de pe fiecare server
+            Dictionary<Server, int> processMap = getProcessMap();
 
+            // Creaza un dictionar pentru a atribui fiecarui server o lista de simulari
             Dictionary<Server, List<Params>> balancedMap = new Dictionary<Server, List<Params>>();
 
             foreach (var process in processMap)
@@ -53,6 +55,7 @@ namespace Client.Connection
 
             foreach (var param in paramList)
             {
+                // Se gaseste serverul care are cele mai putine procese la momenul curent
                 int minimum = int.MaxValue;
                 Server server = null;
 
@@ -65,6 +68,7 @@ namespace Client.Connection
                     }
                 }
 
+                // Se adauga simulare in lista proceselor serverului
                 processMap[server]++;
                 balancedMap[server].Add(param);
             }

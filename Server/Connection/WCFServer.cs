@@ -20,16 +20,19 @@ public class WCFServer : IWCFServer
 
     public string executeCommands(string serializedParams)
     {
+        // Se deserializeaza lista parametrilor simularilor
         List<Params> args = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Params>>(serializedParams);
 
         List<Task<Result>> resultTasks = new List<Task<Result>>();
 
+        // pentru fiecare instructiune se creaza un thread nou si se modifica numarul de procese de pe server
         foreach(var param in args)
         {
             var newTask = Task.Run(() =>
             {
                 processes++;
 
+                // Executia efectiva a comenzii
                 var result = commandExecutor.execute(param);
 
                 processes--;
@@ -40,8 +43,10 @@ public class WCFServer : IWCFServer
             resultTasks.Add(newTask);
         }
 
+        // Asteapta pana cand toate thread-urile termina executia simularii 
         Task.WaitAll(resultTasks.ToArray());
 
+        // Creaza obiectul Result
         List<Result> results = new List<Result>();
 
         foreach(var resultTask in resultTasks)
@@ -49,6 +54,7 @@ public class WCFServer : IWCFServer
             results.Add(resultTask.Result);
         }
 
+        // Serializarea rezultatului
         return Newtonsoft.Json.JsonConvert.SerializeObject(results);
     }
 
